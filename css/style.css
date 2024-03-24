@@ -1,0 +1,163 @@
+/* навигация боковая и ссылки */
+.a-style {
+	border: 1px solid black;
+	font-size: 20px;
+	font-family: "Tahoma", sans-serif;
+	color: #00ced1;
+}
+.a-style1 {
+	border: 1px solid black;
+}
+.container1 {
+	margin: 0.15%;
+}
+h1 {
+	padding: 0px 10px;
+}
+.sidebar {
+    width: 11%; 
+	float: left;
+    background-color: #f0f0f0; 
+	position: fixed;
+	z-index: 1;
+	top: 0;
+    left: 0;
+	overflow-x: hidden;
+}
+/* мэин контент и табы */
+.main-content {
+	width: 89%;
+    background-color: #ffffff;
+	float: left;
+	margin-left: 11%;
+	position: fixed;
+}
+
+.tabs-items {
+	display: flex;
+}
+
+.tabs-item {
+	display: flex;
+}
+
+.tabs-block {
+	display: none;
+}
+.tabs-block:target {
+	display: block;
+}
+
+table {
+	border: 1px solid black;
+	width: 99%;
+	margin: 1%;
+}
+th, td {
+	font-family: "Arial", sans-serif;
+	font-size: 25px;
+	text-align: center;
+	border-width: 0 1px 1px 0;
+}
+
+.buttons123 {
+	position: relative;
+	display: inline-flex;
+	height: 70px;
+	width: 100%;
+}
+
+.search-form {
+	margin: 15px;
+	border: 2px solid black;
+	border-radius: 7px;
+	display: inline-flex;
+}
+.search-form-txt {
+	border: none;
+
+}
+.search-form-btn {
+	border: 1px solid black;
+	border-radius: 4px;
+	background-color: #00b8ff;
+	color: #ffffff;
+}
+.search-form-btn:hover {
+	background-color: #1E90FF;
+}
+
+.add-btn-st {
+	position: absolute;
+    top: 0;
+    right: 0;
+	margin: 15px;
+	background-color: #00b8ff;
+	border: 1px solid black;
+	border-radius: 20px;
+	color: #ffffff;
+}
+
+.imp-exp-st {
+	position: absolute;
+    top: 20px;
+    right: 130px;
+}
+.table-btn-st {
+	background-color: #ffffff;
+	border: 1px solid;
+	border-color: #00b8ff;
+	border-radius: 10px;
+	color: #00b8ff;
+}
+
+/* верхнее меню -----------------------------------------------------------------*/
+
+.container2 {
+	margin: 0.15%
+}
+.under1{
+	margin-top: 10%;
+	border: 1px solid black;
+}
+.top-menu {
+	top: 0;
+	border-bottom: 2px solid grey;
+}
+.btn-top-menu {
+	background-color: #ffffff;
+	border: 1px solid grey;
+	border-radius: 4px;
+	margin: 0 0.5% 0.5% 0;
+}
+.top-menu2 {
+	margin-top: 0.5%;
+	display: inline-flex;
+}
+.btn-top-menu2 {
+	border: 1px solid black;
+	margin: 0 5px 0 5px;
+	border-radius: 4px;
+	background-color: #CCCCCC;
+	padding: 0 5px 0 5px;
+}
+.week-range {
+	border-radius: 10px;
+    position: fixed;
+    right: 0.2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	height: 18%;
+	width: 15%;
+    justify-content: space-between;
+	background-color: #FFFAFA;
+}
+.editing-area {
+	margin-left: 55%;
+	position: fixed;
+	width: 18%;
+	background-color: #FFFAFA;
+	border-radius: 10px;
+	text-align: center;
+}
