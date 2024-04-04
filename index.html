@@ -13,9 +13,9 @@
 
 	<body>
 	
-		<nav>
-			<div class="sidebar">
-				<ul class="nav nav-fill flex-column tabs-items">
+		<nav class="nav-fill">
+			<div class="sidebar" id="sidebar">
+				<ul class="nav flex-column tabs-items">
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab1">Главная</a></li>
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab2">Преподаватели</a></li>
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab3">Дисциплины</a></li>
@@ -29,27 +29,27 @@
 		<main>
 			<div class="main-content">
 				<div>
-					<div id="tab1" class="tabs-block container1">
+					<div id="tab1" class="tabs-block">
 						<h1>Расписание факультетов</h1>
 						<nav>
 							<div>
 								<ul class="nav flex-column">
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak1">Математический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak2">Институт информационных технологий</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak3">Физический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak4">Химический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak5">Биологический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak6">Институт права</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak7">Экономический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak8">Факультет управления</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak9">Институт экономики отраслей</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak10">Факультет фундаментальной медицины</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak11">Институт образования и практической психологии</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak12">Факультет Евразии и Востока</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak13">Факультет лингвистики и перевода</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak14">Факультет журналистики</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak15">Историко-филологический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" href="#fak16">Факультет экологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu" href="#menu">Математический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu1" href="#menu">Институт информационных технологий</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu2" href="#menu">Физический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu3" href="#menu">Химический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu4" href="#menu">Биологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu5" href="#menu">Институт права</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu6" href="#menu">Экономический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu7" href="#menu">Факультет управления</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu8" href="#menu">Институт экономики отраслей</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu9" href="#menu">Факультет фундаментальной медицины</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu10" href="#menu">Институт образования и практической психологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu11" href="#menu">Факультет Евразии и Востока</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu12" href="#menu">Факультет лингвистики и перевода</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu13" href="#menu">Факультет журналистики</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu14" href="#menu">Историко-филологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu15" href="#menu">Факультет экологии</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -58,7 +58,7 @@
 						<h1>Преподаватели</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" type="text">
+								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
@@ -70,14 +70,14 @@
 							</div>
 						</div>
 						<table>
-							<tr><th>#</th><th>Фамилия</th><th>Имя</th><th>Отчество</th><th>Должность</th><th>Кафедра</th></tr>
+							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
 						</table>
 					</div>
 					<div id="tab3" class="tabs-block">
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" type="text">
+								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
@@ -89,14 +89,14 @@
 							</div>
 						</div>
 						<table>
-							<tr><th>#</th><th>Дисциплина</th><th>Ред.</th><th>Уд.</th></tr>
+							<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 						</table>
 					</div>
 					<div id="tab4" class="tabs-block">
 						<h1>Типы пар</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" type="text">
+								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
@@ -108,14 +108,14 @@
 							</div>
 						</div>
 						<table>
-							<tr><th>#</th><th>Тип</th></tr>
+							<tr><th width="4%">#</th><th width="80%">Тип</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 						</table>
 					</div>
 					<div id="tab5" class="tabs-block">
 						<h1>Аудитории</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" type="text">
+								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
@@ -127,14 +127,14 @@
 							</div>
 						</div>
 						<table>
-							<tr><th>#</th><th>Аудитория</th><th>Корпус</th></tr>
+							<tr><th width="4%">#</th><th width="50%">Аудитория / Адрес</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 						</table>
 					</div>
 					<div id="tab6" class="tabs-block">
 						<h1>Факультеты</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" type="text">
+								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
@@ -146,23 +146,29 @@
 							</div>
 						</div>
 						<table>
-							<tr><th>#</th><th>Факультет</th><th>ФИО декана</th></tr>
+							<tr><th width="4%">#</th><th width="60%">Факультет</th><th width="20%">ФИО декана</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 						</table>
 					</div>
 				</div>
-		
-				<div class="container2">
-					<div id="fak1" class="tabs-block">
+
+			</div>
+		</main>
+		<div class="menushka">
+
+		<div id="menu" class="tabs-block">
+
 						<footer>
 							<div class="top-menu">
-								<a href="javascript:history.back()">Назад</a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
+								<a href="javascript:history.back()" id="showMenu">Назад</a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
 							</div>
+							<script src="js/showmenu.js"></script>
 							<div class="top-menu2">
+							<div class="top-menu2-right">
 								<input type="radio" name="rb" id="rb1"><label for="rb1">1Н</label>
 								<input type="radio" name="rb" id="rb2"><label for="rb2">2Н</label>
 								<label class="btn-top-menu2" for="ch1"><input type="checkbox" id="ch1"> Диапазон недели</label>
 								<form>
-									<select id="pgroup" name="pgroup">
+									<select id="pgroup" class="btn-top-menu2" name="pgroup">
 										<option value="1">Количество подгрупп: 1</option>
 										<option value="2">Количество подгрупп: 2</option>
 										<option value="3">Количество подгрупп: 3</option>
@@ -173,58 +179,61 @@
 								<label class="btn-top-menu2" for="ch4"><input type="checkbox" id="ch4"> Время</label>
 								<button class="btn-top-menu2">Добавить поток</button>
 							</div>
-							<div class="week-range"> <!-- Диапазон недель -->
-							Диапазон недель
-								<div>
-									<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck1">1</label>
-									<input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck2">2</label>
-									<input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck3">3</label>
-									<input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck4">4</label>
-									<input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck5">5</label>
-									<input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck6">6</label>
+							<div class="top-menu2-left">
+								<div class="week-range"> <!-- Диапазон недель -->
+								Диапазон недель
+									<div>
+										<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck1">1</label>
+										<input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck2">2</label>
+										<input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck3">3</label>
+										<input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck4">4</label>
+										<input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck5">5</label>
+										<input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck6">6</label>
+									</div>
+									<div>
+										<input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck7">7</label>
+										<input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck8">8</label>
+										<input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck9">9</label>
+										<input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck10">10</label>
+										<input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck11">11</label>
+										<input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck12">12</label>
+									</div>
+									<div>
+										<input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck13">13</label>
+										<input type="checkbox" class="btn-check" id="btncheck14" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck14">14</label>
+										<input type="checkbox" class="btn-check" id="btncheck15" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck15">15</label>
+										<input type="checkbox" class="btn-check" id="btncheck16" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck16">16</label>
+										<input type="checkbox" class="btn-check" id="btncheck17" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck17">17</label>
+										<input type="checkbox" class="btn-check" id="btncheck18" autocomplete="off">
+										<label class="btn btn-outline-primary week-range-btn" for="btncheck18">18</label>			
+									</div>
 								</div>
-								<div>
-									<input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck7">7</label>
-									<input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck8">8</label>
-									<input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck9">9</label>
-									<input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck10">10</label>
-									<input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck11">11</label>
-									<input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck12">12</label>
-								</div>
-								<div>
-									<input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck13">13</label>
-									<input type="checkbox" class="btn-check" id="btncheck14" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck14">14</label>
-									<input type="checkbox" class="btn-check" id="btncheck15" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck15">15</label>
-									<input type="checkbox" class="btn-check" id="btncheck16" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck16">16</label>
-									<input type="checkbox" class="btn-check" id="btncheck17" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck17">17</label>
-									<input type="checkbox" class="btn-check" id="btncheck18" autocomplete="off">
-									<label class="btn btn-outline-primary" for="btncheck18">18</label>			
+								<div class="editing-area">
+									Область редактирования
+									<table class="editing-area-table">
+										<tr><th>Группа</th><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th></tr>
+									</table>
 								</div>
 							</div>
-							<div class="editing-area">
-								Область редактирования
-								<table>
-									<tr><th>Группа</th><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th></tr>
-								</table>
 							</div>
-							<div> <!-- ебучие кнопки групп -->
+							<div> <!-- кнопки групп -->
 								
 							</div>
 						</footer>
@@ -305,55 +314,8 @@
 							</div>
 						</main>
 					</div>
-					<div id="fak2" class="tabs-block">
-						
-					</div>
-					<div id="fak3" class="tabs-block">
-						
-					</div>
-					<div id="fak4" class="tabs-block">
-						
-					</div>
-					<div id="fak5" class="tabs-block">
-						
-					</div>
-					<div id="fak6" class="tabs-block">
-						
-					</div>
-					<div id="fak7" class="tabs-block">
-						
-					</div>
-					<div id="fak8" class="tabs-block">
-						
-					</div>
-					<div id="fak9" class="tabs-block">
-						
-					</div>
-					<div id="fak10" class="tabs-block">
-						
-					</div>
-					<div id="fak11" class="tabs-block">
-						
-					</div>
-					<div id="fak12" class="tabs-block">
-						
-					</div>
-					<div id="fak13" class="tabs-block">
-						
-					</div>
-					<div id="fak14" class="tabs-block">
-						
-					</div>
-					<div id="fak15" class="tabs-block">
-						
-					</div>
-					<div id="fak16" class="tabs-block">
-						
-					</div>					
-				</div>
-			</div>
-		</main>
-	
+		</div>
+
 
 	
 	</body>
