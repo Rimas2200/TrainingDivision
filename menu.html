@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>меню челгу</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+
+	<body class="menu">
+		<footer class="footer1">
+			<div class="top-menu">
+				<a href="javascript:history.back()" id="showMenu">Назад</a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
+			</div>
+			<div class="top-menu2">
+				<div class="top-menu2-left">
+					<label for="rb1"><input type="radio" name="rb" id="rb1">1Н</label>
+					<label for="rb2"><input type="radio" name="rb" id="rb2">2Н</label>
+					<label class="btn-top-menu2" for="ch1"><input type="checkbox" id="ch1"> Диапазон недели</label>
+					<form>
+						<select id="subgroup" class="btn-top-menu2" name="subgroup">
+							<option value="1">Количество подгрупп: 1</option>
+							<option value="2">Количество подгрупп: 2</option>
+							<option value="3">Количество подгрупп: 3</option>
+						</select>
+					</form>
+					<label class="btn-top-menu2" for="ch2"><input type="checkbox" id="ch2"> Аудитория</label>
+					<label class="btn-top-menu2" for="ch3"><input type="checkbox" id="ch3"> Адрес</label>
+					<label class="btn-top-menu2" for="ch4"><input type="checkbox" id="ch4"> Время</label>
+					<button class="btn-top-menu2">Добавить поток</button>
+				</div>
+				<div class="top-menu2-right">
+					<div class="editing-area">
+						Область редактирования
+						<table class="editing-area-table">
+							<tr><th>Группа</th><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th></tr>
+						</table>
+					</div>
+										<div class="week-range"> <!-- Диапазон недель -->
+					Диапазон недель
+						<div>
+							<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck1">1</label>
+							<input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck2">2</label>
+							<input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck3">3</label>
+							<input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck4">4</label>
+							<input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck5">5</label>
+							<input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck6">6</label>
+						</div>
+						<div>
+							<input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck7">7</label>
+							<input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck8">8</label>
+							<input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck9">9</label>
+							<input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck10">10</label>
+							<input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck11">11</label>
+							<input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck12">12</label>
+						</div>
+						<div>
+							<input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck13">13</label>
+							<input type="checkbox" class="btn-check" id="btncheck14" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck14">14</label>
+							<input type="checkbox" class="btn-check" id="btncheck15" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck15">15</label>
+							<input type="checkbox" class="btn-check" id="btncheck16" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck16">16</label>
+							<input type="checkbox" class="btn-check" id="btncheck17" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck17">17</label>
+							<input type="checkbox" class="btn-check" id="btncheck18" autocomplete="off">
+							<label class="btn btn-outline-primary week-range-btn" for="btncheck18">18</label>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<div> <!-- кнопки групп -->
+				
+			</div>
+		</footer>
+		<main class="under1">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					Понедельник
+					</button>
+					</h2>
+				<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						   
+					</div>
+				</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					Вторник
+					</button>
+					</h2>
+				<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						
+					</div>
+				</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					Среда
+					</button>
+					</h2>
+				<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						
+					</div>
+				</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					Четверг
+					</button>
+					</h2>
+				<div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						
+					</div>
+				</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
+					Пятница
+					</button>
+					</h2>
+				<div id="collapseFifth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						
+					</div>
+				</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixth" aria-expanded="false" aria-controls="collapseSixth">
+					Суббота
+					</button>
+					</h2>
+				<div id="collapseSixth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						
+					</div>
+				</div>
+				</div>
+			</div>
+		</main>
+	</body>
+
+</html>

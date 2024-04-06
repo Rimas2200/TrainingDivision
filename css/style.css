@@ -24,10 +24,8 @@ h1 {
 	float: left;
     background-color: #f0f0f0; 
 	position: fixed;
-	z-index: 1;
 	top: 0;
     left: 0;
-	
 }
 /* мэин контент и табы */
 .main-content {
@@ -117,51 +115,66 @@ th, td {
 }
 
 /* верхнее меню -----------------------------------------------------------------*/
-
-.container2 {
-	margin: 0.15%
+.menu {
+	background-color: #F3F3F6;
 }
+.footer1 {
+	background-color: #ffffff;
+	border-radius: 10px;
+	margin: 10px 10px 0 10px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .under1{
 	margin-top: 170px;
-	border: 1px solid black;
+	margin: 10px 10px 0 10px;
 }
 .top-menu {
 	top: 0;
-	border-bottom: 2px solid grey;
+	border-bottom: 2px solid #DADADA;
+	margin: 0 5px 0 5px;
 }
 .btn-top-menu {
 	background-color: #ffffff;
-	border: 1px solid grey;
+	border: 1px solid #DEDEDE;
 	border-radius: 4px;
 	margin: 0.5% 0.5% 0.5% 0;
 }
 .top-menu2 {
-	margin-top: 0.5%;
+	margin-top: 5px;
 	display: flex;
+	height: 170px;
 }
-.top-menu2-right{
+.btn-top-menu2 {
+	border: 1px solid #DADADA;
+	margin: 5px 5px 5px 5px;
+	border-radius: 4px;
+	background-color: #F3F3F6;
+	padding: 5px 5px 5px 5px;
+}
+.top-menu2-left{
 	flex-wrap: wrap;
+	width: 50%;
+	align-items: baseline;
+	display: inline-flex;
+	height: 50px;
+	margin-left: 5px;
+}
+.top-menu2-right {
 	width: 50%;
 	display: flex;
 }
-.btn-top-menu2 {
-	border: 1px solid black;
-	margin: 0.2em 0.2em 0 0.2em;
-	border-radius: 4px;
-	background-color: #CCCCCC;
-	padding: 0 0.2em 0 0.2em;
-	font-size: 1.1em;
-}
+
 .week-range {
 	border-radius: 10px;
-    position: fixed;
-    right: 0.35em;
     display: flex;
     flex-direction: column;
     align-items: center;
 	width: 14.5em;
-	padding: 0 0 0.2em 0;
-	background-color: #FF00FA;
+	padding: 0 0 2px 0;
+	background-color: #FBF7F7;
+	position: absolute;
+	right: 15px;
 }
 .week-range-btn {
 	border: none;
@@ -169,13 +182,13 @@ th, td {
 }
 
 .editing-area {
-	right: 16em;
-	position: fixed;
+	position: absolute;
 	width: 22em;
-	background-color: #FF00FA;
+	background-color: #FBF7F7;
 	border-radius: 0.7em;
 	text-align: center;
     align-items: center;
+	right: 17em;
 }
 .editing-area-table {
 	width: 20em;
