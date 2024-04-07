@@ -5,10 +5,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Расписание ЧелГУ</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+		<link href="css.boot/bootstrap.min.css" rel="stylesheet">
+		<link href="css.boot/docs.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js.boot/bootstrap.bundle.min.js"></script>
 	</head>
 
 	<body>
@@ -56,40 +56,80 @@
 						<h1>Преподаватели</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
+								<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
-							<div>
-								<a type="button" class="add-btn-st btn btn-primary">Добавить</a>
 
+	  
+							<div>
+								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
 							<div class="imp-exp-st">
 								<button class="table-btn-st">Импорт</button>
 								<button class="table-btn-st">Экспорт</button>
 							</div>
 						</div>
-						<table>
+						<table id="myTableTeacher">
+							<thead>
 							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							
+							</tbody>
 						</table>
+							<div id="overlayTeacher"></div>
+							<div id="popupTeacher">
+								<form id="inputFormTeacher">
+									<h2>Фамилия</h2>
+									<input type="text" id="inputTeacher1" placeholder="Фамилия">
+									<h2>Имя</h2>
+									<input type="text" id="inputTeacher2" placeholder="Имя">
+									<h2>Отчество</h2>
+									<input type="text" id="inputTeacher3" placeholder="Отчество">
+									<h2>Должность</h2>
+									<input type="text" id="inputTeacher4" placeholder="Должность">
+									<h2>Кафедра</h2>
+									<input type="text" id="inputTeacher5" placeholder="Кафедра">
+									<h2>Телефон кафедры</h2>
+									<input type="number" id="inputTeacher6" placeholder="Телефон кафедры">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTeacher">Закрыть окно</button>
+							</div>		
+							<script src="js/addTeacherscript.js"></script>
 					</div>
 					<div id="tab3" class="tabs-block">
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" placeholder="Поиск" size="90" type="text">
+								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
 								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
-								<button type="button" class="add-btn-st btn btn-primary">Добавить</button>
+								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
 							<div class="imp-exp-st">
 								<button class="table-btn-st">Импорт</button>
 								<button class="table-btn-st">Экспорт</button>
 							</div>
 						</div>
-						<table>
-							<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+						<table id="myTableDiscipline">
+							<thead>
+								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
 						</table>
+						<div id="overlayDiscipline"></div>
+							<div id="popupDiscipline">
+								<form id="inputFormDiscipline">
+									<h2>Дисциплина</h2>
+									<input type="text" id="inputDiscipline1" placeholder="Дисциплина">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDiscipline">Закрыть окно</button>
+							</div>		
+							<script src="js/addDisciplinescript.js"></script>
 					</div>
 					<div id="tab4" class="tabs-block">
 						<h1>Типы пар</h1>
