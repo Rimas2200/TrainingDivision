@@ -1,3 +1,69 @@
+.vremennaya-table{
+	border-color: lightgray;
+}
+.vremennaya {
+	text-align: left;
+}
+.select123 {
+	border: none;
+	margin: 15px 0 15px 0;
+	width: 10em;
+}
+.select12 {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.plusik {
+	border: none;
+	background-color: #ffffff;
+	font-size: 20px;
+}
+.udalit {
+	width: 30px;
+	height: 30px;
+	background-image: url("images/trash.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+.napravleniya {
+	display: flex;
+	justify-content: center;
+	background-color: #FBF7F7;
+	margin: 10px 10px 10px 10px;
+	border-radius: 10px;
+}
+.napravleniya-btn {
+	margin: 10px 10px 10px 10px;
+	background-color: #ffffff;
+	border: none;
+	width: 5em;
+}
+.napravleniya-btn:hover {
+	background-color: #FF9E67;
+	border-radius: 7px;
+}
+.gruppy {
+	display: flex;
+	justify-content: center;
+	background-color: #FBF7F7;
+	margin: 10px 10px 10px 10px;
+	border-radius: 10px;
+}
+.gruppy-btn {
+	margin: 10px 10px 10px 10px;
+	background-color: #ffffff;
+	border: none;
+	width: max-content;
+}
+.gruppy-btn:hover {
+	background-color: #FF9E67;
+	border-radius: 7px;
+}
 /* навигация боковая и ссылки */
 .a-style {
 	border: 1px solid black;
@@ -58,7 +124,7 @@ th, td {
 	font-family: "Arial", sans-serif;
 	font-size: 1.2em;
 	text-align: center;
-	border-width: 0 1px 1px 0;
+	border-width: 1px;
 }
 
 .buttons123 {
@@ -140,11 +206,7 @@ th, td {
 	border-radius: 4px;
 	margin: 0.5% 0.5% 0.5% 0;
 }
-.top-menu2 {
-	margin-top: 5px;
-	display: flex;
-	height: 170px;
-}
+
 .btn-top-menu2 {
 	border: 1px solid #DADADA;
 	margin: 5px 5px 5px 5px;
@@ -152,17 +214,25 @@ th, td {
 	background-color: #F3F3F6;
 	padding: 5px 5px 5px 5px;
 }
+.top-menu2 {
+	margin-top: 5px;
+	display: flex;
+	height: 170px;
+}
 .top-menu2-left{
 	flex-wrap: wrap;
 	width: 50%;
 	align-items: baseline;
 	display: inline-flex;
-	height: 50px;
 	margin-left: 5px;
+}
+.top-menu2-left-down {
+	display: block;
+	width: 100%;
 }
 .top-menu2-right {
 	width: 50%;
-	display: flex;
+	display: block;
 }
 
 .week-range {
@@ -175,6 +245,7 @@ th, td {
 	background-color: #FBF7F7;
 	position: absolute;
 	right: 15px;
+	height: 155px;
 }
 .week-range-btn {
 	border: none;
@@ -187,12 +258,24 @@ th, td {
 	background-color: #FBF7F7;
 	border-radius: 0.7em;
 	text-align: center;
-    align-items: center;
 	right: 17em;
 }
 .editing-area-table {
 	width: 20em;
 	margin: 0 1em 0.2em 1em;
+	border: none;
+	font-size: 14px;
+	border-spacing: 4px;
+	border-collapse: separate;
+}
+.th-EA {
+	border: none;
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+.td-EA {
+	border: none;
 }
 
 #overlayTeacher {

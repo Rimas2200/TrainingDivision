@@ -14,7 +14,7 @@
 	<body class="menu">
 		<footer class="footer1">
 			<div class="top-menu">
-				<a href="javascript:history.back()" id="showMenu">Назад</a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
+				<a href="javascript:history.back()" id="showMenu" ><img src="css/images/back.png" width="20px"></a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
 			</div>
 			<div class="top-menu2">
 				<div class="top-menu2-left">
@@ -32,15 +32,36 @@
 					<label class="btn-top-menu2" for="ch3"><input type="checkbox" id="ch3"> Адрес</label>
 					<label class="btn-top-menu2" for="ch4"><input type="checkbox" id="ch4"> Время</label>
 					<button class="btn-top-menu2">Добавить поток</button>
+					<div class="top-menu2-left-down"> <!-- кнопки групп -->
+						<div class="napravleniya">
+							<button class="napravleniya-btn">МП</button>
+							<button class="napravleniya-btn">МТ</button>
+							<button class="napravleniya-btn">МН</button>
+							<button class="napravleniya-btn">МК</button>
+							<button class="napravleniya-btn">МПмаг</button>
+							<button class="napravleniya-btn">МТмаг</button>
+							<button class="napravleniya-btn">ММмаг</button>
+						</div>
+						<div class="gruppy">
+							<button class="gruppy-btn">МП-201</button>
+							<button class="gruppy-btn">МП-202</button>
+							<button class="gruppy-btn">МП-203</button>
+						</div>
+					</div>
 				</div>
+
 				<div class="top-menu2-right">
 					<div class="editing-area">
 						Область редактирования
 						<table class="editing-area-table">
-							<tr><th>Группа</th><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th></tr>
+							<tr><th class="th-EA">Группа</th><th class="th-EA">Пн</th><th class="th-EA">Вт</th><th class="th-EA">Ср</th><th class="th-EA">Чт</th><th class="th-EA">Пт</th><th class="th-EA">Сб</th></tr>
+							<tr><th class="th-EA">МП-201</th><td class="td-EA">2</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">3</td><td class="td-EA">_</td></tr>
+							<tr><th class="th-EA">МП-202</th><td class="td-EA">2</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">3</td><td class="td-EA">_</td></tr>
+							<tr><th class="th-EA">МП-203</th><td class="td-EA">2</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">_</td><td class="td-EA">3</td><td class="td-EA">_</td></tr>
 						</table>
 					</div>
-										<div class="week-range"> <!-- Диапазон недель -->
+					
+					<div class="week-range"> <!-- Диапазон недель -->
 					Диапазон недель
 						<div>
 							<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
@@ -87,9 +108,7 @@
 					</div>
 				</div>
 			</div>
-			<div> <!-- кнопки групп -->
-				
-			</div>
+
 		</footer>
 		<main class="under1">
 			<div class="accordion" id="accordionExample">
@@ -101,7 +120,91 @@
 					</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						   
+						   <table class="vremennaya-table">
+								<thead>
+									<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="vremennaya"><select class="select12">
+										<option>#1</option>
+										<option>#2</option>
+										<option>#3</option>
+										<option>#4</option>
+										<option>#5</option>
+										<option>#6</option>
+										<option>#7</option>
+										<option>#8</option>
+									</select>	<select class="select123">
+										<option hidden>Дисциплина</option>
+										<option>Дифференциальные уравнения</option>
+										<option>Блокчейн в цифровой экономике</option>
+										<option>Принятие решений при многих критериях</option>
+										<option>Математика</option>
+										<option>Дискретная математика</option>
+										<option>Математический анализ</option>
+										<option>Линейная алгебра</option>
+										<option>Дифференциальная геометрия</option>
+									</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+									</tr>
+									<tr>
+										<td class="vremennaya"><select class="select123">
+										<option hidden>Преподаватель</option>
+										<option>Алеева С.Р.</option>
+										<option>Красильникова Е.С.</option>
+										<option>Кораблев Ф.Г.</option>
+										<option>Маткин И.А.</option>
+										<option>Лепчинский М.Г.</option>
+										<option>Иванов С.А.</option>
+										<option>Тюрина И.А.</option>
+										<option>Дымшаков А.И. </option>
+									</select>	<select class="select123">
+										<option hidden>Преподаватель</option>
+										<option>Алеева С.Р.</option>
+										<option>Красильникова Е.С.</option>
+										<option>Кораблев Ф.Г.</option>
+										<option>Маткин И.А.</option>
+										<option>Лепчинский М.Г.</option>
+										<option>Иванов С.А.</option>
+										<option>Тюрина И.А.</option>
+										<option>Дымшаков А.И. </option>
+									</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td class="vremennaya">
+											<select class="select123">
+												<option hidden>Аудитория</option>
+												<option>АУД. 436</option>
+												<option>АУД. 201</option>
+												<option>АУД.314 (2к)</option>
+												<option>АУД.115А</option>
+												<option>АУД. 437</option>
+												<option>АУД. 426А</option>
+												<option>АУД. 431</option>
+												<option>АУД. А-13</option>
+											</select>	<select class="select123">
+												<option hidden>Аудитория</option>
+												<option>АУД. 436</option>
+												<option>АУД. 201</option>
+												<option>АУД.314 (2к)</option>
+												<option>АУД.115А</option>
+												<option>АУД. 437</option>
+												<option>АУД. 426А</option>
+												<option>АУД. 431</option>
+												<option>АУД. А-13</option>
+											</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+										</td>
+									</tr>
+									<tr>
+										<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+										<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+										<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+									</tr>
+									<tr>
+										<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+									</tr>						
+								</tbody>
+						   </table>
 					</div>
 				</div>
 				</div>
@@ -113,7 +216,91 @@
 					</h2>
 				<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						
+						<table class="vremennaya-table">
+							<thead>
+								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="vremennaya"><select class="select12">
+									<option>#1</option>
+									<option>#2</option>
+									<option>#3</option>
+									<option>#4</option>
+									<option>#5</option>
+									<option>#6</option>
+									<option>#7</option>
+									<option>#8</option>
+								</select>	<select class="select123">
+									<option hidden>Дисциплина</option>
+									<option>Дифференциальные уравнения</option>
+									<option>Блокчейн в цифровой экономике</option>
+									<option>Принятие решений при многих критериях</option>
+									<option>Математика</option>
+									<option>Дискретная математика</option>
+									<option>Математический анализ</option>
+									<option>Линейная алгебра</option>
+									<option>Дифференциальная геометрия</option>
+								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select>	<select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</tr>
+								<tr>
+									<td class="vremennaya">
+										<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select>	<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+								</tr>
+								<tr>
+									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+								</tr>						
+							</tbody>
+					   </table>
 					</div>
 				</div>
 				</div>
@@ -125,7 +312,91 @@
 					</h2>
 				<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						
+						<table class="vremennaya-table">
+							<thead>
+								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="vremennaya"><select class="select12">
+									<option>#1</option>
+									<option>#2</option>
+									<option>#3</option>
+									<option>#4</option>
+									<option>#5</option>
+									<option>#6</option>
+									<option>#7</option>
+									<option>#8</option>
+								</select>	<select class="select123">
+									<option hidden>Дисциплина</option>
+									<option>Дифференциальные уравнения</option>
+									<option>Блокчейн в цифровой экономике</option>
+									<option>Принятие решений при многих критериях</option>
+									<option>Математика</option>
+									<option>Дискретная математика</option>
+									<option>Математический анализ</option>
+									<option>Линейная алгебра</option>
+									<option>Дифференциальная геометрия</option>
+								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select>	<select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</tr>
+								<tr>
+									<td class="vremennaya">
+										<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select>	<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+								</tr>
+								<tr>
+									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+								</tr>						
+							</tbody>
+					   </table>
 					</div>
 				</div>
 				</div>
@@ -137,7 +408,91 @@
 					</h2>
 				<div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						
+						<table class="vremennaya-table">
+							<thead>
+								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="vremennaya"><select class="select12">
+									<option>#1</option>
+									<option>#2</option>
+									<option>#3</option>
+									<option>#4</option>
+									<option>#5</option>
+									<option>#6</option>
+									<option>#7</option>
+									<option>#8</option>
+								</select>	<select class="select123">
+									<option hidden>Дисциплина</option>
+									<option>Дифференциальные уравнения</option>
+									<option>Блокчейн в цифровой экономике</option>
+									<option>Принятие решений при многих критериях</option>
+									<option>Математика</option>
+									<option>Дискретная математика</option>
+									<option>Математический анализ</option>
+									<option>Линейная алгебра</option>
+									<option>Дифференциальная геометрия</option>
+								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select>	<select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</tr>
+								<tr>
+									<td class="vremennaya">
+										<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select>	<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+								</tr>
+								<tr>
+									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+								</tr>						
+							</tbody>
+					   </table>
 					</div>
 				</div>
 				</div>
@@ -149,7 +504,91 @@
 					</h2>
 				<div id="collapseFifth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						
+						<table class="vremennaya-table">
+							<thead>
+								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="vremennaya"><select class="select12">
+									<option>#1</option>
+									<option>#2</option>
+									<option>#3</option>
+									<option>#4</option>
+									<option>#5</option>
+									<option>#6</option>
+									<option>#7</option>
+									<option>#8</option>
+								</select>	<select class="select123">
+									<option hidden>Дисциплина</option>
+									<option>Дифференциальные уравнения</option>
+									<option>Блокчейн в цифровой экономике</option>
+									<option>Принятие решений при многих критериях</option>
+									<option>Математика</option>
+									<option>Дискретная математика</option>
+									<option>Математический анализ</option>
+									<option>Линейная алгебра</option>
+									<option>Дифференциальная геометрия</option>
+								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select>	<select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</tr>
+								<tr>
+									<td class="vremennaya">
+										<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select>	<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+								</tr>
+								<tr>
+									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+								</tr>						
+							</tbody>
+					   </table>
 					</div>
 				</div>
 				</div>
@@ -161,7 +600,91 @@
 					</h2>
 				<div id="collapseSixth" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						
+						<table class="vremennaya-table">
+							<thead>
+								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="vremennaya"><select class="select12">
+									<option>#1</option>
+									<option>#2</option>
+									<option>#3</option>
+									<option>#4</option>
+									<option>#5</option>
+									<option>#6</option>
+									<option>#7</option>
+									<option>#8</option>
+								</select>	<select class="select123">
+									<option hidden>Дисциплина</option>
+									<option>Дифференциальные уравнения</option>
+									<option>Блокчейн в цифровой экономике</option>
+									<option>Принятие решений при многих критериях</option>
+									<option>Математика</option>
+									<option>Дискретная математика</option>
+									<option>Математический анализ</option>
+									<option>Линейная алгебра</option>
+									<option>Дифференциальная геометрия</option>
+								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select>	<select class="select123">
+									<option hidden>Преподаватель</option>
+									<option>Алеева С.Р.</option>
+									<option>Красильникова Е.С.</option>
+									<option>Кораблев Ф.Г.</option>
+									<option>Маткин И.А.</option>
+									<option>Лепчинский М.Г.</option>
+									<option>Иванов С.А.</option>
+									<option>Тюрина И.А.</option>
+									<option>Дымшаков А.И. </option>
+								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</tr>
+								<tr>
+									<td class="vremennaya">
+										<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select>	<select class="select123">
+											<option hidden>Аудитория</option>
+											<option>АУД. 436</option>
+											<option>АУД. 201</option>
+											<option>АУД.314 (2к)</option>
+											<option>АУД.115А</option>
+											<option>АУД. 437</option>
+											<option>АУД. 426А</option>
+											<option>АУД. 431</option>
+											<option>АУД. А-13</option>
+										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+									</td>
+								</tr>
+								<tr>
+									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
+									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
+									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
+								</tr>
+								<tr>
+									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+								</tr>						
+							</tbody>
+					   </table>
 					</div>
 				</div>
 				</div>
