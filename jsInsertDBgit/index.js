@@ -2,17 +2,11 @@ const mysql = require('mysql');
 const express = require('express');
 
 
+
 const app = express();
 
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
-
-
-
-app.get('/', (req, res)=> {
-    res.render('index')
-});
-
 
 
 const connect=mysql.createConnection({
@@ -23,11 +17,20 @@ const connect=mysql.createConnection({
 });
 
 connect.connect((err) =>{
-    if (err){
-        console.log(`Ошибка подключения ${err}`);
-        return;
+    try{
+        if(err){
+            throw(err);
+        }
+        console.log('Подключение к БД успешно');
+    }catch (err){
+        console.log(`Ошибка при подключении к бд ${err}`);
     }
-    console.log('Успешное подключение к БД');
+});
+
+
+app.get('/', (req, res)=> {
+    console.log(`Запрос данных ${req.url}`)
+    res.render('index')
 });
 
 
@@ -47,13 +50,16 @@ app.post('/addData', (req, res)=>{
         teacher_name: teacher_name,
         day_of_the_week: day_of_the_week,
         week: week,
-        subgroup: subgroup};
-    connect.query('INSERT INTO schedule SET ?', data, (req,res)=>{
-        if (req){
-            console.log('Ошибка при вставке данных' + req.message);
-            return;
+        subgroup: subgroup}; 
+    connect.query('INSERT INTO schedule SET ?', data, (error,res)=>{
+        try{
+            if (error){
+                throw error;
+            }
+            console.log('Данные успешно вставлены');
+        }catch(error){
+            console.log('Ошибка при вставке данных' + error.message);
         }
-        console.log('Данные успешна вставлены в БД')
     })
 });
 
