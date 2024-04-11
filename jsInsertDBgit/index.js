@@ -28,10 +28,43 @@ connect.connect((err) =>{
 });
 
 
-app.get('/', (req, res)=> {
-    console.log(`Запрос данных ${req.url}`)
-    res.render('index')
+app.get('/addition/schedule', (req, res)=> {
+    console.log(`Запрос данных ${req.url}`);
+    res.render('index');
 });
+app.get('/addition/group',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('group');
+});
+app.get('/addition/direction',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('direction');
+});
+app.get('/addition/faculty',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('faculty');
+});
+app.get('/addition/address',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('address');
+});
+app.get('/addition/departament',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('departament');
+});
+app.get('/addition/coupleType',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('coupleType');
+});
+app.get('/addition/classroom',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('classroom');
+});
+app.get('/addition/professor',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('professor');
+});
+
 
 
 app.post('/addData', (req, res)=>{
@@ -64,7 +97,8 @@ app.post('/addData', (req, res)=>{
 });
 
 const PORT=3000;
+const HOSTNAME= 'localhost';
 
-app.listen(PORT, ()=>{
-    console.log(`Сервер создан: http://localhost:${PORT}`)
+app.listen(PORT,HOSTNAME, ()=>{
+    console.log(`Сервер создан: http://${HOSTNAME}:${PORT}`)
 });
