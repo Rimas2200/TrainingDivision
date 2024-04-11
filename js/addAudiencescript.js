@@ -1,130 +1,101 @@
-const showPopupButton = document.getElementById('showPopupTeacher');
-    const overlayTeacher = document.getElementById('overlayTeacher');
-    const popupTeacher = document.getElementById('popupTeacher');
-    const closePopupButton = document.getElementById('closePopup');
-    const inputFormTeacher = document.getElementById('inputFormTeacher');
-    const tableBody = document.querySelector('#myTableTeacher tbody');
-	const searchInput = document.getElementById('searchInputTeacher');
-    let selectedRow = null;
-    let rowCount = tableBody.children.length + 1; // Устанавливаем начальное значение rowCount
+const showPopupButton3 = document.getElementById('showPopupAudience');
+    const overlayAudience = document.getElementById('overlayAudience');
+    const popupAudience = document.getElementById('popupAudience');
+    const closePopupButton3 = document.getElementById('closePopupAudience');
+    const inputFormAudience = document.getElementById('inputFormAudience');
+    const tableBody3 = document.querySelector('#myTableAudience tbody');
+	const searchInput3 = document.getElementById('searchInputAudience');
+    let selectedRow3 = null;
+    let rowCount3 = tableBody3.children.length + 1; // Устанавливаем начальное значение rowCount
 
-    showPopupButton.addEventListener('click', function() {
-      overlayTeacher.style.display = 'block';
-      popupTeacher.style.display = 'block';
+    showPopupButton3.addEventListener('click', function() {
+      overlayAudience.style.display = 'block';
+      popupAudience.style.display = 'block';
     });
 
-    closePopupButton.addEventListener('click', function() {
-      overlayTeacher.style.display = 'none';
-      popupTeacher.style.display = 'none';
+    closePopupButton3.addEventListener('click', function() {
+      overlayAudience.style.display = 'none';
+      popupAudience.style.display = 'none';
     });
 
-    inputFormTeacher.addEventListener('submit', function(event) {
+    inputFormAudience.addEventListener('submit', function(event) {
       event.preventDefault(); // Предотвращаем отправку формы
 
       // Получаем значения из input
-      const value1 = document.getElementById('inputTeacher1').value;
-      const value2 = document.getElementById('inputTeacher2').value;
-      const value3 = document.getElementById('inputTeacher3').value;
-      const value4 = document.getElementById('inputTeacher4').value;
-      const value5 = document.getElementById('inputTeacher5').value;
-      const value6 = document.getElementById('inputTeacher6').value;
+      const value13 = document.getElementById('inputAudience1').value;
+      const value14 = document.getElementById('inputAudience2').value;
 
-      if (selectedRow) {
+      if (selectedRow3) {
         // Если выбрана строка для редактирования, обновляем значения ячеек
-        selectedRow.cells[1].textContent = value1;
-        selectedRow.cells[2].textContent = value2;
-        selectedRow.cells[3].textContent = value3;
-        selectedRow.cells[4].textContent = value4;
-        selectedRow.cells[5].textContent = value5;
-        selectedRow.cells[6].textContent = value6;
-        selectedRow = null;
+        selectedRow3.cells[1].textContent = value13;
+        selectedRow3.cells[2].textContent = value14;
+        selectedRow3 = null;
       } else {
         // Создаем новую строку для таблицы
-        const newRow = document.createElement('tr');
-        const numberCell = document.createElement('td');
-        const cell1 = document.createElement('td');
-        const cell2 = document.createElement('td');
-        const cell3 = document.createElement('td');
-        const cell4 = document.createElement('td');
-        const cell5 = document.createElement('td');
-        const cell6 = document.createElement('td');
-        const editButtonCell = document.createElement('td');
-        const editButton = document.createElement('button');
-        const deleteButtonCell = document.createElement('td');
-        const deleteButton = document.createElement('button');
+        const newRow3 = document.createElement('tr');
+        const numberCell3 = document.createElement('td');
+        const cell13 = document.createElement('td');
+        const cell14 = document.createElement('td');
+        const editButtonCell3 = document.createElement('td');
+        const editButton3 = document.createElement('button');
+        const deleteButtonCell3 = document.createElement('td');
+        const deleteButton3 = document.createElement('button');
 
         // Устанавливаем значения ячеек
-        numberCell.textContent = rowCount;
-        cell1.textContent = value1;
-        cell2.textContent = value2;
-        cell3.textContent = value3;
-        cell4.textContent = value4;
-        cell5.textContent = value5;
-        cell6.textContent = value6;
-        editButton.textContent = 'Ред';
-        deleteButton.textContent = 'Уд';
+        numberCell3.textContent = rowCount3;
+        cell13.textContent = value13;
+        cell14.textContent = value14;
+        editButton3.textContent = 'Ред';
+        deleteButton3.textContent = 'Уд';
 
         // Добавляем обработчики событий на кнопки редактирования и удаления
-        editButton.addEventListener('click', function() {
-          selectedRow = newRow;
-          document.getElementById('inputTeacher1').value = selectedRow.cells[1].textContent;
-          document.getElementById('inputTeacher2').value = selectedRow.cells[2].textContent;
-          document.getElementById('inputTeacher3').value = selectedRow.cells[3].textContent;
-          document.getElementById('inputTeacher4').value = selectedRow.cells[4].textContent;
-          document.getElementById('inputTeacher5').value = selectedRow.cells[5].textContent;
-          document.getElementById('inputTeacher6').value = selectedRow.cells[6].textContent;
-		  overlayTeacher.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupTeacher.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+        editButton3.addEventListener('click', function() {
+          selectedRow3 = newRow3;
+          document.getElementById('inputAudience1').value = selectedRow3.cells[1].textContent;
+		  overlayAudience.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupAudience.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
-        deleteButton.addEventListener('click', function() {
-          newRow.remove(); // Удаляем строку из таблицы
-          updateRowNumbers(); // Обновляем номера строк
+        deleteButton3.addEventListener('click', function() {
+          newRow3.remove(); // Удаляем строку из таблицы
+          updateRowNumbers3(); // Обновляем номера строк
         });
 
         // Добавляем ячейки в строку
-        newRow.appendChild(numberCell);
-        newRow.appendChild(cell1);
-        newRow.appendChild(cell2);
-        newRow.appendChild(cell3);
-        newRow.appendChild(cell4);
-        newRow.appendChild(cell5);
-        newRow.appendChild(cell6);
-        editButtonCell.appendChild(editButton);
-        newRow.appendChild(editButtonCell);
-        deleteButtonCell.appendChild(deleteButton);
-        newRow.appendChild(deleteButtonCell);
+        newRow3.appendChild(numberCell3);
+        newRow3.appendChild(cell13);
+        newRow3.appendChild(cell14);
+        editButtonCell3.appendChild(editButton3);
+        newRow3.appendChild(editButtonCell3);
+        deleteButtonCell3.appendChild(deleteButton3);
+        newRow3.appendChild(deleteButtonCell3);
 
         // Добавляем строку в таблицу
-        tableBody.appendChild(newRow);
+        tableBody3.appendChild(newRow3);
 
-        rowCount++;
+        rowCount3++;
       }
 
       // Сбрасываем значения input
-      document.getElementById('inputTeacher1').value = '';
-      document.getElementById('inputTeacher2').value = '';
-      document.getElementById('inputTeacher3').value = '';
-      document.getElementById('inputTeacher4').value = '';
-      document.getElementById('inputTeacher5').value = '';
-      document.getElementById('inputTeacher6').value = '';
+      document.getElementById('inputAudience1').value = '';
 
-      overlayTeacher.style.display = 'none';
-      popupTeacher.style.display = 'none';
+
+      overlayAudience.style.display = 'none';
+      popupAudience.style.display = 'none';
     });
 
- function updateRowNumbers() {
-    const rows = tableBody.children;
-    for (let i = 0; i < rows.length; i++) {
-      rows[i].cells[0].textContent = i + 1;
+ function updateRowNumbers3() {
+    const rows3 = tableBody3.children;
+    for (let i = 0; i < rows3.length; i++) {
+      rows3[i].cells[0].textContent = i + 1;
     }
-    rowCount = rows.length + 1; // Обновляем значение rowCount после удаления
+    rowCount3 = rows3.length + 1; // Обновляем значение rowCount после удаления
   }
   
-searchInputTeacher.addEventListener('input', function() {
-      const searchValue = searchInputTeacher.value.toLowerCase();
-      const rows = tableBody.getElementsByTagName('tr');
-      for (let row of rows) {
+searchInputAudience.addEventListener('input', function() {
+      const searchValue = searchInputAudience.value.toLowerCase();
+      const rows3 = tableBody.getElementsByTagName('tr');
+      for (let row of rows3) {
         let found = false;
         const cells = row.getElementsByTagName('td');
         for (let cell of cells) {
