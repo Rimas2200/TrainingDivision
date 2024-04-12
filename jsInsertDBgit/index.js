@@ -2,7 +2,6 @@ const mysql = require('mysql');
 const express = require('express');
 
 
-
 const app = express();
 
 app.set('view engine','ejs');
@@ -27,6 +26,17 @@ connect.connect((err) =>{
     }
 });
 
+//GET-зпапросы для POST
+app.get('/register', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('register');
+});
+app.get('/auth', (req,res) =>{
+    console.log(`Запроос данных ${req.url}`);
+    res.render('auth');
+});
+
+
 //GET-запросы по schedules
 app.get('/schedules',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
@@ -36,8 +46,11 @@ app.get('/schedules/:teacherName', (req,res) =>{
     console.log(`запрос данных ${req.url}`);
     res.send(`Получение пар преподователя: ${req.params.teacherName}`);
 })
-//тут ещё реализация для group_name
-app.get('/schedules/:groupName/:dayoftheweek/:week', (req,res)=>{
+app.get('/schedules/group/:groupName', (req,res) =>{
+    console.log(`Запрос  данных: ${req.url}`);
+    res.send(`Получение пар по группе: ${req.url}`);
+});
+app.get('/schedules/group/:groupName/:dayoftheweek/:week', (req,res)=>{
     console.log(`Запрос данных ${req.url}`);
     res.send(`Вернуть пары группы: ${req.params.groupName} в ${req.params.dayoftheweek} на неделе: ${req.params.week}`);
 })
@@ -101,6 +114,35 @@ app.get('/addition/classroom',(req,res)=>{
 app.get('/addition/professor',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('professor');
+});
+
+
+
+
+app.post('/register', (req,res) =>{
+    let user_name = req.body.username;
+    let password = req.body.password;
+    let email = req.body.email;
+    const regData= {user_name: user_name,
+    password: password,
+    email: email};
+    connect.query('INSERT INTO user SET ?', regData, (error,res)=>{
+        try{
+            if (error){
+                throw error;
+            }
+            console.log('Данные пользователя успешно вставлены');
+        }catch(error){
+            console.log('Ошибка при вставке данных пользователя' + error.message);
+        }
+    })
+});
+app.post('/auth', (req,res) =>{
+    let password = req.body.password;
+    let email = req.body.email;
+    const regData= {password: password,
+    email: email};
+    console.log(`${email} ${password} зашёл в систему`);
 });
 
 
