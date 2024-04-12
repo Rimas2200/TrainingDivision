@@ -116,7 +116,10 @@ app.get('/addition/professor',(req,res)=>{
     res.render('professor');
 });
 
-
+app.get('*',(req,res)=>{
+    console.log(`Запрос ${req.url}`);
+    res.render('error');
+})
 
 
 app.post('/register', (req,res) =>{
