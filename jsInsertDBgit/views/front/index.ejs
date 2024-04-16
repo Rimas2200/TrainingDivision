@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Расписание ЧелГУ</title>
+		<link href="css.boot/bootstrap.min.css" rel="stylesheet">
+		<link href="css.boot/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js.boot/bootstrap.bundle.min.js"></script>
+	</head>
+
+	<body>
+		<nav class="nav-fill">
+			<div class="sidebar" id="sidebar">
+				<ul class="nav flex-column tabs-items">
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab1">Главная</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab2">Преподаватели</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab3">Дисциплины</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab4">Типы пар</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab5">Аудитории</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab6">Факультеты</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main>
+			<div class="main-content">
+				<div>
+					<div id="tab1" class="tabs-block">
+						<h1>Расписание факультетов</h1>
+						<nav>
+							<div>
+								<ul class="nav flex-column">
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu" href="menu.html">Математический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu1" href="menu.html">Институт информационных технологий</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu2" href="menu.html">Физический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu3" href="menu.html">Химический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu4" href="menu.html">Биологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu5" href="menu.html">Институт права</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu6" href="menu.html">Экономический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu7" href="menu.html">Факультет управления</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu8" href="menu.html">Институт экономики отраслей</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu9" href="menu.html">Факультет фундаментальной медицины</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu10" href="menu.html">Институт образования и практической психологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu11" href="menu.html">Факультет Евразии и Востока</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu12" href="menu.html">Факультет лингвистики и перевода</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu13" href="menu.html">Факультет журналистики</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu14" href="menu.html">Историко-филологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu15" href="menu.html">Факультет экологии</a></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					<div id="tab2" class="tabs-block">
+						<h1>Преподаватели</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск" size="90" type="text">
+								<button class="search-form-btn">Найти</button>
+							</div>
+
+	  
+							<div>
+								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableTeacher">
+							<thead>
+							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							
+							</tbody>
+						</table>
+							<div id="overlayTeacher"></div>
+							<div id="popupTeacher">
+								<form id="inputFormTeacher">
+									<h2>Фамилия</h2>
+									<input type="text" id="inputTeacher1" placeholder="Фамилия">
+									<h2>Имя</h2>
+									<input type="text" id="inputTeacher2" placeholder="Имя">
+									<h2>Отчество</h2>
+									<input type="text" id="inputTeacher3" placeholder="Отчество">
+									<h2>Должность</h2>
+									<input type="text" id="inputTeacher4" placeholder="Должность">
+									<h2>Кафедра</h2>
+									<input type="text" id="inputTeacher5" placeholder="Кафедра">
+									<h2>Телефон кафедры</h2>
+									<input type="number" id="inputTeacher6" placeholder="Телефон кафедры">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTeacher">Закрыть окно</button>
+							</div>		
+							<script src="js/addTeacherscript.js"></script>
+					</div>
+					<div id="tab3" class="tabs-block">
+						<h1>Дисциплины</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+								<button class="search-form-btn">Найти</button>
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDiscipline">
+							<thead>
+								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayDiscipline"></div>
+							<div id="popupDiscipline">
+								<form id="inputFormDiscipline">
+									<h2>Дисциплина</h2>
+									<input type="text" id="inputDiscipline1" placeholder="Дисциплина">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDiscipline">Закрыть окно</button>
+							</div>		
+							<script src="js/addDisciplinescript.js"></script>
+					</div>
+					<div id="tab4" class="tabs-block">
+						<h1>Типы пар</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputTypePair" placeholder="Поиск" size="90" type="text">
+								<button class="search-form-btn">Найти</button>
+							</div>
+							<div class="">
+								<button type="button" id="showPopupTypePair" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableTypePair">
+							<thead>
+								<tr><th width="4%">#</th><th width="80%">Тип</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayTypePair"></div>
+							<div id="popupTypePair">
+								<form id="inputFormTypePair">
+									<h2>Тип пары</h2>
+									<input type="text" id="inputTypePair1" placeholder="Тип пары">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTypePair">Закрыть окно</button>
+						</div>		
+							<script src="js/addPairTypescript.js"></script>
+					</div>
+					<div id="tab5" class="tabs-block">
+						<h1>Аудитории</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+								<button class="search-form-btn">Найти</button>
+							</div>
+							<div class="">
+								<button type="button" id="showPopupAudience" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableAudience">
+							<thead>
+								<tr><th width="4%">#</th><th width="50%">Аудитория / Адрес</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayAudience"></div>
+							<div id="popupAudience">
+								<form id="inputFormAudience">
+									<h2>Аудитории</h2>
+									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес">
+									<h2>Корпус</h2>
+									<input type="text" id="inputAudience2" placeholder="Корпус">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupAudience">Закрыть окно</button>
+						</div>		
+							<script src="js/addAudiencescript.js"></script>
+					</div>
+					<div id="tab6" class="tabs-block">
+						<h1>Факультеты</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputFaculties" placeholder="Поиск" size="90" type="text">
+								<button class="search-form-btn">Найти</button>
+							</div>
+							<div class="">
+								<button type="button" id="showPopupFaculties" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableFaculties">
+							<thead>
+								<tr><th width="4%">#</th><th width="60%">Факультет</th><th width="20%">ФИО декана</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayFaculties"></div>
+							<div id="popupFaculties">
+								<form id="inputFormFaculties">
+									<h2>Факультет</h2>
+									<input type="text" id="inputFaculties1" placeholder="Факультет">
+									<h2>ФИО декана</h2>
+									<input type="text" id="inputFaculties2" placeholder="ФИО декана">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupFaculties">Закрыть окно</button>
+						</div>		
+							<script src="js/addFacultiesscript.js"></script>
+					</div>
+				</div>
+
+			</div>
+		</main>
+
+
+	
+	</body>
+
+</html>

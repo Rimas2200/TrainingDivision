@@ -1,12 +1,14 @@
 const mysql = require('mysql');
 const express = require('express');
+const cors = require('cors');
 
 
 const app = express();
 
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
-
+app.use(cors());
+app.use(express.static(__dirname + '/views/front'));
 
 const connect=mysql.createConnection({
     host: '127.0.0.1',
@@ -25,6 +27,10 @@ connect.connect((err) =>{
         console.log(`Ошибка при подключении к бд ${err}`);
     }
 });
+
+app.get('/',(req,res)=>{
+    res.render('front/index');
+})
 
 //GET-зпапросы для POST
 app.get('/register', (req,res) =>{
@@ -134,9 +140,14 @@ app.post('/register', (req,res) =>{
             if (error){
                 throw error;
             }
-            console.log('Данные пользователя успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных пользователя' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка CODE: 416 ' + error.message);
+            };
         }
     })
 });
@@ -172,9 +183,14 @@ app.post('/addition/schedule', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409');
+            }
+            else{
+                console.log('Ошибка при вставке данных дисциплины' + error.message);
+            };
         }
     })
 });
@@ -195,9 +211,14 @@ app.post('/addition/professor', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные профессора успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных профессора' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных профессора' + error.message);
+            };
         }
     })
 });
@@ -212,9 +233,14 @@ app.post('/addition/classroom', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные аудитории успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных аудитории' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных аудитории' + error.message);
+            }
         }
     })
 });
@@ -227,9 +253,14 @@ app.post('/addition/coupleType', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные типа пар успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных типа пар' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных типа пар' + error.message);
+            };
         }
     })
 });
@@ -244,9 +275,14 @@ app.post('/addition/departament', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные кафедры успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных кафедры' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных кафедры' + error.message);
+            };
         }
     })
 });
@@ -261,9 +297,14 @@ app.post('/addition/address', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные адресса успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных адресса' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных адресса' + error.message);
+            }
         }
     })
 });
@@ -278,9 +319,14 @@ app.post('/addition/faculty', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные факультета успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных факультета' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных факультета' + error.message);
+            }
         }
     })
 });
@@ -297,14 +343,19 @@ app.post('/addition/direction', (req, res)=>{
             if (error){
                 throw error;
             }
-            console.log('Данные дисциплины успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных дисциплины' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных дисциплины' + error.message);
+            }
         }
     })
 });
 
-app.post('/addition/group', (req, res)=>{//name заполняется пустой строкой, скорее всего ошибка в самом бд, так как сервер ошибку не выдаёт (исправлю)
+app.post('/addition/group', (req, res)=>{
     let name = req.body.name;
     let direction_abbreviation = req.body.direction_abbreviation;
     const groupData ={name: name,
@@ -314,9 +365,14 @@ app.post('/addition/group', (req, res)=>{//name заполняется пуст�
             if (error){
                 throw error;
             }
-            console.log('Данные дисциплины успешно вставлены');
+            console.log('Успешно выполнено CODE: 200');
         }catch(error){
-            console.log('Ошибка при вставке данных дисциплины' + error.message);
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных дисциплины' + error.message);
+            }
         }
     })
 });
