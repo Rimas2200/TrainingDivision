@@ -15,44 +15,44 @@
 		<nav class="nav-fill">
 			<div class="sidebar" id="sidebar">
 				<ul class="nav flex-column tabs-items">
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab1">Главная</a></li>
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab2">Преподаватели</a></li>
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab3">Дисциплины</a></li>
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab4">Типы пар</a></li>
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab5">Аудитории</a></li>
-					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab6">Факультеты</a></li>
+					<li class="<%= page === '' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/">Главная</a></li>
+					<li class="<%= page === 'professor' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/professor">Преподаватели</a></li>
+					<li class="<%= page === 'direction' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/direction">Дисциплины</a></li>
+					<li class="<%= page === 'coupleType' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/coupleType">Типы пар</a></li>
+					<li class="<%= page === 'classroom' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/classroom">Аудитории</a></li>
+					<li class="<%= page === 'faculties' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/faculties">Факультеты</a></li>
 				</ul>
 			</div>
 		</nav>
 		<main>
 			<div class="main-content">
 				<div>
-					<div id="tab1" class="tabs-block">
+					<% if (page === '') { %>
 						<h1>Расписание факультетов</h1>
 						<nav>
 							<div>
 								<ul class="nav flex-column">
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu" href="menu.html">Математический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu1" href="menu.html">Институт информационных технологий</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu2" href="menu.html">Физический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu3" href="menu.html">Химический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu4" href="menu.html">Биологический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu5" href="menu.html">Институт права</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu6" href="menu.html">Экономический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu7" href="menu.html">Факультет управления</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu8" href="menu.html">Институт экономики отраслей</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu9" href="menu.html">Факультет фундаментальной медицины</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu10" href="menu.html">Институт образования и практической психологии</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu11" href="menu.html">Факультет Евразии и Востока</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu12" href="menu.html">Факультет лингвистики и перевода</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu13" href="menu.html">Факультет журналистики</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu14" href="menu.html">Историко-филологический факультет</a></li>
-									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu15" href="menu.html">Факультет экологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu" href="/addition/schedule">Математический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu1" href="menu.ejs">Институт информационных технологий</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu2" href="menu.ejs">Физический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu3" href="menu.ejs">Химический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu4" href="menu.ejs">Биологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu5" href="menu.ejs">Институт права</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu6" href="menu.ejs">Экономический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu7" href="menu.ejs">Факультет управления</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu8" href="menu.ejs">Институт экономики отраслей</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu9" href="menu.ejs">Факультет фундаментальной медицины</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu10" href="menu.ejs">Институт образования и практической психологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu11" href="menu.ejs">Факультет Евразии и Востока</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu12" href="menu.ejs">Факультет лингвистики и перевода</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu13" href="menu.ejs">Факультет журналистики</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu14" href="menu.ejs">Историко-филологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu15" href="menu.ejs">Факультет экологии</a></li>
 								</ul>
 							</div>
 						</nav>
-					</div>
-					<div id="tab2" class="tabs-block">
+					<% } %>
+					<% if (page === 'professor') { %>
 						<h1>Преподаватели</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
@@ -97,8 +97,8 @@
 							<button id="closePopupTeacher">Закрыть окно</button>
 							</div>		
 							<script src="js/addTeacherscript.js"></script>
-					</div>
-					<div id="tab3" class="tabs-block">
+					<% } %>
+					<% if (page === 'direction') { %>
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
@@ -130,8 +130,8 @@
 							<button id="closePopupDiscipline">Закрыть окно</button>
 							</div>		
 							<script src="js/addDisciplinescript.js"></script>
-					</div>
-					<div id="tab4" class="tabs-block">
+					<% } %>
+					<% if (page === 'coupleType') { %>
 						<h1>Типы пар</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
@@ -163,8 +163,8 @@
 							<button id="closePopupTypePair">Закрыть окно</button>
 						</div>		
 							<script src="js/addPairTypescript.js"></script>
-					</div>
-					<div id="tab5" class="tabs-block">
+					<% } %>
+					<% if (page === 'classroom') { %>
 						<h1>Аудитории</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
@@ -198,8 +198,8 @@
 							<button id="closePopupAudience">Закрыть окно</button>
 						</div>		
 							<script src="js/addAudiencescript.js"></script>
-					</div>
-					<div id="tab6" class="tabs-block">
+					<% } %>
+					<% if (page === 'faculties') { %>
 						<h1>Факультеты</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
@@ -234,6 +234,8 @@
 						</div>		
 							<script src="js/addFacultiesscript.js"></script>
 					</div>
+					<% } %>
+
 				</div>
 
 			</div>

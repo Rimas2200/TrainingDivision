@@ -28,9 +28,7 @@ connect.connect((err) =>{
     }
 });
 
-app.get('/',(req,res)=>{
-    res.render('front/index');
-})
+
 
 //GET-зпапросы для POST
 app.get('/register', (req,res) =>{
@@ -43,7 +41,7 @@ app.get('/auth', (req,res) =>{
 });
 
 
-//GET-запросы по schedules
+/*GET-запросы по schedules
 app.get('/schedules',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.send('Получение списка пар');
@@ -60,20 +58,13 @@ app.get('/schedules/group/:groupName/:dayoftheweek/:week', (req,res)=>{
     console.log(`Запрос данных ${req.url}`);
     res.send(`Вернуть пары группы: ${req.params.groupName} в ${req.params.dayoftheweek} на неделе: ${req.params.week}`);
 })
+*/
 
 //GET-запросы для вывода списков
 app.get('/users',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.send('Здесь список пользователей')
 })
-app.get('/direction',(req,res) =>{
-    console.log(`Запрос данных ${req.url}`);
-    res.send('Здесь список кафедр');
-})
-app.get('/faculties', (req,res) =>{
-    console.log(`Запрос данных ${req.url}`);
-    res.send('Здесь список факультетов');
-});
 app.get('/faculties/direction/:faculty', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.send(`Списки направлений ${req.params.faculty} факультета`);
@@ -83,11 +74,38 @@ app.get('/faculties/direction/group/:direcrion_abbreviation',(req,res) =>{
     res.send(`Список группы: ${req.params.direcrion_abbreviation} `);
 });
 
+app.get('/direction',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'direction'})
+})
+app.get('/faculties', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'faculties'} )
+});
+app.get('/classroom',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'classroom'});
+});
+app.get('/coupleType',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'coupleType'});
+});
+app.get('/professor',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'professor'});
+});
+app.get('/',(req,res)=>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: ''});
+})
+
+
+
 
 //GET-запросы с последующими POST-запросами
 app.get('/addition/schedule', (req, res)=> {
     console.log(`Запрос данных ${req.url}`);
-    res.render('index');
+    res.render('front/menu');
 });
 app.get('/addition/group',(req,res)=>{
     console.log(`Запрос ${req.url}`);
@@ -97,7 +115,7 @@ app.get('/addition/direction',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('direction');
 });
-app.get('/addition/faculty',(req,res)=>{
+app.get('/faculties/addition',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('faculty');
 });
@@ -146,7 +164,7 @@ app.post('/register', (req,res) =>{
                 console.log('Ошибка 409' );
             }
             else{
-                console.log('Ошибка CODE: 416 ' + error.message);
+                console.log('Ошибка CODE: 416' + error.message);
             };
         }
     })
@@ -382,7 +400,7 @@ app.post('/addition/group', (req, res)=>{
 
 
 
-const PORT=3000;
+const PORT=4000;
 const HOSTNAME= 'localhost';
 
 app.listen(PORT,HOSTNAME, ()=>{
