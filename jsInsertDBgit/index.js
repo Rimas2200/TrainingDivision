@@ -115,10 +115,12 @@ app.get('/addition/direction',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('direction');
 });
+/*
 app.get('/faculties/addition',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('faculty');
 });
+*/
 app.get('/addition/address',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('address');
@@ -327,7 +329,7 @@ app.post('/addition/address', (req, res)=>{
     })
 });
 
-app.post('/addition/faculty', (req, res)=>{
+app.post('/faculties/addition', (req, res)=>{
     let faculty_name = req.body.faculty_name;
     let dean_fullname = req.body.dean_fullname;
     const facultyData ={faculty_name: faculty_name,

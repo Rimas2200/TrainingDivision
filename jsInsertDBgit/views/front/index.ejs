@@ -79,17 +79,17 @@
 						</table>
 							<div id="overlayTeacher"></div>
 							<div id="popupTeacher">
-								<form id="inputFormTeacher">
+								<form  action="/addition/professor" method="post"> <!--id="inputFormTeacher" -->
 									<h2>Фамилия</h2>
-									<input type="text" id="inputTeacher1" placeholder="Фамилия">
+									<input type="text" name="last_name" id="inputTeacher1" placeholder="Фамилия">
 									<h2>Имя</h2>
-									<input type="text" id="inputTeacher2" placeholder="Имя">
+									<input type="text" name="first_name" id="inputTeacher2" placeholder="Имя">
 									<h2>Отчество</h2>
-									<input type="text" id="inputTeacher3" placeholder="Отчество">
+									<input type="text" name="middle_name" id="inputTeacher3" placeholder="Отчество">
 									<h2>Должность</h2>
-									<input type="text" id="inputTeacher4" placeholder="Должность">
+									<input type="text" name="position" id="inputTeacher4" placeholder="Должность">
 									<h2>Кафедра</h2>
-									<input type="text" id="inputTeacher5" placeholder="Кафедра">
+									<input type="text" name="departament" id="inputTeacher5" placeholder="Кафедра">
 									<h2>Телефон кафедры</h2>
 									<input type="number" id="inputTeacher6" placeholder="Телефон кафедры">
 									<button type="submit">Добавить</button>
@@ -155,9 +155,9 @@
 						</table>
 						<div id="overlayTypePair"></div>
 							<div id="popupTypePair">
-								<form id="inputFormTypePair">
+								<form  method="post" action="/addition/coupleType"> <!--id="inputFormTypePair"-->
 									<h2>Тип пары</h2>
-									<input type="text" id="inputTypePair1" placeholder="Тип пары">
+									<input type="text" id="inputTypePair1" name="pair_type" placeholder="Тип пары">
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupTypePair">Закрыть окно</button>
@@ -188,11 +188,11 @@
 						</table>
 						<div id="overlayAudience"></div>
 							<div id="popupAudience">
-								<form id="inputFormAudience">
+								<form  method="post" action="/addition/classroom"> <!--id="inputFormAudience"-->
 									<h2>Аудитории</h2>
-									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес">
+									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес" name="room_number">
 									<h2>Корпус</h2>
-									<input type="text" id="inputAudience2" placeholder="Корпус">
+									<input type="text" id="inputAudience2" placeholder="Корпус" name="building">
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupAudience">Закрыть окно</button>
@@ -223,13 +223,13 @@
 						</table>
 						<div id="overlayFaculties"></div>
 							<div id="popupFaculties">
-								<form id="inputFormFaculties">
+								<form method="post" action="/faculties/addition" > <!-- id="inputFormFaculties"-->
 									<h2>Факультет</h2>
-									<input type="text" id="inputFaculties1" placeholder="Факультет">
+									<input type="text" name="faculty_name" placeholder="Название Факультета" id="inputFaculties1" required>
 									<h2>ФИО декана</h2>
-									<input type="text" id="inputFaculties2" placeholder="ФИО декана">
+									<input type="text" name="dean_fullname" placeholder="Декан" id="inputFaculties2" required>
 									<button type="submit">Добавить</button>
-								</form>
+								</form>								
 							<button id="closePopupFaculties">Закрыть окно</button>
 						</div>		
 							<script src="js/addFacultiesscript.js"></script>

@@ -19,7 +19,7 @@ const showPopupButton4 = document.getElementById('showPopupFaculties');
     });
 
     inputFormFaculties.addEventListener('submit', function(event) {
-      event.preventDefault(); // Предотвращаем отправку формы
+      //event.preventDefault(); // Предотвращаем отправку формы
 
       // Получаем значения из input
       const value14 = document.getElementById('inputFaculties1').value;
