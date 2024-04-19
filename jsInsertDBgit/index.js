@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(cors());
 app.use(express.static(__dirname + '/views/front'));
 
-const connect=mysql.createConnection({
+const connect=mysql.createConnection({//подключение к бд
     host: '127.0.0.1',
     user: 'root',
     password: '',
@@ -402,9 +402,9 @@ app.post('/addition/group', (req, res)=>{
 
 
 
-const PORT=4000;
+const PORT=3000;
 const HOSTNAME= 'localhost';
 
-app.listen(PORT,HOSTNAME, ()=>{
+app.listen(PORT,HOSTNAME, ()=>{//сервер
     console.log(`Сервер создан: http://${HOSTNAME}:${PORT}`)
 });
