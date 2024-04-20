@@ -42,7 +42,7 @@
 						</select>
 					</form>
 					<form action="">
-						<select class="btn-top-menu2" name="group" id="">
+						<select class="btn-top-menu2" name="group" id="Group">
 							<option value="">МП-201</option>
 							<option value="">МП-202</option>
 							<option value="">МП-203</option>
@@ -62,7 +62,7 @@
 					</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show">
 					<div class="accordion-body">
-						   <table class="vremennaya-table">
+						   <table id="monday" class="vremennaya-table">
 								<thead>
 									<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th></tr>
 								</thead>
@@ -139,15 +139,16 @@
 											</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
 										</td>
 									</tr>
-									<tr>
-										<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
+									<tr>	
 									</tr>						
 								</tbody>
 						   </table>
+						   <button id="AddPairbtn">Добавить пару</button>
 						   <button id="AddGroup">+</button>
 						   <button id="RemoveGroup">-</button>
 						   <script src="js/AddGroup.js"></script>
-						   
+						   <script src="js/AddPairinTable.js"></script>
+
 					</div>
 				</div>
 				</div>

@@ -21,6 +21,8 @@
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab4">Типы пар</a></li>
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab5">Аудитории</a></li>
 					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab6">Факультеты</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab7">Кафедры</a></li>
+					<li class="nav-item"><a class="nav-link a-style tabs-item" href="#tab8">Адреса</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -111,7 +113,7 @@
 						</div>
 						<table id="myTableDiscipline">
 							<thead>
-								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Дисциплина</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
 							<tbody>
 							</tbody>
@@ -226,6 +228,74 @@
 							<button id="closePopupFaculties">Закрыть окно</button>
 						</div>		
 							<script src="js/addFacultiesscript.js"></script>
+					</div>
+					<div id="tab7" class="tabs-block">
+						<h1>Кафедры</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDepartment" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDepartment">
+							<thead>
+								<tr><th width="4%">#</th><th width="60%">Название кафедры</th><th width="20%">Телефон кафедры</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayDepartment"></div>
+						<div id="popupDepartment">
+							<form id="inputFormDepartment">
+								<h2>Название кафедры</h2>
+								<input type="text" id="inputDepartment1" placeholder="Название кафедры">
+								<h2>Телефон кафедры</h2>
+								<input type="text" id="inputDepartment2" placeholder="Телефон кафедры">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupDepartment">Закрыть окно</button>
+					</div>		
+						<script src="js/addDepartmentscript.js"></script>
+					</div>
+					<div id="tab8" class="tabs-block">
+						<h1>Адреса</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputAdress" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupAdress" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableAdress">
+							<thead>
+								<tr><th width="4%">#</th><th width="50%">Адрес</th><th width="30%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayAdress"></div>
+						<div id="popupAdress">
+							<form id="inputFormAdress">
+								<h2>Адрес</h2>
+								<input type="text" id="inputAdress1" placeholder="Адрес">
+								<h2>Факультет</h2>
+								<input type="text" id="inputAdress2" placeholder="Факультет">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupAdress">Закрыть окно</button>
+					</div>		
+						<script src="js/addAdressscript.js"></script>
 					</div>
 				</div>
 

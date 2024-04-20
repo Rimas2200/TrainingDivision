@@ -95,14 +95,14 @@ const showPopupButton4 = document.getElementById('showPopupFaculties');
     rowCount4 = rows4.length + 1; // Обновляем значение rowCount после удаления
   }
   
-searchInputFaculties.addEventListener('input', function() {
-      const searchValue = searchInputFaculties.value.toLowerCase();
-      const rows = tableBody.getElementsByTagName('tr');
-      for (let row of rows) {
+searchInput4.addEventListener('input', function() {
+      const searchValue4 = searchInput4.value.toLowerCase();
+      const rowsFaculties = tableBody4.getElementsByTagName('tr');
+      for (let row of rowsFaculties) {
         let found = false;
         const cells = row.getElementsByTagName('td');
         for (let cell of cells) {
-          if (cell.textContent.toLowerCase().includes(searchValue)) {
+          if (cell.textContent.toLowerCase().includes(searchValue4)) {
             found = true;
             break;
           }

@@ -4,7 +4,7 @@ const Groupbody = document.getElementById('Group');
 
 
 addGroup.addEventListener ('click', function() {
-    const NewButton1 = document.createElement('section');
+    const NewButton1 = document.createElement('option');
     NewButton1.innerHTML = "New group";
     NewButton1.classList.add("gruppy-btn");
     Groupbody.appendChild(NewButton1);
