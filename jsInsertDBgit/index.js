@@ -97,8 +97,15 @@ app.get('/professor',(req,res) =>{
 app.get('/',(req,res)=>{
     console.log(`Запрос данных ${req.url}`);
     res.render('front/index', {page: ''});
-})
-
+});
+app.get('/departament',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'departament'});
+});
+app.get('/address', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    res.render('front/index', {page: 'address'});
+});
 
 
 

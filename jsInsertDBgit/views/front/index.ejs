@@ -21,6 +21,8 @@
 					<li class="<%= page === 'coupleType' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/coupleType">Типы пар</a></li>
 					<li class="<%= page === 'classroom' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/classroom">Аудитории</a></li>
 					<li class="<%= page === 'faculties' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/faculties">Факультеты</a></li>
+					<li class="<%= page === 'departament' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/departament">Кафедры</a></li>
+					<li class="<%= page === 'address' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/address">Адреса</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -57,10 +59,7 @@
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
 								<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск" size="90" type="text">
-								<button class="search-form-btn">Найти</button>
 							</div>
-
-	  
 							<div>
 								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
@@ -97,13 +96,12 @@
 							<button id="closePopupTeacher">Закрыть окно</button>
 							</div>		
 							<script src="js/addTeacherscript.js"></script>
-					<% } %>
-					<% if (page === 'direction') { %>
+						<% } %>
+						<% if (page === 'direction') { %>
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
 								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
-								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
@@ -115,7 +113,7 @@
 						</div>
 						<table id="myTableDiscipline">
 							<thead>
-								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Дисциплина</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
 							<tbody>
 							</tbody>
@@ -136,7 +134,6 @@
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
 								<input class="search-form-txt" id="searchInputTypePair" placeholder="Поиск" size="90" type="text">
-								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupTypePair" class="add-btn-st btn btn-primary">Добавить</button>
@@ -155,7 +152,7 @@
 						</table>
 						<div id="overlayTypePair"></div>
 							<div id="popupTypePair">
-								<form  method="post" action="/addition/coupleType"> <!--id="inputFormTypePair"-->
+								<form method="post" action="/addition/coupleType"> <!--id="inputFormTypePair"-->
 									<h2>Тип пары</h2>
 									<input type="text" id="inputTypePair1" name="pair_type" placeholder="Тип пары">
 									<button type="submit">Добавить</button>
@@ -169,7 +166,6 @@
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
 								<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
-								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupAudience" class="add-btn-st btn btn-primary">Добавить</button>
@@ -204,7 +200,6 @@
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
 								<input class="search-form-txt" id="searchInputFaculties" placeholder="Поиск" size="90" type="text">
-								<button class="search-form-btn">Найти</button>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupFaculties" class="add-btn-st btn btn-primary">Добавить</button>
@@ -229,13 +224,79 @@
 									<h2>ФИО декана</h2>
 									<input type="text" name="dean_fullname" placeholder="Декан" id="inputFaculties2" required>
 									<button type="submit">Добавить</button>
-								</form>								
+								</form>	
 							<button id="closePopupFaculties">Закрыть окно</button>
 						</div>		
 							<script src="js/addFacultiesscript.js"></script>
-					</div>
 					<% } %>
-
+					<% if (page === 'departament') { %>
+						<h1>Кафедры</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDepartment" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDepartment">
+							<thead>
+								<tr><th width="4%">#</th><th width="60%">Название кафедры</th><th width="20%">Телефон кафедры</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayDepartment"></div>
+						<div id="popupDepartment">
+							<form method="post" action="/addition/departament"><!--id="inputFormDepartment"-->
+								<h2>Название кафедры</h2>
+								<input type="text" name="name" id="inputDepartment1" placeholder="Название кафедры">
+								<h2>Телефон кафедры</h2>
+								<input type="text" name="phone" id="inputDepartment2" placeholder="Телефон кафедры">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupDepartment">Закрыть окно</button>
+					</div>		
+						<script src="js/addDepartmentscript.js"></script>
+					<% } %>
+					<% if (page === 'address') { %>
+						<h1>Адреса</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputAdress" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupAdress" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableAdress">
+							<thead>
+								<tr><th width="4%">#</th><th width="50%">Адрес</th><th width="30%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayAdress"></div>
+						<div id="popupAdress">
+							<form method="post" action="/addition/address"> <!--id="inputFormAdress"-->
+								<h2>Адрес</h2>
+								<input type="text" name="address" id="inputAdress1" placeholder="Адрес">
+								<h2>Факультет</h2>
+								<input type="text" name="faculty" id="inputAdress2" placeholder="Факультет">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupAdress">Закрыть окно</button>
+					</div>		
+						<script src="js/addAdressscript.js"></script>
+					<% } %>
 				</div>
 
 			</div>
