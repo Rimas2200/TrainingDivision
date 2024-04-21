@@ -76,7 +76,10 @@ app.get('/faculties/direction/group/:direcrion_abbreviation',(req,res) =>{
 
 app.get('/direction',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'direction'})
+    connect.query('SELECT * FROM direction', (err, results) => {
+        if (err) throw err;
+        res.render('front/index', {page: 'direction',  data: results });
+    });
 })
 app.get('/faculties', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
@@ -122,6 +125,125 @@ app.get('/address', (req,res) =>{
     connect.query('SELECT * FROM address', (err,results) =>{
         if (err) throw err;
         res.render('front/index', {page: 'address', data: results });
+    });
+});
+
+
+
+//кнопки для БД
+app.post('/coupleType/delete/:id', (req,res) => {
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM couple_type where id =' + req.params.id, (err, result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/coupleType');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+/*app.post('/coupleType/edit/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const id = req.body.id;
+    const pair_type = req.body.pair_type;
+    connect.query('UPDATE couple_type SET pair_type = ? WHERE id = ?',[pair_type, id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/coupleType');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+*/
+app.post('/classroom/delete/:id', (req,res) => {
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM classroom where id =' + req.params.id, (err,result) =>{
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/classroom');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/faculties/delete/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM faculty WHERE id =' + req.params.id, (err,result) =>{
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/faculties');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/departament/delete/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM departament WHERE id =' + req.params.id, (err,result) =>{
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/departament');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    })
+});
+app.post('/address/delete/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM address WHERE id =' + req.params.id, (err,ressult) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/address');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/professor/delete/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM professor WHERE id =' + req.params.id, (err,ressult) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/professor');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/direction/delete/:id', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('DELETE FROM direction WHERE id =' + req.params.id, (err,ressult) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/direction');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
     });
 });
 
@@ -251,12 +373,13 @@ app.post('/addition/professor', (req, res)=>{
         middle_name: middle_name,
         position: position,
         departement: departament}; 
-    connect.query('INSERT INTO professor SET ?', proffessorData, (error,res)=>{
+    connect.query('INSERT INTO professor SET ?', proffessorData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/professor');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -273,12 +396,13 @@ app.post('/addition/classroom', (req, res)=>{
     let building = req.body.building;
     const classroomData ={room_number: room_number,
         building: building}; 
-    connect.query('INSERT INTO classroom SET ?', classroomData, (error,res)=>{
+    connect.query('INSERT INTO classroom SET ?', classroomData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/classroom');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -293,12 +417,13 @@ app.post('/addition/classroom', (req, res)=>{
 app.post('/addition/coupleType', (req, res)=>{
     let pair_type= req.body.pair_type;
     const couple_typeData ={pair_type: pair_type}; 
-    connect.query('INSERT INTO couple_type SET ?', couple_typeData, (error,res)=>{
+    connect.query('INSERT INTO couple_type SET ?', couple_typeData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/coupleType');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -315,12 +440,13 @@ app.post('/addition/departament', (req, res)=>{
     let phone = req.body.phone;
     const departamentData ={name: name,
     phone: phone}; 
-    connect.query('INSERT INTO departament SET ?', departamentData, (error,res)=>{
+    connect.query('INSERT INTO departament SET ?', departamentData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/departament');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -337,12 +463,13 @@ app.post('/addition/address', (req, res)=>{
     let faculty = req.body.faculty;
     const addressData ={address: address,
     faculty: faculty}; 
-    connect.query('INSERT INTO address SET ?', addressData, (error,res)=>{
+    connect.query('INSERT INTO address SET ?', addressData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/address');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -359,12 +486,13 @@ app.post('/faculties/addition', (req, res)=>{
     let dean_fullname = req.body.dean_fullname;
     const facultyData ={faculty_name: faculty_name,
         dean_fullname: dean_fullname}; 
-    connect.query('INSERT INTO faculty SET ?', facultyData, (error,res)=>{
+    connect.query('INSERT INTO faculty SET ?', facultyData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/faculties');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
@@ -383,12 +511,13 @@ app.post('/addition/direction', (req, res)=>{
     const directionData ={direction_abbreviation: direction_abbreviation,
     name: name,
     faculty: faculty}; 
-    connect.query('INSERT INTO direction SET ?', directionData, (error,res)=>{
+    connect.query('INSERT INTO direction SET ?', directionData, (error,result)=>{
         try{
             if (error){
                 throw error;
             }
             console.log('Успешно выполнено CODE: 200');
+            res.redirect('/direction');
         }catch(error){
             if (error.code == 'ER_DUP_ENTRY'){
                 console.log('Ошибка 409' );
