@@ -80,19 +80,31 @@ app.get('/direction',(req,res) =>{
 })
 app.get('/faculties', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'faculties'} )
+    connect.query('SELECT * FROM faculty', (err, results)=> {
+        if (err) throw err;
+        res.render('front/index', {page: 'faculties', data: results});
+    });
 });
 app.get('/classroom',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'classroom'});
+    connect.query('SELECT * FROM classroom', (err, results) => {
+        if (err) throw err;
+        res.render('front/index', {page: 'classroom',  data: results });
+    });
 });
 app.get('/coupleType',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'coupleType'});
+    connect.query('SELECT * FROM couple_type', (err, results) => {
+        if (err) throw err;
+        res.render('front/index',{page:'coupleType',  data: results });
+    });
 });
 app.get('/professor',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'professor'});
+    connect.query('SELECT * FROM professor', (err, results) => {
+        if (err) throw err;
+        res.render('front/index', {page: 'professor',  data: results });
+    });
 });
 app.get('/',(req,res)=>{
     console.log(`Запрос данных ${req.url}`);
@@ -100,11 +112,17 @@ app.get('/',(req,res)=>{
 });
 app.get('/departament',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'departament'});
+    connect.query('SELECT * FROM departament', (err, results) => {
+        if (err) throw err;
+        res.render('front/index', {page: 'departament',  data: results });
+    });
 });
 app.get('/address', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: 'address'});
+    connect.query('SELECT * FROM address', (err,results) =>{
+        if (err) throw err;
+        res.render('front/index', {page: 'address', data: results });
+    });
 });
 
 

@@ -72,9 +72,31 @@
 							<thead>
 							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
 							</thead>
-							<tbody>
-							
-							</tbody>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.last_name %>
+										</td>
+										<td>
+											<%= item.first_name %>
+										</td>
+										<td>
+											<%= item.middle_name %>
+										</td>
+										<td>
+											<%= item.position %>
+										</td>
+										<td>
+											<%= item.departement %>
+										</td>
+										<td>
+											телефон
+										</td>
+								</tbody>
+							<% }); %>
 						</table>
 							<div id="overlayTeacher"></div>
 							<div id="popupTeacher">
@@ -147,8 +169,16 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="80%">Тип</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
+							<% data.forEach(item => { %>
 							<tbody>
+									<td>
+										<%= item.id %>
+									</td>
+									<td>
+										<%= item.pair_type %>
+									</td>
 							</tbody>
+							<% }); %>
 						</table>
 						<div id="overlayTypePair"></div>
 							<div id="popupTypePair">
@@ -179,8 +209,19 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="50%">Аудитория / Адрес</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
-							<tbody>
-							</tbody>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.room_number %>
+										</td>
+										<td>
+											<%= item.building %>
+										</td>
+								</tbody>
+							<% }); %>
 						</table>
 						<div id="overlayAudience"></div>
 							<div id="popupAudience">
@@ -213,8 +254,19 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="60%">Факультет</th><th width="20%">ФИО декана</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
-							<tbody>
-							</tbody>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.faculty_name %>
+										</td>
+										<td>
+											<%= item.dean_fullname %>
+										</td>
+								</tbody>
+							<% }); %>
 						</table>
 						<div id="overlayFaculties"></div>
 							<div id="popupFaculties">
@@ -247,8 +299,19 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="60%">Название кафедры</th><th width="20%">Телефон кафедры</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
-							<tbody>
-							</tbody>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.name %>
+										</td>
+										<td>
+											<%= item.phone %>
+										</td>
+								</tbody>
+							<% }); %>
 						</table>
 						<div id="overlayDepartment"></div>
 						<div id="popupDepartment">
@@ -281,8 +344,19 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="50%">Адрес</th><th width="30%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
-							<tbody>
-							</tbody>
+							<% data.forEach(item => { %>
+								<tbody>
+									<td>
+										<%= item.id %>
+									</td>
+									<td>
+										<%= item.address %>
+									</td>
+									<td>
+										<%= item.faculty %>
+									</td>
+								</tbody>
+							<% }); %>
 						</table>
 						<div id="overlayAdress"></div>
 						<div id="popupAdress">
