@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Расписание ЧелГУ</title>
+		<link href="css.boot/bootstrap.min.css" rel="stylesheet">
+		<link href="css.boot/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js.boot/bootstrap.bundle.min.js"></script>
+	</head>
+
+	<body>
+		<nav class="nav-fill">
+			<div class="sidebar" id="sidebar">
+				<ul class="nav flex-column tabs-items">
+					<li class="<%= page === '' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/">Главная</a></li>
+					<li class="<%= page === 'professor' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/professor">Преподаватели</a></li>
+					<li class="<%= page === 'direction' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/direction">Дисциплины</a></li>
+					<li class="<%= page === 'coupleType' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/coupleType">Типы пар</a></li>
+					<li class="<%= page === 'classroom' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/classroom">Аудитории</a></li>
+					<li class="<%= page === 'faculties' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/faculties">Факультеты</a></li>
+					<li class="<%= page === 'departament' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/departament">Кафедры</a></li>
+					<li class="<%= page === 'address' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/address">Адреса</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main>
+			<div class="main-content">
+				<div>
+					<% if (page === '') { %>
+						<h1>Расписание факультетов</h1>
+						<nav>
+							<div>
+								<ul class="nav flex-column">
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu" href="/addition/schedule">Математический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu1" href="/addition/schedule">Институт информационных технологий</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu2" href="/addition/schedule">Физический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu3" href="/addition/schedule">Химический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu4" href="/addition/schedule">Биологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu5" href="/addition/schedule">Институт права</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu6" href="/addition/schedule">Экономический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu7" href="/addition/schedule">Факультет управления</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu8" href="/addition/schedule">Институт экономики отраслей</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu9" href="/addition/schedule">Факультет фундаментальной медицины</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu10" href="/addition/schedule">Институт образования и практической психологии</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu11" href="/addition/schedule">Факультет Евразии и Востока</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu12" href="/addition/schedule">Факультет лингвистики и перевода</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu13" href="/addition/schedule">Факультет журналистики</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu14" href="/addition/schedule">Историко-филологический факультет</a></li>
+									<li class="nav-item"><a class="nav-link a-style1" id="hideMenu15" href="/addition/schedule">Факультет экологии</a></li>
+								</ul>
+							</div>
+						</nav>
+					<% } %>
+					<% if (page === 'professor') { %>
+						<h1>Преподаватели</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div>
+								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableTeacher">
+							<thead>
+							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.last_name %>
+										</td>
+										<td>
+											<%= item.first_name %>
+										</td>
+										<td>
+											<%= item.middle_name %>
+										</td>
+										<td>
+											<%= item.position %>
+										</td>
+										<td>
+											<%= item.departement %>
+										</td>
+										<td>
+											телефон
+										</td>
+								</tbody>
+							<% }); %>
+						</table>
+							<div id="overlayTeacher"></div>
+							<div id="popupTeacher">
+								<form  action="/addition/professor" method="post"> <!--id="inputFormTeacher" -->
+									<h2>Фамилия</h2>
+									<input type="text" name="last_name" id="inputTeacher1" placeholder="Фамилия">
+									<h2>Имя</h2>
+									<input type="text" name="first_name" id="inputTeacher2" placeholder="Имя">
+									<h2>Отчество</h2>
+									<input type="text" name="middle_name" id="inputTeacher3" placeholder="Отчество">
+									<h2>Должность</h2>
+									<input type="text" name="position" id="inputTeacher4" placeholder="Должность">
+									<h2>Кафедра</h2>
+									<input type="text" name="departament" id="inputTeacher5" placeholder="Кафедра">
+									<h2>Телефон кафедры</h2>
+									<input type="number" id="inputTeacher6" placeholder="Телефон кафедры">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTeacher">Закрыть окно</button>
+							</div>		
+							<script src="js/addTeacherscript.js"></script>
+						<% } %>
+						<% if (page === 'direction') { %>
+						<h1>Дисциплины</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDiscipline">
+							<thead>
+								<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Дисциплина</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<div id="overlayDiscipline"></div>
+							<div id="popupDiscipline">
+								<form id="inputFormDiscipline">
+									<h2>Дисциплина</h2>
+									<input type="text" id="inputDiscipline1" placeholder="Дисциплина">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDiscipline">Закрыть окно</button>
+							</div>		
+							<script src="js/addDisciplinescript.js"></script>
+					<% } %>
+					<% if (page === 'coupleType') { %>
+						<h1>Типы пар</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputTypePair" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupTypePair" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableTypePair">
+							<thead>
+								<tr><th width="4%">#</th><th width="80%">Тип</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+							<tbody>
+									<td>
+										<%= item.id %>
+									</td>
+									<td>
+										<%= item.pair_type %>
+									</td>
+							</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayTypePair"></div>
+							<div id="popupTypePair">
+								<form method="post" action="/addition/coupleType"> <!--id="inputFormTypePair"-->
+									<h2>Тип пары</h2>
+									<input type="text" id="inputTypePair1" name="pair_type" placeholder="Тип пары">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTypePair">Закрыть окно</button>
+						</div>		
+							<script src="js/addPairTypescript.js"></script>
+					<% } %>
+					<% if (page === 'classroom') { %>
+						<h1>Аудитории</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupAudience" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableAudience">
+							<thead>
+								<tr><th width="4%">#</th><th width="50%">Аудитория / Адрес</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.room_number %>
+										</td>
+										<td>
+											<%= item.building %>
+										</td>
+								</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayAudience"></div>
+							<div id="popupAudience">
+								<form  method="post" action="/addition/classroom"> <!--id="inputFormAudience"-->
+									<h2>Аудитории</h2>
+									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес" name="room_number">
+									<h2>Корпус</h2>
+									<input type="text" id="inputAudience2" placeholder="Корпус" name="building">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupAudience">Закрыть окно</button>
+						</div>		
+							<script src="js/addAudiencescript.js"></script>
+					<% } %>
+					<% if (page === 'faculties') { %>
+						<h1>Факультеты</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputFaculties" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupFaculties" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableFaculties">
+							<thead>
+								<tr><th width="4%">#</th><th width="60%">Факультет</th><th width="20%">ФИО декана</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.faculty_name %>
+										</td>
+										<td>
+											<%= item.dean_fullname %>
+										</td>
+								</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayFaculties"></div>
+							<div id="popupFaculties">
+								<form method="post" action="/faculties/addition" > <!-- id="inputFormFaculties"-->
+									<h2>Факультет</h2>
+									<input type="text" name="faculty_name" placeholder="Название Факультета" id="inputFaculties1" required>
+									<h2>ФИО декана</h2>
+									<input type="text" name="dean_fullname" placeholder="Декан" id="inputFaculties2" required>
+									<button type="submit">Добавить</button>
+								</form>	
+							<button id="closePopupFaculties">Закрыть окно</button>
+						</div>		
+							<script src="js/addFacultiesscript.js"></script>
+					<% } %>
+					<% if (page === 'departament') { %>
+						<h1>Кафедры</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDepartment" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDepartment">
+							<thead>
+								<tr><th width="4%">#</th><th width="60%">Название кафедры</th><th width="20%">Телефон кафедры</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.name %>
+										</td>
+										<td>
+											<%= item.phone %>
+										</td>
+								</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayDepartment"></div>
+						<div id="popupDepartment">
+							<form method="post" action="/addition/departament"><!--id="inputFormDepartment"-->
+								<h2>Название кафедры</h2>
+								<input type="text" name="name" id="inputDepartment1" placeholder="Название кафедры">
+								<h2>Телефон кафедры</h2>
+								<input type="text" name="phone" id="inputDepartment2" placeholder="Телефон кафедры">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupDepartment">Закрыть окно</button>
+					</div>		
+						<script src="js/addDepartmentscript.js"></script>
+					<% } %>
+					<% if (page === 'address') { %>
+						<h1>Адреса</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputAdress" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupAdress" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableAdress">
+							<thead>
+								<tr><th width="4%">#</th><th width="50%">Адрес</th><th width="30%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+									<td>
+										<%= item.id %>
+									</td>
+									<td>
+										<%= item.address %>
+									</td>
+									<td>
+										<%= item.faculty %>
+									</td>
+								</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayAdress"></div>
+						<div id="popupAdress">
+							<form method="post" action="/addition/address"> <!--id="inputFormAdress"-->
+								<h2>Адрес</h2>
+								<input type="text" name="address" id="inputAdress1" placeholder="Адрес">
+								<h2>Факультет</h2>
+								<input type="text" name="faculty" id="inputAdress2" placeholder="Факультет">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupAdress">Закрыть окно</button>
+					</div>		
+						<script src="js/addAdressscript.js"></script>
+					<% } %>
+				</div>
+
+			</div>
+		</main>
+
+
+	
+	</body>
+
+</html>
