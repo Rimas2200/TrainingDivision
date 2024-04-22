@@ -6,9 +6,9 @@
 		<meta charset="utf-8">
 		<title>меню челгу</title>
 				<link href="css.boot/bootstrap.min.css" rel="stylesheet">
-		<link href="css.boot/docs.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="js.boot/bootstrap.bundle.min.js"></script>
+		<script src="js/jquery-3.7.1.js"></script>
 	</head>
 
 	<body class="menu">
@@ -42,17 +42,65 @@
 						</select>
 					</form>
 					<form action="">
-						<select class="btn-top-menu2" name="group" id="Group">
-							<option value="">МП-201</option>
-							<option value="">МП-202</option>
-							<option value="">МП-203</option>
+						<select class="btn-top-menu2" name="group" onchange="renderData(this)">
+							<option value="0" hidden>Выбор группы</option>
+							<option value="1">МП-201</option>
+							<option value="2">МП-202</option>
+							<option value="3">МП-203</option>
 						</select>
 					</form>
 					<button class="btn-top-menu2" id="AddFlow">Добавить поток</button>
+					<button class="btn-top-menu2" id="AddGroup">Добавить группу</button>
 				</div>
 			
 		</footer>
+
 		<main class="under1">
+				<div style="display: none" id="source">
+					<select class="pairNumber pairNumber1">
+						<option>#1</option>
+						<option>#2</option>
+						<option>#3</option>
+						<option>#4</option>
+						<option>#5</option>
+						<option>#6</option>
+						<option>#7</option>
+						<option>#8</option>
+					</select>	
+					<select class="pairSelect pairSelectDiscipline">
+						<option hidden>Дисциплина</option>
+						<option>Дифференциальные уравнения</option>
+						<option>Блокчейн в цифровой экономике</option>
+						<option>Принятие решений при многих критериях</option>
+						<option>Математика</option>
+						<option>Дискретная математика</option>
+						<option>Математический анализ</option>
+						<option>Линейная алгебра</option>
+						<option>Дифференциальная геометрия</option>
+					</select>
+					<select class="pairSelect pairSelectTeacher">
+						<option hidden>Преподаватель</option>
+						<option>Алеева С.Р.</option>
+						<option>Красильникова Е.С.</option>
+						<option>Кораблев Ф.Г.</option>
+						<option>Маткин И.А.</option>
+						<option>Лепчинский М.Г.</option>
+						<option>Иванов С.А.</option>
+						<option>Тюрина И.А.</option>
+						<option>Дымшаков А.И. </option>
+					</select>
+					<select class="pairSelect pairSelectAudience">
+						<option hidden>Аудитория</option>
+						<option>АУД. 436</option>
+						<option>АУД. 201</option>
+						<option>АУД.314 (2к)</option>
+						<option>АУД.115А</option>
+						<option>АУД. 437</option>
+						<option>АУД. 426А</option>
+						<option>АУД. 431</option>
+						<option>АУД. А-13</option>
+					</select>
+				</div>
 			<div class="accordion" id="accordionExample">
 				<div class="accordion-item">
 					<h2 class="accordion-header">
@@ -64,93 +112,22 @@
 					<div class="accordion-body">
 						   <table id="monday" class="vremennaya-table">
 								<thead>
-									<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th></tr>
+									<tr><th>МП-201</th><th>МП-202</th><th>МП-203</th></tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="vremennaya"><select class="select12">
-										<option>#1</option>
-										<option>#2</option>
-										<option>#3</option>
-										<option>#4</option>
-										<option>#5</option>
-										<option>#6</option>
-										<option>#7</option>
-										<option>#8</option>
-									</select>	<select class="select123">
-										<option hidden>Дисциплина</option>
-										<option>Дифференциальные уравнения</option>
-										<option>Блокчейн в цифровой экономике</option>
-										<option>Принятие решений при многих критериях</option>
-										<option>Математика</option>
-										<option>Дискретная математика</option>
-										<option>Математический анализ</option>
-										<option>Линейная алгебра</option>
-										<option>Дифференциальная геометрия</option>
-									</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
-									</tr>
-									<tr>
-										<td class="vremennaya"><select class="select123">
-										<option hidden>Преподаватель</option>
-										<option>Алеева С.Р.</option>
-										<option>Красильникова Е.С.</option>
-										<option>Кораблев Ф.Г.</option>
-										<option>Маткин И.А.</option>
-										<option>Лепчинский М.Г.</option>
-										<option>Иванов С.А.</option>
-										<option>Тюрина И.А.</option>
-										<option>Дымшаков А.И. </option>
-									</select>	<select class="select123">
-										<option hidden>Преподаватель</option>
-										<option>Алеева С.Р.</option>
-										<option>Красильникова Е.С.</option>
-										<option>Кораблев Ф.Г.</option>
-										<option>Маткин И.А.</option>
-										<option>Лепчинский М.Г.</option>
-										<option>Иванов С.А.</option>
-										<option>Тюрина И.А.</option>
-										<option>Дымшаков А.И. </option>
-									</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
-									</tr>
-									<tr>
-										<td class="vremennaya">
-											<label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
-											<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
-											<select class="select123">
-												<option hidden>Аудитория</option>
-												<option>АУД. 436</option>
-												<option>АУД. 201</option>
-												<option>АУД.314 (2к)</option>
-												<option>АУД.115А</option>
-												<option>АУД. 437</option>
-												<option>АУД. 426А</option>
-												<option>АУД. 431</option>
-												<option>АУД. А-13</option>
-											</select>	<select class="select123">
-												<option hidden>Аудитория</option>
-												<option>АУД. 436</option>
-												<option>АУД. 201</option>
-												<option>АУД.314 (2к)</option>
-												<option>АУД.115А</option>
-												<option>АУД. 437</option>
-												<option>АУД. 426А</option>
-												<option>АУД. 431</option>
-												<option>АУД. А-13</option>
-											</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
-										</td>
-									</tr>
-									<tr>	
-									</tr>						
+										<td class="vremennaya" data-id="1"></td><td data-id="2"></td><td data-id="3"></td><td><button class="udalit"></button></td>
+									</tr>				
 								</tbody>
 						   </table>
 						   <button id="AddPairbtn">Добавить пару</button>
-						   <button id="AddGroup">+</button>
 						   <button id="RemoveGroup">-</button>
 						   <script src="js/AddGroup.js"></script>
 						   <script src="js/AddPairinTable.js"></script>
-
+						   <script src="/js/GroupSelection.js"></script>
 					</div>
 				</div>
+				
 				</div>
 				<div class="accordion-item">
 					<h2 class="accordion-header">
@@ -166,26 +143,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="vremennaya"><select class="select12">
-									<option>#1</option>
-									<option>#2</option>
-									<option>#3</option>
-									<option>#4</option>
-									<option>#5</option>
-									<option>#6</option>
-									<option>#7</option>
-									<option>#8</option>
-								</select>	<select class="select123">
-									<option hidden>Дисциплина</option>
-									<option>Дифференциальные уравнения</option>
-									<option>Блокчейн в цифровой экономике</option>
-									<option>Принятие решений при многих критериях</option>
-									<option>Математика</option>
-									<option>Дискретная математика</option>
-									<option>Математический анализ</option>
-									<option>Линейная алгебра</option>
-									<option>Дифференциальная геометрия</option>
-								</select></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
+									<td class="vremennaya"></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
 								</tr>
 								<tr>
 									<td class="vremennaya"><select class="select123">
@@ -198,31 +156,11 @@
 									<option>Иванов С.А.</option>
 									<option>Тюрина И.А.</option>
 									<option>Дымшаков А.И. </option>
-								</select>	<select class="select123">
-									<option hidden>Преподаватель</option>
-									<option>Алеева С.Р.</option>
-									<option>Красильникова Е.С.</option>
-									<option>Кораблев Ф.Г.</option>
-									<option>Маткин И.А.</option>
-									<option>Лепчинский М.Г.</option>
-									<option>Иванов С.А.</option>
-									<option>Тюрина И.А.</option>
-									<option>Дымшаков А.И. </option>
-								</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
+								</select>	 <button class="plusik">+</button></td> <td></td><td></td><td></td>
 								</tr>
 								<tr>
 									<td class="vremennaya">
-										<select class="select123">
-											<option hidden>Аудитория</option>
-											<option>АУД. 436</option>
-											<option>АУД. 201</option>
-											<option>АУД.314 (2к)</option>
-											<option>АУД.115А</option>
-											<option>АУД. 437</option>
-											<option>АУД. 426А</option>
-											<option>АУД. 431</option>
-											<option>АУД. А-13</option>
-										</select>	<select class="select123">
+											<select class="select123">
 											<option hidden>Аудитория</option>
 											<option>АУД. 436</option>
 											<option>АУД. 201</option>

@@ -6,7 +6,5 @@ Addpair.addEventListener ('click', function() {
       var row = table.insertRow(-1); // Вставляем новую строку в конец таблицы
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
-      cell1.innerHTML = "Новая строка " + (i + 1);
-      cell2.innerHTML = "Данные " + (i + 1);
     }
 });

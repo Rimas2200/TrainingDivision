@@ -4,12 +4,12 @@
 .vremennaya {
 	text-align: left;
 }
-.select123 {
+.pairSelect {
 	border: none;
 	margin: 15px 0 15px 0;
 	width: 10em;
 }
-.select12 {
+.pairNumber {
 	border: none;
 	margin: 15px 0 15px 0;
 }
