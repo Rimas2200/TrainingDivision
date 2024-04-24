@@ -81,6 +81,13 @@ app.get('/direction',(req,res) =>{
         res.render('front/index', {page: 'direction',  data: results });
     });
 })
+app.get('/discipline', (req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    connect.query('SELECT * FROM discipline', (err, results) => {
+        if (err) throw err;
+        res.render('front/index', {page: 'discipline',  data: results });
+    });
+})
 app.get('/faculties', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('SELECT * FROM faculty', (err, results)=> {
@@ -145,11 +152,10 @@ app.post('/coupleType/delete/:id', (req,res) => {
         }
     });
 });
-/*app.post('/coupleType/edit/:id', (req,res) =>{
+app.post('/coupleType/edit/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    const id = req.body.id;
     const pair_type = req.body.pair_type;
-    connect.query('UPDATE couple_type SET pair_type = ? WHERE id = ?',[pair_type, id], (err,result) => {
+    connect.query('UPDATE couple_type SET pair_type = ? WHERE id = ?',[pair_type, req.params.id], (err,result) => {
         try{
             if (err){
                 throw err;
@@ -161,7 +167,6 @@ app.post('/coupleType/delete/:id', (req,res) => {
         }
     });
 });
-*/
 app.post('/classroom/delete/:id', (req,res) => {
     console.log(`Запрос данных ${req.url}`);
     connect.query('DELETE FROM classroom where id =' + req.params.id, (err,result) =>{
@@ -176,6 +181,48 @@ app.post('/classroom/delete/:id', (req,res) => {
         }
     });
 });
+app.post('/classroom/edit/:id', (req,res) =>{
+    let room_number = req.body.room_number;
+    let building = req.body.building;
+    connect.query('UPDATE classroom SET room_number = ?,building = ? WHERE id = ?',[room_number, building ,req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/classroom');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/discipline/delete/:id',(req,res) => {
+    connect.query('DELETE FROM discipline where id =' + req.params.id, (err,result) =>{
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данные успешно удалены');
+            res.redirect('/discipline');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/discipline/edit/:id', (req,res) =>{
+    let discipline_name = req.body.discipline_name;
+    connect.query('UPDATE discipline SET discipline_name = ? WHERE id = ?',[discipline_name ,req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/discipline');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
 app.post('/faculties/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('DELETE FROM faculty WHERE id =' + req.params.id, (err,result) =>{
@@ -184,6 +231,21 @@ app.post('/faculties/delete/:id', (req,res) =>{
                 throw err;
             }
             console.log('Данные успешно удалены');
+            res.redirect('/faculties');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/faculties/edit/:id', (req,res) =>{
+    let faculty_name = req.body.faculty_name;
+    let dean_fullname = req.body.dean_fullname;
+    connect.query('UPDATE faculty SET faculty_name = ?,dean_fullname = ? WHERE id = ?',[faculty_name, dean_fullname ,req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
             res.redirect('/faculties');
         }catch(err){
             console.log('Ошибка при удалении данных' + err.message);
@@ -204,6 +266,21 @@ app.post('/departament/delete/:id', (req,res) =>{
         }
     })
 });
+app.post('/departament/edit/:id', (req,res) =>{
+    let name = req.body.name;
+    let phone = req.body.phone;
+    connect.query('UPDATE departament SET name = ?,phone = ? WHERE id = ?',[name, phone ,req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/departament');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
 app.post('/address/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('DELETE FROM address WHERE id =' + req.params.id, (err,ressult) => {
@@ -212,6 +289,21 @@ app.post('/address/delete/:id', (req,res) =>{
                 throw err;
             }
             console.log('Данные успешно удалены');
+            res.redirect('/address');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
+app.post('/address/edit/:id', (req,res) =>{
+    let address = req.body.address;
+    let faculty = req.body.faculty;
+    connect.query('UPDATE address SET address = ?,faculty = ? WHERE id = ?',[address, faculty ,req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
             res.redirect('/address');
         }catch(err){
             console.log('Ошибка при удалении данных' + err.message);
@@ -232,6 +324,24 @@ app.post('/professor/delete/:id', (req,res) =>{
         }
     });
 });
+app.post('/professor/edit/:id', (req,res) =>{
+    let last_name= req.body.last_name;
+    let first_name= req.body.first_name;
+    let middle_name= req.body.middle_name;
+    let position = req.body.position;
+    let departament = req.body.departament;
+    connect.query('UPDATE professor SET last_name = ?, first_name = ?, middle_name = ?, position = ?, departement = ? WHERE id = ?',[last_name, first_name, middle_name, position, departament, req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/professor');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
 app.post('/direction/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('DELETE FROM direction WHERE id =' + req.params.id, (err,ressult) => {
@@ -246,53 +356,31 @@ app.post('/direction/delete/:id', (req,res) =>{
         }
     });
 });
+app.post('/direction/edit/:id', (req,res) =>{
+    let direction_abbreviation = req.body.direction_abbreviation;
+    let name = req.body.name;
+    let faculty = req.body.faculty;
+    connect.query('UPDATE direction SET direction_abbreviation = ?, name = ?, faculty = ? WHERE id = ?',[direction_abbreviation, name, faculty, req.params.id], (err,result) => {
+        try{
+            if (err){
+                throw err;
+            }
+            console.log('Данны успешно удалены');
+            res.redirect('/direction');
+        }catch(err){
+            console.log('Ошибка при удалении данных' + err.message);
+        }
+    });
+});
 
 
 
-//GET-запросы с последующими POST-запросами
-app.get('/addition/schedule', (req, res)=> {
-    console.log(`Запрос данных ${req.url}`);
-    res.render('front/menu');
-});
-app.get('/addition/group',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('group');
-});
-app.get('/addition/direction',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('direction');
-});
-/*
-app.get('/faculties/addition',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('faculty');
-});
-*/
-app.get('/addition/address',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('address');
-});
-app.get('/addition/departament',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('departament');
-});
-app.get('/addition/coupleType',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('coupleType');
-});
-app.get('/addition/classroom',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('classroom');
-});
-app.get('/addition/professor',(req,res)=>{
-    console.log(`Запрос ${req.url}`);
-    res.render('professor');
-});
 
 app.get('*',(req,res)=>{
     console.log(`Запрос ${req.url}`);
     res.render('error');
 })
+
 
 
 app.post('/register', (req,res) =>{
@@ -499,6 +587,27 @@ app.post('/faculties/addition', (req, res)=>{
             }
             else{
                 console.log('Ошибка при вставке данных факультета' + error.message);
+            }
+        }
+    })
+});
+
+app.post('/addition/discipline', (req, res)=>{
+    let discipline_name = req.body.discipline_name;
+    const disciplineData ={discipline_name: discipline_name}; 
+    connect.query('INSERT INTO discipline SET ?', disciplineData, (error,result)=>{
+        try{
+            if (error){
+                throw error;
+            }
+            console.log('Успешно выполнено CODE: 200');
+            res.redirect('/discipline');
+        }catch(error){
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409' );
+            }
+            else{
+                console.log('Ошибка при вставке данных дисциплины' + error.message);
             }
         }
     })

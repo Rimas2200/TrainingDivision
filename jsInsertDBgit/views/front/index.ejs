@@ -17,7 +17,7 @@
 				<ul class="nav flex-column tabs-items">
 					<li class="<%= page === '' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/">Главная</a></li>
 					<li class="<%= page === 'professor' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/professor">Преподаватели</a></li>
-					
+					<li class="<%= page === 'discipline' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/discipline">Дисциплины</a></li>
 					<li class="<%= page === 'classroom' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/classroom">Аудитории</a></li>
 					<li class="<%= page === 'address' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/address">Адреса</a></li>
 					<li class="<%= page === 'coupleType' ? 'active' : '' %>"><a class="nav-link a-style tabs-item" href="/coupleType">Типы пар</a></li>
@@ -97,7 +97,26 @@
 											телефон
 										</td>
 										<td>
-											<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupTeacherEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayTeacherEdit<%= item.id %>"></div>
+											<div id="popupTeacherEdit<%= item.id %>">
+												<form method="post" action="/professor/edit/<%= item.id %>">
+													<h2>Фамилия</h2>
+													<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
+													<h2>Имя</h2>
+													<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
+													<h2>Отчество</h2>
+													<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
+													<h2>Должность</h2>
+													<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
+													<h2>Кафедра</h2>
+													<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
+													<h2>Телефон кафедры</h2>
+													<input type="number" id="inputTeacherEdit6" placeholder="телефон">
+													<button type="submit">Сохранить</button>
+												</form>
+											<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
+											</div>
 										</td>
 										<td>
 											<form method="post" action="/professor/delete/<%= item.id %>">
@@ -132,17 +151,17 @@
 						<h1>Направление</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+								<input class="search-form-txt" id="searchInputDirection" placeholder="Поиск" size="90" type="text">
 							</div>
 							<div class="">
-								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+								<button type="button" id="showPopupDirection" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
 							<div class="imp-exp-st">
 								<button class="table-btn-st">Импорт</button>
 								<button class="table-btn-st">Экспорт</button>
 							</div>
 						</div>
-						<table id="myTableDiscipline">
+						<table id="myTableDirection">
 							<thead>
 								<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Название направления</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
@@ -161,7 +180,20 @@
 											<%= item.faculty %>
 										</td>
 										<td>
-											<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupDirectionEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayDirectionEdit<%= item.id %>"></div>
+											<div id="popupDirectionEdit<%= item.id %>">
+												<form method="post" action="/direction/edit/<%= item.id %>">
+													<h2>Аббревиатура</h2>
+													<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" placeholder="<%= item.direction_abbreviation %>">
+													<h2>Дисциплина</h2>
+													<input type="text" name="name" id="inputDirectionEdit2" placeholder="<%= item.name %>">
+													<h2>Факультет</h2>
+													<input type="text" name="faculty" id="inputDirectionEdit3" placeholder="<%= item.faculty %>">
+													<button type="submit">Добавить</button>
+												</form>
+											<button id="closePopupDirectionEdit<%= item.id %>">Закрыть окно</button>
+											</div>
 										</td>
 										<td>
 											<form method="post" action="/direction/delete/<%= item.id %>">
@@ -171,18 +203,18 @@
 								</tbody>
 							<% }); %>
 						</table>
-						<div id="overlayDiscipline"></div>
-							<div id="popupDiscipline">
+						<div id="overlayDirection"></div>
+							<div id="popupDirection">
 								<form method="post" action="/addition/direction"><!-- id="inputFormDiscipline" -->
 									<h2>Дисциплина</h2>
-									<input type="text" name="direction_abbreviation" id="inputDiscipline1" placeholder="Дисциплина">
-									<input type="text" name="name" id="inputDiscipline2" placeholder="Название направления">
-									<input type="text" name="faculty" id="inputDiscipline3" placeholder="Факультет">
+									<input type="text" name="direction_abbreviation" id="inputDirection1" placeholder="Дисциплина">
+									<input type="text" name="name" id="inputDirection2" placeholder="Название направления">
+									<input type="text" name="faculty" id="inputDirection3" placeholder="Факультет">
 									<button type="submit">Добавить</button>
 								</form>
-							<button id="closePopupDiscipline">Закрыть окно</button>
+							<button id="closePopupDirection">Закрыть окно</button>
 						</div>		
-							<script src="js/addDisciplinescript.js"></script>
+						<script src="js/addDirectionscript.js"></script>
 					<% } %>
 					<% if (page === 'coupleType') { %>
 						<h1>Типы пар</h1>
@@ -211,7 +243,16 @@
 										<%= item.pair_type %>
 									</td>
 									<td>
-										<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupTypePairEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayTypePair1<%= item.id %>"></div>
+												<div id="popupTypePair1<%= item.id %>">
+													<form method="post" action="/coupleType/edit/<%= item.id %>">
+														<h2>Тип пары</h2>
+														<input type="text" name="pair_type"  id="inputTypePair2" placeholder="<%= item.pair_type %>">
+														<button type="submit">Сохранить</button>
+													</form>
+												<button id="closePopupTypePair1<%= item.id %>">Закрыть окно</button>
+											</div>
 									</td>
 									<td>
 										<form method="post" action="/coupleType/delete/<%= item.id %>">
@@ -219,8 +260,10 @@
 										</form>
 									</td>
 							</tbody>
+							
 							<% }); %>
 						</table>
+
 						<div id="overlayTypePair"></div>
 							<div id="popupTypePair">
 								<form method="post" action="/addition/coupleType"> <!--id="inputFormTypePair"-->
@@ -229,7 +272,11 @@
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupTypePair">Закрыть окно</button>
-						</div>		
+						</div>
+						
+						
+						
+						
 							<script src="js/addPairTypescript.js"></script>
 					<% } %>
 					<% if (page === 'classroom') { %>
@@ -248,7 +295,7 @@
 						</div>
 						<table id="myTableAudience">
 							<thead>
-								<tr><th width="4%">#</th><th width="50%">Аудитория / Адрес</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								<tr><th width="4%">#</th><th width="50%">Аудитория</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
 							<% data.forEach(item => { %>
 								<tbody>
@@ -262,7 +309,18 @@
 											<%= item.building %>
 										</td>
 										<td>
-											<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupAudienceEdit<%= item.id %>"  style="color:MidnightBlue">Ред.</button>
+											<div id="overlayAudienceEdit<%= item.id %>"></div>
+												<div id="popupAudienceEdit<%= item.id %>">
+												<form method="post" action="/classroom/edit/<%= item.id %>">
+													<h2>Аудитории</h2>
+													<input type="text" name="room_number" id="inputAudienceEdit1" placeholder="<%= item.room_number %>">
+													<h2>Корпус</h2>
+													<input type="text" name="building" id="inputAudienceEdit2" placeholder="<%= item.building %>">
+													<button type="submit">Добавить</button>
+												</form>
+												<button id="closePopupAudienceEdit<%= item.id %>">Закрыть окно</button>
+											</div>
 										</td>
 										<td>
 											<form method="post" action="/classroom/delete/<%= item.id %>">
@@ -276,13 +334,16 @@
 							<div id="popupAudience">
 								<form  method="post" action="/addition/classroom"> <!--id="inputFormAudience"-->
 									<h2>Аудитории</h2>
-									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес" name="room_number">
+									<input type="text" id="inputAudience1" placeholder="Аудитория" name="room_number">
 									<h2>Корпус</h2>
 									<input type="text" id="inputAudience2" placeholder="Корпус" name="building">
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupAudience">Закрыть окно</button>
-						</div>		
+						</div>
+						
+						
+						
 							<script src="js/addAudiencescript.js"></script>
 					<% } %>
 					<% if (page === 'faculties') { %>
@@ -315,7 +376,18 @@
 											<%= item.dean_fullname %>
 										</td>
 										<td>
-											<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupFacultiesEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayFacultiesEdit<%= item.id %>"></div>
+												<div id="popupFacultiesEdit<%= item.id %>">
+													<form method="post" action="/faculties/edit/<%= item.id %>">
+														<h2>Факультет</h2>
+														<input type="text" name="faculty_name" id="inputFacultiesEdit1" placeholder="<%= item.faculty_name %>">
+														<h2>ФИО декана</h2>
+														<input type="text" name="dean_fullname" id="inputFacultiesEdit2" placeholder="<%= item.dean_fullname %>">
+														<button type="submit">Добавить</button>
+													</form>
+													<button id="closePopupFacultiesEdit<%= item.id %>">Закрыть окно</button>
+												</div>	
 										</td>
 										<td>
 											<form method="post" action="/faculties/delete/<%= item.id %>">
@@ -368,7 +440,18 @@
 											<%= item.phone %>
 										</td>
 										<td>
-											<button style="color:MidnightBlue">Ред.</button>
+											<button id="showPopupDepartmentEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayDepartmentEdit<%= item.id %>"></div>
+											<div id="popupDepartmentEdit<%= item.id %>">
+												<form method="post" action="/departament/edit/<%= item.id %>">
+													<h2>Название кафедры</h2>
+													<input type="text" name="name" id="inputDepartmentEdit1" placeholder="<%= item.name %>">
+													<h2>Телефон кафедры</h2>
+													<input type="text" name="phone" id="inputDepartmentEdit2" placeholder="<%= item.phone %>">
+													<button type="submit">Добавить</button>
+												</form>
+												<button id="closePopupDepartmentEdit<%= item.id %>">Закрыть окно</button>
+											</div>
 										</td>
 										<td>
 											<form method="post" action="/departament/delete/<%= item.id %>">
@@ -421,7 +504,18 @@
 										<%= item.faculty %>
 									</td>
 									<td>
-										<button style="color:MidnightBlue">Ред.</button>
+										<button id="showPopupAdressEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+										<div id="overlayAdressEdit<%= item.id %>"></div>
+										<div id="popupAdressEdit<%= item.id %>">
+											<form method="post" action="/address/edit/<%= item.id %>">
+												<h2>Адрес</h2>
+												<input type="text" name="address" id="inputAdressEdit1" placeholder="<%= item.address %>">
+												<h2>Факультет</h2>
+												<input type="text" name="faculty" id="inputAdressEdit2" placeholder="<%= item.faculty %>">
+												<button type="submit">Добавить</button>
+											</form>
+											<button id="closePopupAdressEdit<%= item.id %>">Закрыть окно</button>
+										</div>	
 									</td>
 									<td>
 										<form method="post" action="/address/delete/<%= item.id %>">
@@ -444,7 +538,63 @@
 					</div>		
 						<script src="js/addAdressscript.js"></script>
 					<% } %>
-				</div>
+					<% if (page === 'discipline') { %>
+						<h1>Дисциплины</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+							</div>
+							<div class="">
+								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableDiscipline">
+							<thead>
+								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+							</thead>
+							<% data.forEach(item => { %>
+								<tbody>
+									<td>
+										<%= item.id %>
+									</td>
+									<td>
+										<%= item.discipline_name %>
+									</td>
+									<td>
+										<button id="showPopupDisciplineEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+										<div id="overlayDisciplineEdit<%= item.id %>"></div>
+										<div id="popupDisciplineEdit<%= item.id %>">
+											<form method="post" action="/discipline/edit/<%= item.id %>">
+												<h2>Дисциплина</h2>
+												<input type="text" name="discipline_name" id="inputDisciplineEdit1" placeholder="<%= item.discipline_name %>">
+												<button type="submit">Добавить</button>
+											</form>
+											<button id="closePopupDisciplineEdit<%= item.id %>">Закрыть окно</button>
+										</div>	
+									</td>
+									<td>
+										<form method="post" action="/discipline/delete/<%= item.id %>">
+											<button style="color: DarkRed;">Удалить</button>
+										</form>
+									</td>
+								</tbody>
+							<% }); %>
+						</table>
+						<div id="overlayDiscipline"></div>
+						<div id="popupDiscipline">
+							<form method="post" action="/addition/discipline"><!--id="inputFormDiscipline"-->
+								<h2>Дисциплина</h2>
+								<input type="text" name="discipline_name" id="inputDiscipline1" placeholder="Дисциплина">
+								<button type="submit">Добавить</button>
+							</form>
+						<button id="closePopupDiscipline">Закрыть окно</button>
+					</div>		
+						<script src="js/addDisciplinescript.js"></script>
+					<% } %>
 
 			</div>
 		</main>
