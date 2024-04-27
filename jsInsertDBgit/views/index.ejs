@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление расписания</title>
+</head>
+<body>
+    <form method="post" action="/addition/schedule">
+        <br><br>
+        <input type="text" name="discipline"  placeholder="Дисциплина" required>
+        <input type="text"  name="classroom" placeholder="Аудитория" required>
+        <input type="text" name="group_name" placeholder="Группа" required>
+        <input type="text" name="pair_name" placeholder="Номер пары" required>
+        <input type="text" name="teacher_name" placeholder="Преподователь" required>
+        <input type="text" name="day_of_the_week" placeholder="День недели" required>
+        <input type="text" name="week" placeholder="Неделя" required>
+        <input type="text" name="subgroup" placeholder="Подгруппа" required>
+        <br><br>
+        <button type="submit">Добавить</button>
+    </form>
+    <br><br><br><br><br><br>
+    <form action="/addition/group">
+        <button type="submit" style="background:black; color: white;">Группа</button>
+    </form>
+    <form action="/addition/direction">
+        <button type="submit" style="background:black; color: white;">Дисциплина</button>
+    </form>
+    <form action="/addition/faculty">
+        <button type="submit" style="background:black; color: white;">Факультет</button>
+    </form>
+    <form action="/addition/address">
+        <button type="submit" style="background:black; color: white;">Адрес</button>
+    </form>
+    <form action="/addition/departament">
+        <button type="submit" style="background:black; color: white;">Кафедра</button>
+    </form>
+    <form action="/addition/coupleType">
+        <button type="submit" style="background:black; color: white;">Тип пар</button>
+    </form>
+    <form action="/addition/classroom">
+        <button type="submit" style="background:black; color: white;">Аудитория</button>
+    </form>
+    <form action="/addition/professor">
+        <button type="submit" style="background:black; color: white;">Преподователь</button>
+    </form>
+
+</body>
+</html>
