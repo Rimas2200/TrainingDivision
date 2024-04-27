@@ -13,6 +13,3 @@ showPopupButtonWeekRange.addEventListener('click', function() {
     overlayWeekRange.style.display = 'none';
     popupWeekRange.style.display = 'none';
   });
-  inputFormTeacher.addEventListener('submit', function(event) {
-    event.preventDefault(); // Предотвращаем отправку формы
-  });

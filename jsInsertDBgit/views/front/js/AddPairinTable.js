@@ -1,12 +1,36 @@
 const Addpair = document.getElementById('AddPairbtn');
 
 Addpair.addEventListener ('click', function() {
-    var table = document.getElementById("monday");
-    for (var i = 0; i < 3; i++) {
-      var row = table.insertRow(-1); // Вставляем новую строку в конец таблицы
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      cell1.innerHTML = "Новая строка " + (i + 1);
-      cell2.innerHTML = "Данные " + (i + 1);
-    }
+      var table = document.getElementById('monday');
+
+      // Создаем первую строку (зеленую)
+      var row1 = document.createElement('tr');
+      for (var i = 0; i < 4; i++) {
+        var cell = document.createElement('td');
+        row1.appendChild(cell);
+      }
+      row1.style.backgroundColor = 'green';
+      table.appendChild(row1);
+
+      // Создаем вторую строку
+      var row2 = document.createElement('tr');
+      table.appendChild(row2);
+
+      // Создаем ячейки для второй строки
+      for (var i = 0; i < 4; i++) {
+        var cell = document.createElement('td');
+        cell.setAttribute('data-id', i+1);
+        row2.appendChild(cell);
+      }
+
+      // Создаем кнопку для удаления строки
+      var deleteButton = document.createElement('button');
+      deleteButton.classList.add('deletePair');
+      deleteButton.addEventListener('click', function() {
+        table.removeChild(row1);
+        table.removeChild(row2);
+      });
+
+      // Добавляем кнопку в четвертую ячейку второй строки
+      row2.lastChild.appendChild(deleteButton);
 });

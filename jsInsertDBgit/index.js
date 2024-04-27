@@ -134,6 +134,37 @@ app.get('/address', (req,res) =>{
         res.render('front/index', {page: 'address', data: results });
     });
 });
+app.get('/addition/schedule',(req,res) => {
+    connect.query('SELECT id, discipline_name FROM discipline', (err, disciplineData) => {
+        if (err) {
+            console.error('Error retrieving data from discipline: ', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        
+        connect.query('SELECT id, last_name, first_name, middle_name FROM professor', (err, professorData) => {
+            if (err) {
+                console.error('Error retrieving data from professor: ', err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+            
+            connect.query('SELECT id,room_number FROM classroom', (err, classroomData) => {
+                if (err) {
+                    console.error('Error retrieving data from classroom: ', err);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+            
+                res.render('front/menu', {
+                    disciplineData,
+                    professorData,
+                    classroomData
+                });
+            });
+        });
+    });
+});
 
 
 
