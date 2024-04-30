@@ -27,6 +27,16 @@
 	border: none;
 	margin: 15px 0 15px 0;
 }
+.pairSelectTime {
+	border: none;
+	margin: 15px 0 15px 0;
+	display: none;
+}
+.pairSelectAdress {
+	border: none;
+	margin: 15px 0 15px 0;
+	display: none;
+}
 .pairNumber {
 	border: none;
 	margin: 15px 0 15px 0;
