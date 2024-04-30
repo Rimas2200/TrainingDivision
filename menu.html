@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>меню челгу</title>
-				<link href="css.boot/bootstrap.min.css" rel="stylesheet">
+		<link href="css.boot/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css">
 		<script src="js.boot/bootstrap.bundle.min.js"></script>
 		<script src="js/jquery-3.7.1.js"></script>
@@ -31,7 +31,8 @@
 					<button id="showEditingArea" class="btn-top-menu2">Дублировать пары</button>
 					<button class="btn-top-menu2">База данных</button>
 					<form action="">
-						<select class="btn-top-menu2" name="flow" id="">
+						<select class="btn-top-menu2" id="Flow">
+							<option value="" hidden>Выбор потока</option>
 							<option value="">МП</option>
 							<option value="">МТ</option>
 							<option value="">МН</option>
@@ -42,15 +43,29 @@
 						</select>
 					</form>
 					<form action="">
-						<select class="btn-top-menu2" name="group" onchange="renderData(this)">
+						<select class="btn-top-menu2" id="Group" onchange="renderData(this)">
 							<option value="0" hidden>Выбор группы</option>
 							<option value="1">МП-201</option>
 							<option value="2">МП-202</option>
 							<option value="3">МП-203</option>
 						</select>
 					</form>
+					<script>
+						let prevSelected = 0;
+						function renderData(selectElement){
+							if (prevSelected != 0){
+								$('td[data-id="' + prevSelected + '"]').html('');
+							}
+							let selectedGroupId = selectElement.value;
+							let source = $('#source').html();
+							$('td[data-id="' + selectedGroupId + '"]').html(source);
+							prevSelected = selectedGroupId;
+						}
+					</script>
 					<button class="btn-top-menu2" id="AddFlow">Добавить поток</button>
+					<button class="btn-top-menu2" id="RemoveFlow">Удалить поток</button>
 					<button class="btn-top-menu2" id="AddGroup">Добавить группу</button>
+					<button class="btn-top-menu2" id="RemoveGroup">Удалить группу</button>
 				</div>
 			
 		</footer>
@@ -67,7 +82,7 @@
 						<option>#7</option>
 						<option>#8</option>
 					</select>	
-					<select class="pairSelect pairSelectDiscipline">
+					<select class="pairSelectDiscipline">
 						<option hidden>Дисциплина</option>
 						<option>Дифференциальные уравнения</option>
 						<option>Блокчейн в цифровой экономике</option>
@@ -77,8 +92,8 @@
 						<option>Математический анализ</option>
 						<option>Линейная алгебра</option>
 						<option>Дифференциальная геометрия</option>
-					</select>
-					<select class="pairSelect pairSelectTeacher">
+					</select><br>
+					<select class="pairSelectTeacher">
 						<option hidden>Преподаватель</option>
 						<option>Алеева С.Р.</option>
 						<option>Красильникова Е.С.</option>
@@ -88,8 +103,10 @@
 						<option>Иванов С.А.</option>
 						<option>Тюрина И.А.</option>
 						<option>Дымшаков А.И. </option>
-					</select>
-					<select class="pairSelect pairSelectAudience">
+					</select><br>
+					<label for="rb4"><input type="radio" name="rb" class="rb4">1Н</label>
+					<label for="rb3"><input type="radio" name="rb" class="rb3">2Н</label>
+					<select class="pairSelectAudience">
 						<option hidden>Аудитория</option>
 						<option>АУД. 436</option>
 						<option>АУД. 201</option>
@@ -101,6 +118,27 @@
 						<option>АУД. А-13</option>
 					</select>
 				</div>
+				<div id="source-table">
+					<table>
+						<thead>
+							<tr><th colspan="3">МП-201</th><th colspan="3">МП-202</th><th colspan="3">МП-203</th></tr>
+						</thead>
+						<tbody>
+							<tr id="pair1"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair2" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair3" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair4" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair5" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair6" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair7" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+							<tr id="pair8" style="display: none;"><td data-id="1"></td><td></td><td></td><td data-id="2"></td><td></td><td></td><td data-id="3"></td><td></td><td></td></tr>
+						</tbody>
+					</table>
+					<button id="AddPairSource">Добавить пару</button>
+					<button id="DeletePairSource">Удалить пару</button>
+					<script src="/js/addPairinSource.js"></script>
+				</div>
+
 			<div class="accordion" id="accordionExample">
 				<div class="accordion-item">
 					<h2 class="accordion-header">
@@ -110,24 +148,22 @@
 					</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show">
 					<div class="accordion-body">
-						   <table id="monday" class="vremennaya-table">
+						   <table id="monday" class="monday vremennaya-table">
 								<thead>
-									<tr><th>МП-201</th><th>МП-202</th><th>МП-203</th></tr>
+									<tr><th>МП-201</th><th>МП-202</th><th>МП-203</th><th></th></tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="vremennaya" data-id="1"></td><td data-id="2"></td><td data-id="3"></td><td><button class="udalit"></button></td>
-									</tr>				
+										<td data-id="1"></td><td data-id="2"></td><td data-id="3"></td><td><button class="deletePair"></button></td>
+									</tr>		
 								</tbody>
 						   </table>
 						   <button id="AddPairbtn">Добавить пару</button>
-						   <button id="RemoveGroup">-</button>
 						   <script src="js/AddGroup.js"></script>
+						   <script src="js/AddFlow.js"></script>
 						   <script src="js/AddPairinTable.js"></script>
-						   <script src="/js/GroupSelection.js"></script>
 					</div>
 				</div>
-				
 				</div>
 				<div class="accordion-item">
 					<h2 class="accordion-header">
@@ -136,56 +172,32 @@
 					</button>
 					</h2>
 				<div id="collapseTwo" class="accordion-collapse collapse">
-					<div class="accordion-body">
-						<table class="vremennaya-table">
-							<thead>
-								<tr><th width="84%">МП-201</th><th>МП-202</th><th>МП-203</th><th>+</th></tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="vremennaya"></td> <td></td><td></td><td><button class="udalit" background-image: url("images/trash.jpg")></button></td>
-								</tr>
-								<tr>
-									<td class="vremennaya"><select class="select123">
-									<option hidden>Преподаватель</option>
-									<option>Алеева С.Р.</option>
-									<option>Красильникова Е.С.</option>
-									<option>Кораблев Ф.Г.</option>
-									<option>Маткин И.А.</option>
-									<option>Лепчинский М.Г.</option>
-									<option>Иванов С.А.</option>
-									<option>Тюрина И.А.</option>
-									<option>Дымшаков А.И. </option>
-								</select>	 <button class="plusik">+</button></td> <td></td><td></td><td></td>
-								</tr>
-								<tr>
-									<td class="vremennaya">
-											<select class="select123">
-											<option hidden>Аудитория</option>
-											<option>АУД. 436</option>
-											<option>АУД. 201</option>
-											<option>АУД.314 (2к)</option>
-											<option>АУД.115А</option>
-											<option>АУД. 437</option>
-											<option>АУД. 426А</option>
-											<option>АУД. 431</option>
-											<option>АУД. А-13</option>
-										</select> <button class="plusik">+</button></td> <td></td><td></td><td></td>
-									</td>
-								</tr>
-								<tr>
-									<td class="vremennaya"><label for="rb4"><input type="radio" name="rb" id="rb4">1Н</label>
-									<label for="rb3"><input type="radio" name="rb" id="rb3">2Н</label>
-									<label class="btn-top-menu2" for="ch7"><input type="checkbox" id="ch7"> Диапазон недели</label></td> <td></td><td></td>
-								</tr>
-								<tr>
-									<td><button class="plusik">+</button></td><td></td><td></td><td></td>		
-								</tr>						
-							</tbody>
-					   </table>
+					<div class="accordion-body group-sched-head">
+						<div class="group-sched">
+							<h2>МП-201</h2>
+							<table id="12345">
+								<tr><td class="vremennaya" data-id="1"></td></tr>
+							</table>
+							<button id="abcde">Добавить пару</button>
+						</div>
+						<div class="group-sched">
+							<h2>МП-202</h2>
+							<table>
+								<tr><td class="vremennaya" data-id="2"></td></tr>
+							</table>
+							<button id="abcde">Добавить пару</button>
+						</div>
+						<div class="group-sched">
+							<h2>МП-203</h2>
+							<table>
+								<tr><td class="vremennaya" data-id="3"></td></tr>
+							</table>
+							<button id="abcde">Добавить пару</button>
+						</div>
 					</div>
 				</div>
 				</div>
+				<script src="js/probnik.js"></script>
 				<div class="accordion-item">
 					<h2 class="accordion-header">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -577,52 +589,54 @@
 						<div class="week-range"> <!-- Диапазон недель -->
 							Диапазон недели
 								<div>
-									<input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="1" id="btncheck1" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck1">1</label>
-									<input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="2" id="btncheck2" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck2">2</label>
-									<input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="3" id="btncheck3" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck3">3</label>
-									<input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="4" id="btncheck4" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck4">4</label>
-									<input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="5" id="btncheck5" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck5">5</label>
-									<input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="6" id="btncheck6" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck6">6</label>
 								</div>
 								<div>
-									<input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="7" id="btncheck7" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck7">7</label>
-									<input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="8" id="btncheck8" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck8">8</label>
-									<input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="9" id="btncheck9" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck9">9</label>
-									<input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="10" id="btncheck10" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck10">10</label>
-									<input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="11" id="btncheck11" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck11">11</label>
-									<input type="checkbox" class="btn-check" id="btncheck12" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="12" id="btncheck12" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck12">12</label>
 								</div>
 								<div>
-									<input type="checkbox" class="btn-check" id="btncheck13" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="13" id="btncheck13" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck13">13</label>
-									<input type="checkbox" class="btn-check" id="btncheck14" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="14" id="btncheck14" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck14">14</label>
-									<input type="checkbox" class="btn-check" id="btncheck15" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="15" id="btncheck15" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck15">15</label>
-									<input type="checkbox" class="btn-check" id="btncheck16" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="16" id="btncheck16" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck16">16</label>
-									<input type="checkbox" class="btn-check" id="btncheck17" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="17" id="btncheck17" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck17">17</label>
-									<input type="checkbox" class="btn-check" id="btncheck18" autocomplete="off">
+									<input type="checkbox" class="btn-check" value="18" id="btncheck18" autocomplete="off">
 									<label class="btn btn-outline-primary week-range-btn" for="btncheck18">18</label>			
 								</div>
+								<button type="button" id="saveWeekRange">Сохранить</button>
 							</div>
 					</form>
 				<button id="closePopupWeekRange">Закрыть окно</button>
 				</div>		
 				<script src="js/showWeekRanhgescript.js"></script>
+				<script src="/js/saveWeekRange.js"></script>
 
 
 
@@ -645,6 +659,7 @@
 							<script src="js/showEditingArea.js"></script>
 				
 		</main>
+		<script src="/js/subgroupSelection.js"></script>
 	</body>
 
 </html>

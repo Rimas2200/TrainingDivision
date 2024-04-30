@@ -1,7 +1,10 @@
 const showPopupButtonDepartment = document.getElementById('showPopupDepartment');
     const overlayDepartment = document.getElementById('overlayDepartment');
+    const overlayDepartmentEdit = document.getElementById('overlayDepartmentEdit');
     const popupDepartment = document.getElementById('popupDepartment');
+    const popupDepartmentEdit = document.getElementById('popupDepartmentEdit');
     const closePopupButtonDepartment = document.getElementById('closePopupDepartment');
+    const closePopupButtonDepartmentEdit = document.getElementById('closePopupDepartmentEdit');
     const inputFormDepartment = document.getElementById('inputFormDepartment');
     const tableBodyDepartment = document.querySelector('#myTableDepartment tbody');
 	const searchInputDepartment = document.getElementById('searchInputDepartment');
@@ -16,6 +19,10 @@ const showPopupButtonDepartment = document.getElementById('showPopupDepartment')
     closePopupButtonDepartment.addEventListener('click', function() {
       overlayDepartment.style.display = 'none';
       popupDepartment.style.display = 'none';
+    });
+    closePopupButtonDepartmentEdit.addEventListener('click', function() {
+      overlayDepartmentEdit.style.display = 'none';
+      popupDepartmentEdit.style.display = 'none';
     });
 
     inputFormDepartment.addEventListener('submit', function(event) {
@@ -53,8 +60,8 @@ const showPopupButtonDepartment = document.getElementById('showPopupDepartment')
           selectedRowDepartment = newRowDepartment;
           document.getElementById('inputDepartment1').value = selectedRowDepartment.cells[1].textContent;
           document.getElementById('inputDepartment2').value = selectedRowDepartment.cells[2].textContent;
-		  overlayDepartment.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupDepartment.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+		  overlayDepartmentEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupDepartmentEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButtonDepartment.addEventListener('click', function() {

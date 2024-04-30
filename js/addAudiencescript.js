@@ -1,7 +1,10 @@
 const showPopupButton3 = document.getElementById('showPopupAudience');
     const overlayAudience = document.getElementById('overlayAudience');
+    const overlayAudienceEdit = document.getElementById('overlayAudienceEdit');
     const popupAudience = document.getElementById('popupAudience');
+    const popupAudienceEdit = document.getElementById('popupAudienceEdit');
     const closePopupButton3 = document.getElementById('closePopupAudience');
+    const closePopupButtonAudienceEdit = document.getElementById('closePopupAudienceEdit');
     const inputFormAudience = document.getElementById('inputFormAudience');
     const tableBody3 = document.querySelector('#myTableAudience tbody');
 	const searchInput3 = document.getElementById('searchInputAudience');
@@ -16,6 +19,10 @@ const showPopupButton3 = document.getElementById('showPopupAudience');
     closePopupButton3.addEventListener('click', function() {
       overlayAudience.style.display = 'none';
       popupAudience.style.display = 'none';
+    });
+    closePopupButtonAudienceEdit.addEventListener('click', function() {
+      overlayAudienceEdit.style.display = 'none';
+      popupAudienceEdit.style.display = 'none';
     });
 
     inputFormAudience.addEventListener('submit', function(event) {
@@ -52,8 +59,8 @@ const showPopupButton3 = document.getElementById('showPopupAudience');
         editButton3.addEventListener('click', function() {
           selectedRow3 = newRow3;
           document.getElementById('inputAudience1').value = selectedRow3.cells[1].textContent;
-		  overlayAudience.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupAudience.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+		  overlayAudienceEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupAudienceEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButton3.addEventListener('click', function() {

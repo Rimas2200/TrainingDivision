@@ -1,7 +1,10 @@
 const showPopupButtonAdress = document.getElementById('showPopupAdress');
     const overlayAdress = document.getElementById('overlayAdress');
+    const overlayAdressEdit = document.getElementById('overlayAdressEdit');
     const popupAdress = document.getElementById('popupAdress');
+    const popupAdressEdit = document.getElementById('popupAdressEdit');
     const closePopupButtonAdress = document.getElementById('closePopupAdress');
+    const closePopupButtonAdressEdit = document.getElementById('closePopupAdressEdit');
     const inputFormAdress = document.getElementById('inputFormAdress');
     const tableBodyAdress = document.querySelector('#myTableAdress tbody');
 	const searchInputAdress = document.getElementById('searchInputAdress');
@@ -16,6 +19,10 @@ const showPopupButtonAdress = document.getElementById('showPopupAdress');
     closePopupButtonAdress.addEventListener('click', function() {
       overlayAdress.style.display = 'none';
       popupAdress.style.display = 'none';
+    });
+    closePopupButtonAdressEdit.addEventListener('click', function() {
+      overlayAdressEdit.style.display = 'none';
+      popupAdressEdit.style.display = 'none';
     });
 
     inputFormAdress.addEventListener('submit', function(event) {
@@ -53,8 +60,8 @@ const showPopupButtonAdress = document.getElementById('showPopupAdress');
           selectedRowAdress = newRowAdress;
           document.getElementById('inputAdress1').value = selectedRowAdress.cells[1].textContent;
           document.getElementById('inputAdress2').value = selectedRowAdress.cells[2].textContent;
-		  overlayAdress.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupAdress.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+		  overlayAdressEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupAdressEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButtonAdress.addEventListener('click', function() {

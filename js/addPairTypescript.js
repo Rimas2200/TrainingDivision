@@ -1,7 +1,10 @@
 const showPopupButton2 = document.getElementById('showPopupTypePair');
     const overlayTypePair = document.getElementById('overlayTypePair');
+    const overlayTypePair1 = document.getElementById('overlayTypePair1');
     const popupTypePair = document.getElementById('popupTypePair');
+    const popupTypePair1 = document.getElementById('popupTypePair1');
     const closePopupButton2 = document.getElementById('closePopupTypePair');
+    const closePopupButtonEdit2 = document.getElementById('closePopupTypePair1');
     const inputFormTypePair = document.getElementById('inputFormTypePair');
     const tableBody2 = document.querySelector('#myTableTypePair tbody');
 	const searchInput2 = document.getElementById('searchInputTypePair');
@@ -16,6 +19,10 @@ const showPopupButton2 = document.getElementById('showPopupTypePair');
     closePopupButton2.addEventListener('click', function() {
       overlayTypePair.style.display = 'none';
       popupTypePair.style.display = 'none';
+    });
+    closePopupButtonEdit2.addEventListener('click', function() {
+      overlayTypePair1.style.display = 'none';
+      popupTypePair1.style.display = 'none';
     });
 
     inputFormTypePair.addEventListener('submit', function(event) {
@@ -49,8 +56,8 @@ const showPopupButton2 = document.getElementById('showPopupTypePair');
         editButton2.addEventListener('click', function() {
           selectedRow2 = newRow2;
           document.getElementById('inputTypePair1').value = selectedRow2.cells[1].textContent;
-		  overlayTypePair.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupTypePair.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+          overlayTypePair1.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+          popupTypePair1.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButton2.addEventListener('click', function() {

@@ -1,24 +1,37 @@
+.group-sched-head {
+	display: flex;
+	justify-content: center;
+}
+.group-sched {
+	text-align: center;
+	border: 1px solid black;
+	padding: 0 1em 0 0;
+}
+
+
 .vremennaya-table{
 	border-color: lightgray;
 }
 .vremennaya {
 	text-align: left;
 }
-.pairSelect {
+.pairSelectDiscipline {
 	border: none;
 	margin: 15px 0 15px 0;
-	width: 10em;
+}
+.pairSelectTeacher {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.pairSelectAudience {
+	border: none;
+	margin: 15px 0 15px 0;
 }
 .pairNumber {
 	border: none;
 	margin: 15px 0 15px 0;
 }
-.plusik {
-	border: none;
-	background-color: #ffffff;
-	font-size: 20px;
-}
-.udalit {
+.deletePair {
 	width: 30px;
 	height: 30px;
 	background-image: url("images/trash.jpg");
@@ -239,8 +252,27 @@ th, td {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
-#overlayDiscipline {
+#overlayTeacherEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupTeacherEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+#overlayDirection {
   display: none;
   position: fixed;
   top: 0;
@@ -249,7 +281,7 @@ th, td {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-#popupDiscipline {
+#popupDirection {
   display: none;
   position: fixed;
   top: 50%;
@@ -260,7 +292,26 @@ th, td {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
+#overlayDirectionEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDirectionEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
 #overlayTypePair {
 	display: none;
 	position: fixed;
@@ -271,6 +322,26 @@ th, td {
 	background-color: rgba(0, 0, 0, 0.5);
   }
   #popupTypePair {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayTypePair1 {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupTypePair1 {
 	display: none;
 	position: fixed;
 	top: 50%;
@@ -302,7 +373,26 @@ th, td {
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
-
+  #overlayAudienceEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAudienceEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
   #overlayFaculties {
 	display: none;
 	position: fixed;
@@ -323,7 +413,26 @@ th, td {
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
-
+  #overlayFacultiesEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupFacultiesEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
   #overlayWeekRange {
 	display: none;
 	position: fixed;
@@ -384,6 +493,26 @@ th, td {
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
+  #overlayDepartmentEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDepartmentEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
   #overlayAdress {
 	display: none;
 	position: fixed;
@@ -394,6 +523,46 @@ th, td {
 	background-color: rgba(0, 0, 0, 0.5);
   }
   #popupAdress {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayAdressEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAdressEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayDiscipline, #overlayDisciplineEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDiscipline, #popupDisciplineEdit {
 	display: none;
 	position: fixed;
 	top: 50%;

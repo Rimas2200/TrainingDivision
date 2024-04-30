@@ -1,88 +1,82 @@
-const showPopupButton1 = document.getElementById('showPopupDiscipline');
+const showPopupButtonDiscipline = document.getElementById('showPopupDiscipline');
     const overlayDiscipline = document.getElementById('overlayDiscipline');
+    const overlayDisciplineEdit = document.getElementById('overlayDisciplineEdit');
     const popupDiscipline = document.getElementById('popupDiscipline');
-    const closePopupButton1 = document.getElementById('closePopupDiscipline');
+    const popupDisciplineEdit = document.getElementById('popupDisciplineEdit');
+    const closePopupButtonDiscipline = document.getElementById('closePopupDiscipline');
+    const closePopupButtonDisciplineEdit = document.getElementById('closePopupDisciplineEdit');
     const inputFormDiscipline = document.getElementById('inputFormDiscipline');
-    const tableBody1 = document.querySelector('#myTableDiscipline tbody');
-	const searchInput1 = document.getElementById('searchInputDiscipline');
-    let selectedRow1 = null;
-    let rowCount1 = tableBody1.children.length + 1; // Устанавливаем начальное значение rowCount
+    const tableBodyDiscipline = document.querySelector('#myTableDiscipline tbody');
+	const searchInputDiscipline = document.getElementById('searchInputDiscipline');
+    let selectedRowDiscipline = null;
+    let rowCountDiscipline = tableBodyDiscipline.children.length + 1; // Устанавливаем начальное значение rowCount
 
-    showPopupButton1.addEventListener('click', function() {
+    showPopupButtonDiscipline.addEventListener('click', function() {
       overlayDiscipline.style.display = 'block';
       popupDiscipline.style.display = 'block';
     });
 
-    closePopupButton1.addEventListener('click', function() {
+    closePopupButtonDiscipline.addEventListener('click', function() {
       overlayDiscipline.style.display = 'none';
       popupDiscipline.style.display = 'none';
+    });
+    closePopupButtonDisciplineEdit.addEventListener('click', function() {
+      overlayDisciplineEdit.style.display = 'none';
+      popupDisciplineEdit.style.display = 'none';
     });
 
     inputFormDiscipline.addEventListener('submit', function(event) {
       event.preventDefault(); // Предотвращаем отправку формы
 
       // Получаем значения из input
-      const value11 = document.getElementById('inputDiscipline1').value;
-      const value12 = document.getElementById('inputDiscipline2').value;
-      const value13 = document.getElementById('inputDiscipline3').value;
+      const valueDiscipline1 = document.getElementById('inputDiscipline1').value;
 
-
-      if (selectedRow1) {
+      if (selectedRowDiscipline) {
         // Если выбрана строка для редактирования, обновляем значения ячеек
-        selectedRow1.cells[1].textContent = value11;
-        selectedRow1.cells[2].textContent = value12;
-        selectedRow1.cells[3].textContent = value13;
+        selectedRowDiscipline.cells[1].textContent = valueDiscipline1;
 		
-        selectedRow1 = null;
+        selectedRowDiscipline = null;
       } else {
         // Создаем новую строку для таблицы
-        const newRow1 = document.createElement('tr');
-        const numberCell1 = document.createElement('td');
-        const cell11 = document.createElement('td');
-        const cell12 = document.createElement('td');
-        const cell13 = document.createElement('td');
-        const editButtonCell1 = document.createElement('td');
-        const editButton1 = document.createElement('button');
-        const deleteButtonCell1 = document.createElement('td');
-        const deleteButton1 = document.createElement('button');
+        const newRowDiscipline = document.createElement('tr');
+        const numberCellDiscipline = document.createElement('td');
+        const cellDiscipline1 = document.createElement('td');
+        const editButtonCellDiscipline = document.createElement('td');
+        const editButtonDiscipline = document.createElement('button');
+        const deleteButtonCellDiscipline = document.createElement('td');
+        const deleteButtonDiscipline = document.createElement('button');
 
         // Устанавливаем значения ячеек
-        numberCell1.textContent = rowCount1;
-        cell11.textContent = value11;
-        cell12.textContent = value12;
-        cell13.textContent = value13;
-        editButton1.textContent = 'Ред';
-        deleteButton1.textContent = 'Уд';
+        numberCellDiscipline.textContent = rowCountDiscipline;
+        cellDiscipline1.textContent = valueDiscipline1;
+        editButtonDiscipline.textContent = 'Ред';
+        deleteButtonDiscipline.textContent = 'Уд';
 
         // Добавляем обработчики событий на кнопки редактирования и удаления
-        editButton1.addEventListener('click', function() {
-          selectedRow1 = newRow1;
-          document.getElementById('inputDiscipline1').value = selectedRow1.cells[1].textContent;
-          document.getElementById('inputDiscipline2').value = selectedRow1.cells[2].textContent;
-          document.getElementById('inputDiscipline3').value = selectedRow1.cells[3].textContent;
-		  overlayDiscipline.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupDiscipline.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+        editButtonDiscipline.addEventListener('click', function() {
+          selectedRowDiscipline = newRowDiscipline;
+          document.getElementById('inputDiscipline1').value = selectedRowDiscipline.cells[1].textContent;
+		  overlayDisciplineEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupDisciplineEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
-        deleteButton1.addEventListener('click', function() {
-          newRow1.remove(); // Удаляем строку из таблицы
-          updateRowNumbers1(); // Обновляем номера строк
+        deleteButtonDiscipline.addEventListener('click', function() {
+          newRowDiscipline.remove(); // Удаляем строку из таблицы
+          updateRowNumbersDiscipline(); // Обновляем номера строк
         });
 
         // Добавляем ячейки в строку
-        newRow1.appendChild(numberCell1);
-        newRow1.appendChild(cell11);
-        newRow1.appendChild(cell12);
-        newRow1.appendChild(cell13);
-        editButtonCell1.appendChild(editButton1);
-        newRow1.appendChild(editButtonCell1);
-        deleteButtonCell1.appendChild(deleteButton1);
-        newRow1.appendChild(deleteButtonCell1);
+        newRowDiscipline.appendChild(numberCellDiscipline);
+        newRowDiscipline.appendChild(cellDiscipline1);
+        editButtonCellDiscipline.appendChild(editButtonDiscipline);
+        newRowDiscipline.appendChild(editButtonCellDiscipline);
+        deleteButtonCellDiscipline.appendChild(deleteButtonDiscipline);
+        newRowDiscipline.appendChild(deleteButtonCellDiscipline);
 
         // Добавляем строку в таблицу
-        tableBody1.appendChild(newRow1);
+        tableBodyDiscipline.appendChild(newRowDiscipline);
 
-        rowCount1++;
+        rowCountDiscipline++;
       }
 
       // Сбрасываем значения input
@@ -92,18 +86,18 @@ const showPopupButton1 = document.getElementById('showPopupDiscipline');
       popupDiscipline.style.display = 'none';
     });
 
- function updateRowNumbers1() {
-    const rows1 = tableBody1.children;
-    for (let i = 0; i < rows1.length; i++) {
-      rows1[i].cells[0].textContent = i + 1;
+ function updateRowNumbersDiscipline() {
+    const rowsDiscipline = tableBodyDiscipline.children;
+    for (let i = 0; i < rowsDiscipline.length; i++) {
+      rowsDiscipline[i].cells[0].textContent = i + 1;
     }
-    rowCount1 = rows1.length + 1; // Обновляем значение rowCount после удаления
+    rowCountDiscipline = rowsDiscipline.length + 1; // Обновляем значение rowCount после удаления
   }
   
 searchInputDiscipline.addEventListener('input', function() {
       const searchValue = searchInputDiscipline.value.toLowerCase();
-      const rows1 = tableBody1.getElementsByTagName('tr');
-      for (let row of rows1) {
+      const rowsDiscipline = tableBodyDiscipline.getElementsByTagName('tr');
+      for (let row of rowsDiscipline) {
         let found = false;
         const cells = row.getElementsByTagName('td');
         for (let cell of cells) {

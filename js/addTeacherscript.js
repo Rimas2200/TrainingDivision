@@ -1,7 +1,10 @@
 const showPopupButton = document.getElementById('showPopupTeacher');
     const overlayTeacher = document.getElementById('overlayTeacher');
+    const overlayTeacherEdit = document.getElementById('overlayTeacherEdit');
     const popupTeacher = document.getElementById('popupTeacher');
+    const popupTeacherEdit = document.getElementById('popupTeacherEdit');
     const closePopupButton = document.getElementById('closePopupTeacher');
+    const closePopupButtonEdit = document.getElementById('closePopupTeacherEdit');
     const inputFormTeacher = document.getElementById('inputFormTeacher');
     const tableBody = document.querySelector('#myTableTeacher tbody');
 	const searchInput = document.getElementById('searchInputTeacher');
@@ -16,6 +19,10 @@ const showPopupButton = document.getElementById('showPopupTeacher');
     closePopupButton.addEventListener('click', function() {
       overlayTeacher.style.display = 'none';
       popupTeacher.style.display = 'none';
+    });
+    closePopupButtonEdit.addEventListener('click', function() {
+      overlayTeacherEdit.style.display = 'none';
+      popupTeacherEdit.style.display = 'none';
     });
 
     inputFormTeacher.addEventListener('submit', function(event) {
@@ -73,8 +80,8 @@ const showPopupButton = document.getElementById('showPopupTeacher');
           document.getElementById('inputTeacher4').value = selectedRow.cells[4].textContent;
           document.getElementById('inputTeacher5').value = selectedRow.cells[5].textContent;
           document.getElementById('inputTeacher6').value = selectedRow.cells[6].textContent;
-		  overlayTeacher.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupTeacher.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+		  overlayTeacherEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupTeacherEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButton.addEventListener('click', function() {

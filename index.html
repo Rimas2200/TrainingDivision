@@ -94,44 +94,76 @@
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupTeacher">Закрыть окно</button>
-							</div>		
+							</div>
+							<div id="overlayTeacherEdit"></div>
+							<div id="popupTeacherEdit">
+								<form id="inputFormTeacherEdit">
+									<h2>Фамилия</h2>
+									<input type="text" id="inputTeacherEdit1" placeholder="Ред. фамилию">
+									<h2>Имя</h2>
+									<input type="text" id="inputTeacherEdit2" placeholder="Ред. имя">
+									<h2>Отчество</h2>
+									<input type="text" id="inputTeacherEdit3" placeholder="Ред. отчество">
+									<h2>Должность</h2>
+									<input type="text" id="inputTeacherEdit4" placeholder="Ред. должность">
+									<h2>Кафедра</h2>
+									<input type="text" id="inputTeacherEdit5" placeholder="Ред. кафедру">
+									<h2>Телефон кафедры</h2>
+									<input type="number" id="inputTeacherEdit6" placeholder="Ред. телефон кафедры">
+									<button type="submit">Сохранить</button>
+								</form>
+							<button id="closePopupTeacherEdit">Закрыть окно</button>
+							</div>
 							<script src="js/addTeacherscript.js"></script>
 					</div>
 					<div id="tab3" class="tabs-block">
 						<h1>Направления</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+								<input class="search-form-txt" id="searchInputDirection" placeholder="Поиск" size="90" type="text">
 							</div>
 							<div class="">
-								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+								<button type="button" id="showPopupDirection" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
 							<div class="imp-exp-st">
 								<button class="table-btn-st">Импорт</button>
 								<button class="table-btn-st">Экспорт</button>
 							</div>
 						</div>
-						<table id="myTableDiscipline">
+						<table id="myTableDirection">
 							<thead>
 								<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Направление</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
 							<tbody>
 							</tbody>
 						</table>
-						<div id="overlayDiscipline"></div>
-							<div id="popupDiscipline">
-								<form id="inputFormDiscipline">
+						<div id="overlayDirection"></div>
+							<div id="popupDirection">
+								<form id="inputFormDirection">
 									<h2>Аббревиатура</h2>
-									<input type="text" id="inputDiscipline1" placeholder="Дисциплина">
+									<input type="text" id="inputDirection1" placeholder="Аббревиатура">
 									<h2>Дисциплина</h2>
-									<input type="text" id="inputDiscipline2" placeholder="Дисциплина">
+									<input type="text" id="inputDirection2" placeholder="Направление">
 									<h2>Факультет</h2>
-									<input type="text" id="inputDiscipline3" placeholder="Дисциплина">
+									<input type="text" id="inputDirection3" placeholder="Факультет">
 									<button type="submit">Добавить</button>
 								</form>
-							<button id="closePopupDiscipline">Закрыть окно</button>
-							</div>		
-							<script src="js/addDisciplinescript.js"></script>
+							<button id="closePopupDirection">Закрыть окно</button>
+							</div>
+							<div id="overlayDirectionEdit"></div>
+							<div id="popupDirectionEdit">
+								<form id="inputFormDirectionEdit">
+									<h2>Аббревиатура</h2>
+									<input type="text" id="inputDirectionEdit1" placeholder="Ред. аббревиатуру">
+									<h2>Дисциплина</h2>
+									<input type="text" id="inputDirectionEdit2" placeholder="Ред. направление">
+									<h2>Факультет</h2>
+									<input type="text" id="inputDirectionEdit3" placeholder="Ред. факультет">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDirectionEdit">Закрыть окно</button>
+							</div>
+							<script src="js/addDirectionscript.js"></script>
 					</div>
 					<div id="tab4" class="tabs-block">
 						<h1>Типы пар</h1>
@@ -162,7 +194,16 @@
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupTypePair">Закрыть окно</button>
-						</div>		
+						</div>	
+						<div id="overlayTypePair1"></div>
+							<div id="popupTypePair1">
+								<form id="inputFormTypePair1">
+									<h2>Тип пары</h2>
+									<input type="text" id="inputTypePair2" placeholder="Редактировать тип пары">
+									<button type="submit">Сохранить</button>
+								</form>
+							<button id="closePopupTypePair1">Закрыть окно</button>
+						</div>	
 							<script src="js/addPairTypescript.js"></script>
 					</div>
 					<div id="tab5" class="tabs-block">
@@ -190,13 +231,24 @@
 							<div id="popupAudience">
 								<form id="inputFormAudience">
 									<h2>Аудитории</h2>
-									<input type="text" id="inputAudience1" placeholder="Аудитория/Адрес">
+									<input type="text" id="inputAudience1" placeholder="Аудитория">
 									<h2>Корпус</h2>
 									<input type="text" id="inputAudience2" placeholder="Корпус">
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupAudience">Закрыть окно</button>
-						</div>		
+						</div>
+						<div id="overlayAudienceEdit"></div>
+							<div id="popupAudienceEdit">
+								<form id="inputFormAudienceEdit">
+									<h2>Аудитории</h2>
+									<input type="text" id="inputAudienceEdit1" placeholder="Ред. аудиторию">
+									<h2>Корпус</h2>
+									<input type="text" id="inputAudienceEdit2" placeholder="Ред. корпус">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupAudienceEdit">Закрыть окно</button>
+						</div>
 							<script src="js/addAudiencescript.js"></script>
 					</div>
 					<div id="tab6" class="tabs-block">
@@ -230,7 +282,18 @@
 									<button type="submit">Добавить</button>
 								</form>
 							<button id="closePopupFaculties">Закрыть окно</button>
-						</div>		
+						</div>
+						<div id="overlayFacultiesEdit"></div>
+							<div id="popupFacultiesEdit">
+								<form id="inputFormFacultiesEdit">
+									<h2>Факультет</h2>
+									<input type="text" id="inputFacultiesEdit1" placeholder="Ред. факультет">
+									<h2>ФИО декана</h2>
+									<input type="text" id="inputFacultiesEdit2" placeholder="Ред. ФИО декана">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupFacultiesEdit">Закрыть окно</button>
+						</div>	
 							<script src="js/addFacultiesscript.js"></script>
 					</div>
 					<div id="tab7" class="tabs-block">
@@ -263,8 +326,19 @@
 								<input type="text" id="inputDepartment2" placeholder="Телефон кафедры">
 								<button type="submit">Добавить</button>
 							</form>
-						<button id="closePopupDepartment">Закрыть окно</button>
-					</div>		
+							<button id="closePopupDepartment">Закрыть окно</button>
+						</div>
+						<div id="overlayDepartmentEdit"></div>
+						<div id="popupDepartmentEdit">
+							<form id="inputFormDepartmentEdit">
+								<h2>Название кафедры</h2>
+								<input type="text" id="inputDepartmentEdit1" placeholder="Ред. название кафедры">
+								<h2>Телефон кафедры</h2>
+								<input type="text" id="inputDepartmentEdit2" placeholder="Ред. телефон кафедры">
+								<button type="submit">Добавить</button>
+							</form>
+							<button id="closePopupDepartmentEdit">Закрыть окно</button>
+						</div>	
 						<script src="js/addDepartmentscript.js"></script>
 					</div>
 					<div id="tab8" class="tabs-block">
@@ -297,41 +371,61 @@
 								<input type="text" id="inputAdress2" placeholder="Факультет">
 								<button type="submit">Добавить</button>
 							</form>
-						<button id="closePopupAdress">Закрыть окно</button>
-					</div>		
+							<button id="closePopupAdress">Закрыть окно</button>
+						</div>
+						<div id="overlayAdressEdit"></div>
+						<div id="popupAdressEdit">
+							<form id="inputFormAdressEdit">
+								<h2>Адрес</h2>
+								<input type="text" id="inputAdressEdit1" placeholder="Ред. адрес">
+								<h2>Факультет</h2>
+								<input type="text" id="inputAdressEdit2" placeholder="Ред. факультет">
+								<button type="submit">Добавить</button>
+							</form>
+							<button id="closePopupAdressEdit">Закрыть окно</button>
+						</div>	
 						<script src="js/addAdressscript.js"></script>
 					</div>
 					<div id="tab9" class="tabs-block">
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputAdress" placeholder="Поиск" size="90" type="text">
+								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
 							</div>
 							<div class="">
-								<button type="button" id="showPopupAdress" class="add-btn-st btn btn-primary">Добавить</button>
+								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
 							<div class="imp-exp-st">
 								<button class="table-btn-st">Импорт</button>
 								<button class="table-btn-st">Экспорт</button>
 							</div>
 						</div>
-						<table id="myTableAdress">
+						<table id="myTableDiscipline">
 							<thead>
 								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
 							<tbody>
 							</tbody>
 						</table>
-						<div id="overlayAdress"></div>
-						<div id="popupAdress">
-							<form id="inputFormAdress">
+						<div id="overlayDiscipline"></div>
+						<div id="popupDiscipline">
+							<form id="inputFormDiscipline">
 								<h2>Дисциплина</h2>
-								<input type="text" id="inputAdress1" placeholder="Адрес">
+								<input type="text" id="inputDiscipline1" placeholder="Дисциплина">
 								<button type="submit">Добавить</button>
 							</form>
-						<button id="closePopupAdress">Закрыть окно</button>
-					</div>		
-						<script src="js/.js"></script>
+							<button id="closePopupDiscipline">Закрыть окно</button>
+						</div>
+						<div id="overlayDisciplineEdit"></div>
+						<div id="popupDisciplineEdit">
+							<form id="inputFormDisciplineEdit">
+								<h2>Дисциплина</h2>
+								<input type="text" id="inputDisciplineEdit1" placeholder="Ред. дисциплину">
+								<button type="submit">Добавить</button>
+							</form>
+							<button id="closePopupDisciplineEdit">Закрыть окно</button>
+						</div>		
+						<script src="js/addDisciplinescript.js"></script>
 					</div>
 				</div>
 

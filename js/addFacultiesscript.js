@@ -1,7 +1,10 @@
 const showPopupButton4 = document.getElementById('showPopupFaculties');
     const overlayFaculties = document.getElementById('overlayFaculties');
+    const overlayFacultiesEdit = document.getElementById('overlayFacultiesEdit');
     const popupFaculties = document.getElementById('popupFaculties');
+    const popupFacultiesEdit = document.getElementById('popupFacultiesEdit');
     const closePopupButton4 = document.getElementById('closePopupFaculties');
+    const closePopupButtonEdit4 = document.getElementById('closePopupFacultiesEdit');
     const inputFormFaculties = document.getElementById('inputFormFaculties');
     const tableBody4 = document.querySelector('#myTableFaculties tbody');
 	const searchInput4 = document.getElementById('searchInputFaculties');
@@ -17,6 +20,11 @@ const showPopupButton4 = document.getElementById('showPopupFaculties');
       overlayFaculties.style.display = 'none';
       popupFaculties.style.display = 'none';
     });
+    closePopupButtonEdit4.addEventListener('click', function() {
+      overlayFacultiesEdit.style.display = 'none';
+      popupFacultiesEdit.style.display = 'none';
+    });
+
 
     inputFormFaculties.addEventListener('submit', function(event) {
       event.preventDefault(); // Предотвращаем отправку формы
@@ -55,8 +63,8 @@ const showPopupButton4 = document.getElementById('showPopupFaculties');
           selectedRow4 = newRow4;
           document.getElementById('inputTeacher4').value = selectedRow4.cells[1].textContent;
           document.getElementById('inputTeacher4').value = selectedRow4.cells[2].textContent;
-		  overlayFaculties.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
-		  popupFaculties.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
+		  overlayFacultiesEdit.style.display = 'block'; // Отображаем overlay при нажатии на кнопку "Редактировать"
+		  popupFacultiesEdit.style.display = 'block'; // Отображаем всплывающее окно при нажатии на кнопку "Редактировать"
         });
 
         deleteButton4.addEventListener('click', function() {
