@@ -1,0 +1,590 @@
+.group-sched-head {
+	display: flex;
+	justify-content: center;
+}
+.group-sched {
+	text-align: center;
+	border: 1px solid black;
+	padding: 0 1em 0 0;
+}
+.top-source {
+	display: inline-flex;
+}
+.vremennaya-table{
+	border-color: lightgray;
+}
+.vremennaya {
+	text-align: left;
+}
+.pairSelectDiscipline {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.pairSelectTeacher {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.pairSelectAudience {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.pairSelectTime {
+	border: none;
+	margin: 15px 0 15px 0;
+	display: none;
+}
+.pairSelectAdress {
+	border: none;
+	margin: 15px 0 15px 0;
+	display: none;
+}
+.pairNumber {
+	border: none;
+	margin: 15px 0 15px 0;
+}
+.deletePair {
+	width: 30px;
+	height: 30px;
+	background-image: url("images/trash.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* навигация боковая и ссылки */
+.a-style {
+	border: 1px solid black;
+	font-weight: bold;
+	font-family: "Tahoma", sans-serif;
+	color: #000000;
+}
+.a-style1 {
+	border: 1px solid black;
+	font-family: "Tahoma", sans-serif;
+}
+
+h1 {
+	padding: 0px 10px;
+}
+.hidden {
+  display: none;
+}
+
+.sidebar {
+    width: 11em; 
+	height: 100%;
+	border-right: 1px solid black;
+	float: left;
+    background-color: #f0f0f0; 
+	position: fixed;
+	top: 0;
+    left: 0;
+}
+/* мэин контент и табы */
+#tab1 {
+	margin-left: 15px;
+}
+
+.main-content {
+    background-color: #ffffff;
+	overflow: hidden;
+	margin-left: 11em;
+}
+
+.tabs-items {
+	display: flex;
+}
+
+.tabs-item {
+	display: flex;
+}
+
+.tabs-block {
+	display: none;
+}
+.tabs-block:target {
+	display: block;
+}
+
+table {
+	border: 1px solid black;
+	margin-left: 0.7em;
+	width: 99%;
+}
+th, td {
+	font-family: "Arial", sans-serif;
+	font-size: 1.2em;
+	text-align: center;
+	border-width: 1px;
+}
+
+.buttons123 {
+	position: relative;
+	display: flex;
+	height: 70px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.search-form {
+	margin-left: 0.7em;
+	height: 50%;
+	border: 2px solid black;
+	border-radius: 7px;
+	display: flex;
+}
+.search-form-txt {
+	border: none;
+}
+
+.search-form-btn {
+	border: 1px solid black;
+	border-radius: 4px;
+	background-color: #00b8ff;
+	color: #ffffff;
+}
+.search-form-btn:hover {
+	background-color: #1E90FF;
+}
+
+.add-btn-st {
+	position: absolute;
+    top: 0;
+    right: 0;
+	margin: 1em;
+	background-color: #00b8ff;
+	border: 1px solid black;
+	border-radius: 20px;
+	color: #ffffff;
+}
+
+.imp-exp-st {
+	position: absolute;
+    top: 20px;
+    right: 130px;
+}
+.table-btn-st {
+	background-color: #ffffff;
+	border: 1px solid;
+	border-color: #00b8ff;
+	border-radius: 10px;
+	color: #00b8ff;
+}
+
+/* верхнее меню -----------------------------------------------------------------*/
+.menu {
+	background-color: #F3F3F6;
+}
+.footer1 {
+	background-color: #ffffff;
+	border-radius: 10px;
+	margin: 10px 10px 0 10px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.under1{
+	margin-top: 170px;
+	margin: 10px 10px 0 10px;
+}
+.top-menu {
+	top: 0;
+	margin-top: 5px;
+	display: flex;
+	height: auto;
+	flex-wrap: wrap;
+	align-items: baseline;
+	border-bottom: 2px solid #DADADA;
+	margin: 0 5px 0 5px;
+}
+.btn-top-menu {
+	background-color: #ffffff;
+	border: 1px solid #DEDEDE;
+	border-radius: 4px;
+	margin: 0.5% 0.5% 0.5% 0;
+}
+
+.btn-top-menu2 {
+	border: 1px solid #DADADA;
+	margin: 5px 5px 5px 5px;
+	border-radius: 4px;
+	background-color: #F3F3F6;
+	padding: 5px 5px 5px 5px;
+}
+.top-menu2 {
+	margin-top: 5px;
+	display: flex;
+	height: auto;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.editing-area {
+	width: 22em;
+	background-color: #FBF7F7;
+	border-radius: 0.7em;
+	text-align: center;
+	right: 17em;
+}
+.editing-area-table {
+	width: 20em;
+	margin: 0 1em 0.2em 1em;
+	border: none;
+	font-size: 14px;
+	border-spacing: 4px;
+	border-collapse: separate;
+}
+.th-EA {
+	border: none;
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+.td-EA {
+	border: none;
+}
+
+#overlayTeacher {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#popupTeacher {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+#overlayTeacherEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupTeacherEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+#overlayDirection {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#popupDirection {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+#overlayDirectionEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDirectionEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+#overlayTypePair {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupTypePair {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayTypePair1 {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupTypePair1 {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  #overlayAudience {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAudience {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayAudienceEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAudienceEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayFaculties {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupFaculties {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayFacultiesEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupFacultiesEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayWeekRange {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupWeekRange {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayEditingArea {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupEditingArea {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayDepartment {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDepartment {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayDepartmentEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDepartmentEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayAdress {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAdress {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayAdressEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupAdressEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #overlayDiscipline, #overlayDisciplineEdit {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+  }
+  #popupDiscipline, #popupDisciplineEdit {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
