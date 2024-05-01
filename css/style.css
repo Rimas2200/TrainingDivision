@@ -7,8 +7,9 @@
 	border: 1px solid black;
 	padding: 0 1em 0 0;
 }
-
-
+.top-source {
+	display: inline-flex;
+}
 .vremennaya-table{
 	border-color: lightgray;
 }
@@ -191,7 +192,11 @@ th, td {
 }
 .top-menu {
 	top: 0;
-
+	margin-top: 5px;
+	display: flex;
+	height: auto;
+	flex-wrap: wrap;
+	align-items: baseline;
 	border-bottom: 2px solid #DADADA;
 	margin: 0 5px 0 5px;
 }

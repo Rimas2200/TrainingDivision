@@ -15,63 +15,65 @@
 		<footer class="footer1">
 			<div class="top-menu">
 				<a href="javascript:history.back()" id="showMenu" >Главная</a> <button class="btn-top-menu">Экспорт</button> <button class="btn-top-menu">Импорт</button> <button class="btn-top-menu">Сохранить</button>
+				<button id="showEditingArea" class="btn-top-menu2">Дублировать пары</button>
+				<button class="btn-top-menu2">База данных</button>
+				<form action="">
+					<select class="btn-top-menu2" id="Flow">
+						<option value="" hidden>Выбор потока</option>
+						<option value="">МП</option>
+						<option value="">МТ</option>
+						<option value="">МН</option>
+						<option value="">МК</option>
+						<option value="">МПмаг</option>
+						<option value="">МТмаг</option>
+						<option value="">ММмаг</option>
+					</select>
+				</form>
+				<form action="">
+					<select class="btn-top-menu2" id="Group" onchange="renderData(this)">
+						<option value="0" hidden>Выбор группы</option>
+						<option value="1">МП-201</option>
+						<option value="2">МП-202</option>
+						<option value="3">МП-203</option>
+					</select>
+				</form>
+				<button class="btn-top-menu2" id="AddGroup">Добавить группу</button>
+				<button class="btn-top-menu2" id="RemoveGroup">Удалить группу</button>
 			</div>
 			<div class="top-menu2">
-					<form>
-						<select id="subgroup" class="btn-top-menu2" name="subgroup" onchange="renderDataSubgroup(this)">
-							<option value="1">Количество подгрупп: 1</option>
-							<option value="2">Количество подгрупп: 2</option>
-							<option value="3">Количество подгрупп: 3</option>
-						</select>
-					</form>
-					<label class="btn-top-menu2" for="time"><input type="checkbox" id="time"> Время</label>
-					<button id="showWeekRange" class="btn-top-menu2">Диапазон недели</button>
-					<label class="btn-top-menu2" for="radioAudience"><input type="radio" name="adressaudience" id="radioAudience" checked> Аудитория</label>
-					<label class="btn-top-menu2" for="radioAdress"><input type="radio" name="adressaudience" id="radioAdress"> Адрес</label>
-					<button id="showEditingArea" class="btn-top-menu2">Дублировать пары</button>
-					<button class="btn-top-menu2">База данных</button>
-					<form action="">
-						<select class="btn-top-menu2" id="Flow">
-							<option value="" hidden>Выбор потока</option>
-							<option value="">МП</option>
-							<option value="">МТ</option>
-							<option value="">МН</option>
-							<option value="">МК</option>
-							<option value="">МПмаг</option>
-							<option value="">МТмаг</option>
-							<option value="">ММмаг</option>
-						</select>
-					</form>
-					<form action="">
-						<select class="btn-top-menu2" id="Group" onchange="renderData(this)">
-							<option value="0" hidden>Выбор группы</option>
-							<option value="1">МП-201</option>
-							<option value="2">МП-202</option>
-							<option value="3">МП-203</option>
-						</select>
-					</form>
 					<script>
 						let prevSelected = 0;
-						let currentState = {
-							1 : {
+						let currentState = [
+							{
 							'pairNumber1' : '#1',
 							'pairSelectDiscipline' : 'Дисциплина',
 							'pairSelectTeacher' : 'Преподаватель',
 							'pairSelectAudience' : 'Аудитория',
+							'pairSelectAdress' : '',
+							'pairSelectTime' : '',
 							},
-							2 : {
+							{
 							'pairNumber1' : '#1',
 							'pairSelectDiscipline' : 'Дисциплина',
 							'pairSelectTeacher' : 'Преподаватель',
 							'pairSelectAudience' : 'Аудитория',
+							'pairSelectAdress' : '',
+							'pairSelectTime' : '',
 							},
-							3 : {
+							{
 							'pairNumber1' : '#1',
 							'pairSelectDiscipline' : 'Дисциплина',
 							'pairSelectTeacher' : 'Преподаватель',
 							'pairSelectAudience' : 'Аудитория',
+							'pairSelectAdress' : '',
+							'pairSelectTime' : '',
 							}
-						};
+						];
+						function addItem(cItem){
+								currentState.push(
+									cItem
+								);
+							}
 						let currentGroupNumber = 0;
 						function renderData(selectElement){
 							if (prevSelected != 0){
@@ -84,7 +86,6 @@
 									$('td[data-id="' + prevSelected + ''+ i +'"]').html('');
 								}
 								document.getElementById("subgroup").selectedIndex = 0;
-
 							}
 							let selectedGroupId = selectElement.value;
 							currentGroupNumber = selectElement.value;
@@ -95,7 +96,25 @@
 							$('td[data-id="' + selectedGroupId + '"] select.pairSelectTeacher').val(currentState[selectedGroupId].pairSelectTeacher);
 							$('td[data-id="' + selectedGroupId + '"] select.pairSelectAudience').val(currentState[selectedGroupId].pairSelectAudience);
 							prevSelected = selectedGroupId;
+
 						}
+						$('body').on('change', '.watcher', function(){
+								console.log(currentState);
+								currentState = [];
+								let elements = $('.oneItemWrapper');
+								elements.each(function(index, el){
+									let $el = $(el);
+									let id = $el.attr('data-id');
+									let cState = new Object;
+									cState.pairNumber1 = $el.find('select[name="pairNumber1"]').val();
+									cState.pairSelectTime = $el.find('select[name="time"]').val();
+									cState.pairSelectDiscipline = $el.find('select[name="discipline"]').val();
+									cState.pairSelectTeacher = $el.find('select[name="teacher"]').val();
+									cState.pairSelectAudience = $el.find('select[name="audience"]').val();
+									cState.pairSelectAdress = $el.find('select[name="adress"]').val();
+									addItem(cState);
+								});
+							});
 						function renderDataSubgroup(thisElement){
 							let selectedSubGroupId = thisElement.value;
 							for (let i = 1; i <= selectedSubGroupId; i++){
@@ -118,18 +137,29 @@
 									$('td[data-id="'+ currentGroupNumber +'' + i + '"]').html('');
 								}
 							}
-
 						}
 					</script>
-					<button class="btn-top-menu2" id="AddGroup">Добавить группу</button>
-					<button class="btn-top-menu2" id="RemoveGroup">Удалить группу</button>
 				</div>
 			
 		</footer>
 
 		<main class="under1">
 				<div style="display: none" id="source">
-					<select class="pairNumber pairNumber1" id="PairNumber">
+					<div class="top-source">
+						<form>
+							<select id="subgroup" class="btn-top-menu2" name="subgroup" onchange="renderDataSubgroup(this)">
+								<option value="1">Количество подгрупп: 1</option>
+								<option value="2">Количество подгрупп: 2</option>
+								<option value="3">Количество подгрупп: 3</option>
+							</select>
+						</form>
+						<label class="btn-top-menu2" for="time"><input type="checkbox" id="time"> Время</label>
+						<label class="btn-top-menu2" for="radioAudience"><input type="radio" name="adressaudience" id="radioAudience" checked> Аудитория</label>
+						<label class="btn-top-menu2" for="radioAdress"><input type="radio" name="adressaudience" id="radioAdress"> Адрес</label>
+						<button id="showWeekRange" class="btn-top-menu2">Диапазон недели</button>
+					</div>
+					<div class="oneItemWrapper" data-id="">
+					<select class="pairNumber pairNumber1 watcher" name="pairNumber1" id="PairNumber">
 						<option>#1</option>
 						<option>#2</option>
 						<option>#3</option>
@@ -139,11 +169,11 @@
 						<option>#7</option>
 						<option>#8</option>
 					</select>
-					<select class="pairSelectTime" name="time" id="Timeselect">
+					<select class="pairSelectTime watcher" name="time" id="Timeselect">
 						<option value="0">Время</option>
 						<option value="10:00">10:00</option>
 					</select>
-					<select class="pairSelectDiscipline">
+					<select class="pairSelectDiscipline watcher" name="discipline">
 						<option hidden>Дисциплина</option>
 						<option>Дифференциальные уравнения</option>
 						<option>Блокчейн в цифровой экономике</option>
@@ -154,7 +184,7 @@
 						<option>Линейная алгебра</option>
 						<option>Дифференциальная геометрия</option>
 					</select><br>
-					<select class="pairSelectTeacher">
+					<select class="pairSelectTeacher watcher" name="teacher">
 						<option hidden>Преподаватель</option>
 						<option>Алеева С.Р.</option>
 						<option>Красильникова Е.С.</option>
@@ -167,7 +197,7 @@
 					</select><br>
 					<label for="rb4"><input type="radio" name="rb" class="rb4">1Н</label>
 					<label for="rb3"><input type="radio" name="rb" class="rb3">2Н</label>
-					<select class="pairSelectAudience" id="audience">
+					<select class="pairSelectAudience watcher" name="audience" id="audience">
 						<option hidden>Аудитория</option>
 						<option>АУД. 436</option>
 						<option>АУД. 201</option>
@@ -178,13 +208,12 @@
 						<option>АУД. 431</option>
 						<option>АУД. А-13</option>
 					</select>
-					<select class="pairSelectAdress" name="" id="adress">
+					<select class="pairSelectAdress watcher" name="adress" id="adress">
 						<option value="0" hidden>Адресс</option>
 						<option value="1">Братьев кашириных</option>
 					</select>
+					</div>
 				</div>
-				<script src="js/changeAdressAudience.js"></script>
-				<script src="js/changeTimePairNumber.js"></script>
 				<div id="source-table">
 					<table>
 						<thead>
@@ -703,9 +732,6 @@
 				<script src="js/showWeekRanhgescript.js"></script>
 				<script src="/js/saveWeekRange.js"></script>
 
-
-
-
 				<div id="overlayEditingArea"></div>
 							<div id="popupEditingArea">
 								<form id="inputFormEditingArea">
@@ -725,7 +751,8 @@
 				
 		</main>
 		<script src="/js/subgroupSelection.js"></script>
-		
+		<script src="js/changeAdressAudience.js"></script>
+				<script src="js/changeTimePairNumber.js"></script>
 	</body>
 
 </html>
