@@ -267,9 +267,9 @@
 					<% if (page === 'coupleType') { %>
 						<h1>Типы пар</h1>
 						<div class="buttons123">
-							<div class="search-form"> <!-- Кнопка поиска -->
+						<!--	<div class="search-form">  Кнопка поиска 
 								<input class="search-form-txt" id="searchInputTypePair" placeholder="Поиск" size="90" type="text">
-							</div>
+							</div>-->
 							<div class="">
 								<button type="button" id="showPopupTypePair" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
@@ -417,9 +417,9 @@
 					<% if (page === 'faculties') { %>
 						<h1>Факультеты</h1>
 						<div class="buttons123">
-							<div class="search-form"> <!-- Кнопка поиска -->
+						<!-- 	<div class="search-form"> Кнопка поиска 
 								<input class="search-form-txt" id="searchInputFaculties" placeholder="Поиск" size="90" type="text">
-							</div>
+							</div>-->
 							<div class="">
 								<button type="button" id="showPopupFaculties" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
@@ -568,9 +568,9 @@
 					<% if (page === 'address') { %>
 						<h1>Адреса</h1>
 						<div class="buttons123">
-							<div class="search-form"> <!-- Кнопка поиска -->
+							<!--<div class="search-form"> Кнопка поиска
 								<input class="search-form-txt" id="searchInputAdress" placeholder="Поиск" size="90" type="text">
-							</div>
+							</div> -->
 							<div class="">
 								<button type="button" id="showPopupAdress" class="add-btn-st btn btn-primary">Добавить</button>
 							</div>
@@ -916,7 +916,7 @@
 							<div class="buttons123">
 								<div class="search-form"> <!-- Кнопка поиска -->
 									<form method="get" id="urlSearchDirection" onsubmit="prepareURLToSearch()" action="direction/search/">
-									<input class="search-form-txt" id="searchInputDirection" placeholder="Поиск" size="90" type="text">
+									<input class="search-form-txt" id="searchInputDirection" placeholder="<%= searchDirection %>" size="90" type="text">
 									</form>
 									<form action="/direction">
 										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
@@ -1010,7 +1010,7 @@
 							<div class="buttons123">
 								<div class="search-form"> <!-- Кнопка поиска -->
 									<form method="get" id="urlSearchClassroom" onsubmit="prepareURLToSearch()" action="classroom/search/">
-										<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+										<input class="search-form-txt" id="searchInputAudience" placeholder="<%= searchClassroom %>" size="90" type="text">
 									</form>
 									<form action="/classroom">
 										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
@@ -1099,7 +1099,7 @@
 							<div class="buttons123">
 								<div class="search-form"> <!-- Кнопка поиска -->
 									<form method="get" id="urlSearchDepartment" onsubmit="prepareURLToSearch()" action="departament/search/">
-										<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+										<input class="search-form-txt" id="searchInputDepartment" placeholder="<%= searchDepartment %>" size="90" type="text">
 									</form>
 									<form action="/departament">
 										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
