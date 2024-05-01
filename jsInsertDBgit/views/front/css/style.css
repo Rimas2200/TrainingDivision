@@ -1,3 +1,15 @@
+.group-sched-head {
+	display: flex;
+	justify-content: center;
+}
+.group-sched {
+	text-align: center;
+	border: 1px solid black;
+	padding: 0 1em 0 0;
+}
+.top-source {
+	display: inline-flex;
+}
 .vremennaya-table{
 	border-color: lightgray;
 }

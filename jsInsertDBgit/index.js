@@ -1,13 +1,15 @@
 const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
-
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const app = express();
 
 app.set('view engine','ejs');
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(cors());
+app.use(express.json());
 app.use(express.static(__dirname + '/views/front'));
 
 const connect=mysql.createConnection({//подключение к бд
@@ -35,10 +37,48 @@ app.get('/register', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.render('register');
 });
+// Обработчик GET/POST-запроса на auth
 app.get('/auth', (req,res) =>{
-    console.log(`Запроос данных ${req.url}`);
-    res.render('auth');
+    console.log(`Запрос данных ${req.url}`);
+    res.render('reg');
+})
+app.post('/auth', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log(`Пользователь ${email} ${password} пытался зайти в систему`);
+    authenticateUser(email, password)
+      .then((authenticated) => {
+        if (authenticated) {
+          const secretKey = crypto.randomBytes(32).toString('hex');
+          // Генерация токена
+          const token = jwt.sign({ email }, secretKey);
+          // Отправка токена в ответе
+          res.status(200).json({ token });
+        } else {
+          res.status(401).json({ error: 'Не авторизован' });
+          console.log(`Пользователь ${email} ${password} пытался зайти в систему`);
+        }
+      })
+      .catch((error) => {
+        console.error('Ошибка проверки авторизации:', error);
+        res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+function authenticateUser(email, password) {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
+      const values = [email, password];
+      // console.log(username, password)
+      connect.query(query, values, (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          const authenticated = results.length > 0;
+          resolve(authenticated);
+        }
+      });
+    });
+  }
 
 
 /*GET-запросы по schedules
@@ -76,18 +116,41 @@ app.get('/faculties/direction/group/:direcrion_abbreviation',(req,res) =>{
 
 app.get('/direction',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
+    const searchDirection = req.query.searchDirection;
+    console.log(`Запрос на переход поиска ${searchDirection}`);
     connect.query('SELECT * FROM direction', (err, results) => {
         if (err) throw err;
-        res.render('front/index', {page: 'direction',  data: results });
+        res.render('front/index', {page: 'direction',  data: results, searchDirection });
     });
-})
+});
+app.get('/direction/search/:searchDirection',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const searchDirection  =  req.params.searchDirection.toLowerCase();;
+    console.log (`Запрос на фильтр: ${searchDirection}`);
+    connect.query('SELECT * FROM direction', (err, results) => {
+        if (err) throw err;
+        const filteredResults = results.filter(item => item.direction_abbreviation.toLowerCase().startsWith(searchDirection) || item.name.toLowerCase().startsWith(searchDirection));
+        res.render('front/index', {page: 'directionsearch',  data: filteredResults, searchDirection });
+    });
+});
 app.get('/discipline', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
+    const searchDiscipline  =  req.query.searchDiscipline;
     connect.query('SELECT * FROM discipline', (err, results) => {
         if (err) throw err;
-        res.render('front/index', {page: 'discipline',  data: results });
+        res.render('front/index', {page: 'discipline',  data: results,searchDiscipline });
     });
-})
+});
+app.get('/discipline/search/:searchDiscipline',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const searchDiscipline  =  req.params.searchDiscipline.toLowerCase();
+    console.log (`Запрос на фильтр: ${searchDiscipline}`);
+    connect.query('SELECT * FROM discipline', (err, results) => {
+        if (err) throw err;
+        const filteredResults = results.filter(item => item.discipline_name.toLowerCase().startsWith(searchDiscipline));
+        res.render('front/index', {page: 'disciplinesearch',  data: filteredResults, searchDiscipline });
+    });
+});
 app.get('/faculties', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('SELECT * FROM faculty', (err, results)=> {
@@ -97,9 +160,20 @@ app.get('/faculties', (req,res) =>{
 });
 app.get('/classroom',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
+    const searchClassroom = req.query.searchClassroom;
     connect.query('SELECT * FROM classroom', (err, results) => {
         if (err) throw err;
-        res.render('front/index', {page: 'classroom',  data: results });
+        res.render('front/index', {page: 'classroom',  data: results, searchClassroom });
+    });
+});
+app.get('/classroom/search/:searchClassroom',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const searchClassroom  =  req.params.searchClassroom.toLowerCase();;
+    console.log (`Запрос на фильтр: ${searchClassroom}`);
+    connect.query('SELECT * FROM classroom', (err, results) => {
+        if (err) throw err;
+        const filteredResults = results.filter(item => item.room_number.toLowerCase().startsWith(searchClassroom) || item.building.toLowerCase().startsWith(searchClassroom));
+        res.render('front/index', {page: 'classroomsearch',  data: filteredResults, searchClassroom });
     });
 });
 app.get('/coupleType',(req,res) =>{
@@ -111,9 +185,21 @@ app.get('/coupleType',(req,res) =>{
 });
 app.get('/professor',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
+    const searchTeacher  =  req.query.searchTeacher;
+    console.log(`Запрос на переход поиска ${searchTeacher}`);
     connect.query('SELECT * FROM professor', (err, results) => {
         if (err) throw err;
-        res.render('front/index', {page: 'professor',  data: results });
+        res.render('front/index', {page: 'professor',  data: results,searchTeacher });
+    });
+});
+app.get('/professor/search/:searchTeacher',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const searchTeacher  =  req.params.searchTeacher.toLowerCase();;
+    console.log (`Запрос на фильтр: ${searchTeacher}`);
+    connect.query('SELECT * FROM professor', (err, results) => {
+        if (err) throw err;
+        const filteredResults = results.filter(item => item.first_name.toLowerCase().startsWith(searchTeacher) || item.last_name.toLowerCase().startsWith(searchTeacher));
+        res.render('front/index', {page: 'professorsearch',  data: filteredResults, searchTeacher });
     });
 });
 app.get('/',(req,res)=>{
@@ -122,9 +208,20 @@ app.get('/',(req,res)=>{
 });
 app.get('/departament',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
+    const searchDepartment = req.params.searchDepartment;
     connect.query('SELECT * FROM departament', (err, results) => {
         if (err) throw err;
-        res.render('front/index', {page: 'departament',  data: results });
+        res.render('front/index', {page: 'departament',  data: results, searchDepartment });
+    });
+});
+app.get('/departament/search/:searchDepartment',(req,res) =>{
+    console.log(`Запрос данных ${req.url}`);
+    const searchDepartment  =  req.params.searchDepartment.toLowerCase();;
+    console.log (`Запрос на фильтр: ${searchDepartment}`);
+    connect.query('SELECT * FROM departament', (err, results) => {
+        if (err) throw err;
+        const filteredResults = results.filter(item => item.name.toLowerCase().startsWith(searchDepartment));
+        res.render('front/index', {page: 'departamentsearch',  data: filteredResults, searchDepartment });
     });
 });
 app.get('/address', (req,res) =>{
@@ -155,16 +252,34 @@ app.get('/addition/schedule',(req,res) => {
                     res.status(500).send('Internal Server Error');
                     return;
                 }
-            
-                res.render('front/menu', {
-                    disciplineData,
-                    professorData,
-                    classroomData
+
+                connect.query('SELECT id, direction_abbreviation FROM direction', (err, directionData) => {
+                    if (err) {
+                        console.error('Error retrieving data from directio: ', err);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+                    connect.query('SELECT id, name FROM group_name', (err, group_nameData) => {
+                        if (err) {
+                            console.error('Error retrieving data from group_name: ', err);
+                            res.status(500).send('Internal Server Error');
+                            return;
+                        }
+                            res.render('front/menu1', {
+                                disciplineData,
+                                professorData,
+                                classroomData,
+                                directionData,
+                                group_nameData
+                            });
+                    });
                 });
             });
         });
     });
 });
+
+
 
 
 
@@ -227,6 +342,11 @@ app.post('/classroom/edit/:id', (req,res) =>{
         }
     });
 });
+app.post('/classroom/searchClassroom', (req,res) =>{
+    const searchClassroom = req.body.searchClassroom;
+    console.log(searchClassroom)
+    res.redirect(`/classroom/search/${searchClassroom}`);
+});
 app.post('/discipline/delete/:id',(req,res) => {
     connect.query('DELETE FROM discipline where id =' + req.params.id, (err,result) =>{
         try{
@@ -253,6 +373,11 @@ app.post('/discipline/edit/:id', (req,res) =>{
             console.log('Ошибка при удалении данных' + err.message);
         }
     });
+});
+app.post('/discipline/searchDiscipline', (req,res) =>{
+    const searchDiscipline = req.body.searchDiscipline;
+    console.log(searchDiscipline)
+    res.redirect(`/discipline/search/${searchDiscipline}`);
 });
 app.post('/faculties/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
@@ -311,6 +436,11 @@ app.post('/departament/edit/:id', (req,res) =>{
             console.log('Ошибка при удалении данных' + err.message);
         }
     });
+});
+app.post('/departament/searchDepartment', (req,res) =>{
+    const searchDepartment = req.body.searchDepartment;
+    console.log(searchDepartment)
+    res.redirect(`/departament/search/${searchDepartment}`);
 });
 app.post('/address/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
@@ -373,6 +503,11 @@ app.post('/professor/edit/:id', (req,res) =>{
         }
     });
 });
+app.post('/professor/searchTeacher', (req,res) =>{
+    const searchTeacher = req.body.searchTeacher;
+    console.log(searchTeacher)
+    res.redirect(`/professor/search/${searchTeacher}`);
+});
 app.post('/direction/delete/:id', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     connect.query('DELETE FROM direction WHERE id =' + req.params.id, (err,ressult) => {
@@ -403,7 +538,11 @@ app.post('/direction/edit/:id', (req,res) =>{
         }
     });
 });
-
+app.post('/direction/searchDirection', (req,res) =>{
+    const searchDirection = req.body.searchDirection;
+    console.log(searchDirection)
+    res.redirect(`/direction/search/${searchDirection}`);
+});
 
 
 
@@ -445,26 +584,32 @@ app.post('/auth', (req,res) =>{
     console.log(`${email} ${password} зашёл в систему`);
 });
 
+app.post('/save_selected_values', (req, res) => {
+    const selectedValues = Array.isArray(req.body.selectedValues) ? req.body.selectedValues : [];
+    if (Array.isArray(selectedValues)) {
+      connect.query('INSERT INTO schedule SET week = ?', [JSON.stringify(selectedValues)], (err, result) => {
+        if (err) {
+          console.error('Ошибка при сохранении выбранных значений:', err);
+          res.status(500).send('Ошибка при сохранении выбранных значений');
+        } else {
+          console.log('Значения сохраняются в базе данных');
+          res.sendStatus(200);
+        }
+      });
+    } else {
+      console.error('Недопустимые выбранные значения');
+      res.status(400).send('Недопустимые выбранные значения');
+    }
+});
 
-
-app.post('/addition/schedule', (req, res)=>{
+app.post('/addition/schedule/', (req, res)=>{
     let discipline= req.body.discipline;
     let classroom= req.body.classroom;
-    let group_name= req.body.group_name;
     let pair_name = req.body.pair_name;
     let teacher_name= req.body.teacher_name;
     let day_of_the_week= req.body.day_of_the_week;
-    let week= req.body.week;
-    let subgroup= req.body.subgroup;
-    const data ={discipline: discipline,
-        classroom: classroom,
-        group_name: group_name,
-        pair_name: pair_name,
-        teacher_name: teacher_name,
-        day_of_the_week: day_of_the_week,
-        week: week,
-        subgroup: subgroup}; 
-    connect.query('INSERT INTO schedule SET ?', data, (error,res)=>{
+    
+    connect.query('INSERT INTO schedule SET discipline = ?, classroom = ?, pair_name = ?, teacher_name = ?, day_of_the_week = ?', [discipline, classroom, pair_name, teacher_name , day_of_the_week ], (error,res)=>{
         try{
             if (error){
                 throw error;
@@ -480,6 +625,29 @@ app.post('/addition/schedule', (req, res)=>{
         }
     })
 });
+app.post('/addition/schedule/:id', (req,res) =>{
+    let group_name = req.body.group_name;
+    let week = req.body.week;
+    let subgroup = req.body.subgroup;
+    connect.query('INSERT INTO schedule SET group_name = ?, week = ?, subgroup = ? WHERE id = ?',[group_name, week, subgroup, req.params.id], (err, result) =>{
+        try{
+            if (err){
+                throw err;
+            }
+            console.log(`Успешно выполнено CODE: 200 для строки с id = ${req.params.id}`);
+        }catch(error){
+            if (error.code == 'ER_DUP_ENTRY'){
+                console.log('Ошибка 409');
+            }
+            else{
+                console.log('Ошибка при вставке данных дисциплины' + error.message);
+            };
+        }
+    })
+});
+
+
+
 
 app.post('/addition/professor', (req, res)=>{
     let last_name= req.body.last_name;

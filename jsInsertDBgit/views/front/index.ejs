@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Расписание ЧелГУ</title>
-		<link href="css.boot/bootstrap.min.css" rel="stylesheet">
-		<link href="css.boot/docs.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/style.css">
+		<link href="/css.boot/bootstrap.min.css" rel="stylesheet">
+		<link href="/css.boot/docs.css" rel="stylesheet">
+		<link rel="stylesheet" href="/css/style.css">
 		<script src="js.boot/bootstrap.bundle.min.js"></script>
 	</head>
 
@@ -59,7 +59,9 @@
 						<h1>Преподаватели</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск" size="90" type="text">
+								<form method="get" id="urlSearchTeacher" onsubmit="prepareURLToSearch()" action="professor/search/">
+									<input id="searchInputTeacher" class="search-form-txt" placeholder="Поиск по фамилии" size="90" type="text">
+								</form>
 							</div>
 							<div>
 								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
@@ -73,58 +75,60 @@
 							<thead>
 							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
 							</thead>
-							<% data.forEach(item => { %>
-								<tbody>
-										<td>
-											<%= item.id %>
-										</td>
-										<td>
-											<%= item.last_name %>
-										</td>
-										<td>
-											<%= item.first_name %>
-										</td>
-										<td>
-											<%= item.middle_name %>
-										</td>
-										<td>
-											<%= item.position %>
-										</td>
-										<td>
-											<%= item.departement %>
-										</td>
-										<td>
-											телефон
-										</td>
-										<td>
-											<button id="showPopupTeacherEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
-											<div id="overlayTeacherEdit<%= item.id %>"></div>
-											<div id="popupTeacherEdit<%= item.id %>">
-												<form method="post" action="/professor/edit/<%= item.id %>">
-													<h2>Фамилия</h2>
-													<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
-													<h2>Имя</h2>
-													<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
-													<h2>Отчество</h2>
-													<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
-													<h2>Должность</h2>
-													<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
-													<h2>Кафедра</h2>
-													<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
-													<h2>Телефон кафедры</h2>
-													<input type="number" id="inputTeacherEdit6" placeholder="телефон">
-													<button type="submit">Сохранить</button>
+							<tbody>
+								<% data.slice(0,50).forEach(item => { %>
+										<tr> 
+											<td>
+												<%= item.id %>
+											</td>
+											<td>
+												<%= item.last_name %>
+											</td>
+											<td>
+												<%= item.first_name %>
+											</td>
+											<td>
+												<%= item.middle_name %>
+											</td>
+											<td>
+												<%= item.position %>
+											</td>
+											<td>
+												<%= item.departement %>
+											</td>
+											<td>
+												телефон
+											</td>
+											<td>
+												<button id="showPopupTeacherEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+												<div id="overlayTeacherEdit<%= item.id %>"></div>
+												<div id="popupTeacherEdit<%= item.id %>">
+													<form method="post" action="/professor/edit/<%= item.id %>">
+														<h2>Фамилия</h2>
+														<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
+														<h2>Имя</h2>
+														<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
+														<h2>Отчество</h2>
+														<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
+														<h2>Должность</h2>
+														<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
+														<h2>Кафедра</h2>
+														<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
+														<h2>Телефон кафедры</h2>
+														<input type="number" id="inputTeacherEdit6" placeholder="телефон">
+														<button type="submit">Сохранить</button>
+													</form>
+												<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
+												</div>
+											</td>
+											<td>
+												<form method="post" action="/professor/delete/<%= item.id %>">
+													<button style="color: DarkRed;">Удалить</button>
 												</form>
-											<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
-											</div>
-										</td>
-										<td>
-											<form method="post" action="/professor/delete/<%= item.id %>">
-												<button style="color: DarkRed;">Удалить</button>
-											</form>
-										</td>	
-								</tbody>
-							<% }); %>
+											</td>
+										</tr>
+								<% }); %>
+							</tbody>
 						</table>
 							<div id="overlayTeacher"></div>
 							<div id="popupTeacher">
@@ -146,12 +150,35 @@
 							<button id="closePopupTeacher">Закрыть окно</button>
 							</div>		
 							<script src="js/addTeacherscript.js"></script>
+							<script>
+									document.getElementById('searchInputTeacher').addEventListener('input',searchCout)
+										let searchTeacher;
+									function searchCout(){
+										searchTeacher = document.getElementById('searchInputTeacher').value;
+										sendDataToServer(searchTeacher);
+									}
+									function prepareURLToSearch(){
+										let urlSearchTeacher = document.getElementById('urlSearchTeacher');
+										urlSearchTeacher.action = `professor/search/${searchTeacher}`;
+									}
+									function sendDataToServer(dataSearchTeacher) {
+										fetch('/professor/searchTeacher', {
+										method: 'POST',
+										body: JSON.stringify({ searchTeacher: dataSearchTeacher }),
+										headers: {
+										'Content-Type': 'application/json'
+										}
+									})
+								}
+							</script>
 						<% } %>
 						<% if (page === 'direction') { %>
 						<h1>Направление</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
+								<form method="get" id="urlSearchDirection" onsubmit="prepareURLToSearch()" action="direction/search/">
 								<input class="search-form-txt" id="searchInputDirection" placeholder="Поиск" size="90" type="text">
+								</form>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupDirection" class="add-btn-st btn btn-primary">Добавить</button>
@@ -215,6 +242,27 @@
 							<button id="closePopupDirection">Закрыть окно</button>
 						</div>		
 						<script src="js/addDirectionscript.js"></script>
+						<script>
+							document.getElementById('searchInputDirection').addEventListener('input',searchCout)
+								let searchDirection;
+							function searchCout(){
+								searchDirection = document.getElementById('searchInputDirection').value;
+								sendDataToServer(searchDirection);
+							}
+							function prepareURLToSearch(){
+								let urlSearchDirection = document.getElementById('urlSearchDirection');
+								urlSearchDirection.action = `direction/search/${searchDirection}`;
+							}
+							function sendDataToServer(dataSearchDirection) {
+								fetch('/direction/searchDirection', {
+								method: 'POST',
+								body: JSON.stringify({ searchDirection: dataSearchDirection }),
+								headers: {
+								'Content-Type': 'application/json'
+								}
+							})
+						}
+					</script>
 					<% } %>
 					<% if (page === 'coupleType') { %>
 						<h1>Типы пар</h1>
@@ -283,7 +331,9 @@
 						<h1>Аудитории</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+								<form method="get" id="urlSearchClassroom" onsubmit="prepareURLToSearch()" action="classroom/search/">
+									<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+								</form>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupAudience" class="add-btn-st btn btn-primary">Добавить</button>
@@ -341,10 +391,28 @@
 								</form>
 							<button id="closePopupAudience">Закрыть окно</button>
 						</div>
-						
-						
-						
 							<script src="js/addAudiencescript.js"></script>
+							<script>
+								document.getElementById('searchInputAudience').addEventListener('input',searchCout)
+									let searchClassroom;
+								function searchCout(){
+									searchClassroom = document.getElementById('searchInputAudience').value;
+									sendDataToServer(searchClassroom);
+								}
+								function prepareURLToSearch(){
+									let urlSearchClassroom = document.getElementById('urlSearchClassroom');
+									urlSearchClassroom.action = `classroom/search/${searchClassroom}`;
+								}
+								function sendDataToServer(dataSearchClassroom) {
+									fetch('/classroom/searchClassroom', {
+									method: 'POST',
+									body: JSON.stringify({ searchClassroom: dataSearchClassroom }),
+									headers: {
+									'Content-Type': 'application/json'
+									}
+								})
+							}
+						</script>
 					<% } %>
 					<% if (page === 'faculties') { %>
 						<h1>Факультеты</h1>
@@ -414,7 +482,9 @@
 						<h1>Кафедры</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+								<form method="get" id="urlSearchDepartment" onsubmit="prepareURLToSearch()" action="departament/search/">
+									<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+								</form>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupDepartment" class="add-btn-st btn btn-primary">Добавить</button>
@@ -473,6 +543,27 @@
 						<button id="closePopupDepartment">Закрыть окно</button>
 					</div>		
 						<script src="js/addDepartmentscript.js"></script>
+						<script>
+							document.getElementById('searchInputDepartment').addEventListener('input',searchCout)
+								let searchDepartment;
+							function searchCout(){
+								searchDepartment = document.getElementById('searchInputDepartment').value;
+								sendDataToServer(searchDepartment);
+							}
+							function prepareURLToSearch(){
+								let urlSearchDepartment = document.getElementById('urlSearchDepartment');
+								urlSearchDepartment.action = `departament/search/${searchDepartment}`;
+							}
+							function sendDataToServer(dataSearchDepartment) {
+								fetch('/departament/searchDepartment', {
+								method: 'POST',
+								body: JSON.stringify({ searchDepartment: dataSearchDepartment }),
+								headers: {
+								'Content-Type': 'application/json'
+								}
+							})
+						}
+					</script>
 					<% } %>
 					<% if (page === 'address') { %>
 						<h1>Адреса</h1>
@@ -542,7 +633,9 @@
 						<h1>Дисциплины</h1>
 						<div class="buttons123">
 							<div class="search-form"> <!-- Кнопка поиска -->
-								<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+								<form method="get" id="urlSearchDiscipline" onsubmit="prepareURLToSearch()" action="discipline/search/">
+									<input class="search-form-txt" id="searchInputDiscipline" placeholder="Поиск" size="90" type="text">
+								</form>
 							</div>
 							<div class="">
 								<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
@@ -556,7 +649,7 @@
 							<thead>
 								<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
 							</thead>
-							<% data.forEach(item => { %>
+							<% data.slice(0,50).forEach(item => { %>
 								<tbody>
 									<td>
 										<%= item.id %>
@@ -594,7 +687,502 @@
 						<button id="closePopupDiscipline">Закрыть окно</button>
 					</div>		
 						<script src="js/addDisciplinescript.js"></script>
+						<script>
+							document.getElementById('searchInputDiscipline').addEventListener('input',searchCout)
+								let searchDiscipline;
+							function searchCout(){
+								searchDiscipline = document.getElementById('searchInputDiscipline').value;
+								sendDataToServer(searchDiscipline);
+							}
+							function prepareURLToSearch(){
+								let urlSearchDiscipline = document.getElementById('urlSearchDiscipline');
+								urlSearchDiscipline.action = `discipline/search/${searchDiscipline}`;
+							}
+							function sendDataToServer(dataSearchDiscipline) {
+								fetch('/discipline/searchDiscipline', {
+								method: 'POST',
+								body: JSON.stringify({ searchDiscipline: dataSearchDiscipline}),
+								headers: {
+								'Content-Type': 'application/json'
+								}
+							})
+						}
+					</script>
 					<% } %>
+					<% if (page === 'professorsearch') { %>
+						<h1>Преподаватели</h1>
+						<div class="buttons123">
+							<div class="search-form"> <!-- Кнопка поиска -->
+								<form method="get" id="urlSearchTeacher" onsubmit="prepareURLToSearch()" action="professor/search/">
+									<input id="searchInputTeacher" class="search-form-txt" placeholder="<%=searchTeacher %>" size="90" type="text">
+								</form>
+							<form action="/professor">
+								<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
+							</form>
+							</div>
+							<div>
+								<button type="button" id="showPopupTeacher" class="add-btn-st btn btn-primary">Добавить</button>
+							</div>
+							
+							<div class="imp-exp-st">
+								<button class="table-btn-st">Импорт</button>
+								<button class="table-btn-st">Экспорт</button>
+							</div>
+						</div>
+						<table id="myTableTeacher">
+							<thead>
+							<tr><th width="5%">#</th><th width="15%">Фамилия</th><th width="15%">Имя</th><th width="15%">Отчество</th><th width="10%">Должность</th><th width="15%">Кафедра</th><th width="15%">Телефон кафедры</th><th width="5%">Ред.</th><th width="5%">Уд.</th></tr>
+							</thead>
+							<tbody>
+								<% data.forEach(item => { %>
+										<tr> 
+											<td>
+												<%= item.id %>
+											</td>
+											<td>
+												<%= item.last_name %>
+											</td>
+											<td>
+												<%= item.first_name %>
+											</td>
+											<td>
+												<%= item.middle_name %>
+											</td>
+											<td>
+												<%= item.position %>
+											</td>
+											<td>
+												<%= item.departement %>
+											</td>
+											<td>
+												телефон
+											</td>
+											<td>
+												<button id="showPopupTeacherEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+												<div id="overlayTeacherEdit<%= item.id %>"></div>
+												<div id="popupTeacherEdit<%= item.id %>">
+													<form method="post" action="/professor/edit/<%= item.id %>">
+														<h2>Фамилия</h2>
+														<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
+														<h2>Имя</h2>
+														<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
+														<h2>Отчество</h2>
+														<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
+														<h2>Должность</h2>
+														<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
+														<h2>Кафедра</h2>
+														<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
+														<h2>Телефон кафедры</h2>
+														<input type="number" id="inputTeacherEdit6" placeholder="телефон">
+														<button type="submit">Сохранить</button>
+													</form>
+												<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
+												</div>
+											</td>
+											<td>
+												<form method="post" action="/professor/delete/<%= item.id %>">
+													<button style="color: DarkRed;">Удалить</button>
+												</form>
+											</td>
+										</tr>
+								<% }); %>
+							</tbody>
+						</table>
+							<div id="overlayTeacher"></div>
+							<div id="popupTeacher">
+								<form  action="/addition/professor" method="post"> <!--id="inputFormTeacher" -->
+									<h2>Фамилия</h2>
+									<input type="text" name="last_name" id="inputTeacher1" placeholder="Фамилия">
+									<h2>Имя</h2>
+									<input type="text" name="first_name" id="inputTeacher2" placeholder="Имя">
+									<h2>Отчество</h2>
+									<input type="text" name="middle_name" id="inputTeacher3" placeholder="Отчество">
+									<h2>Должность</h2>
+									<input type="text" name="position" id="inputTeacher4" placeholder="Должность">
+									<h2>Кафедра</h2>
+									<input type="text" name="departament" id="inputTeacher5" placeholder="Кафедра">
+									<h2>Телефон кафедры</h2>
+									<input type="number" id="inputTeacher6" placeholder="Телефон кафедры">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupTeacher">Закрыть окно</button>
+							</div>		
+							<script src="/js/addTeacherscript.js"></script>
+							<script>
+									document.getElementById('searchInputTeacher').addEventListener('input',searchCout)
+									function searchCout(){
+										searchTeacher = document.getElementById('searchInputTeacher').value;
+										sendDataToServer(searchTeacher);
+									}
+									function prepareURLToSearch(){
+										let urlSearchTeacher = document.getElementById('urlSearchTeacher');
+										urlSearchTeacher.action = `${searchTeacher}`;
+									}
+									function sendDataToServer(dataSearchTeacher) {
+										fetch('/professor/searchTeacher', {
+										method: 'POST',
+										body: JSON.stringify({ searchTeacher: dataSearchTeacher }),
+										headers: {
+										'Content-Type': 'application/json'
+										}
+									})
+								}
+							</script>
+						<% } %>
+						<% if (page === 'disciplinesearch') { %>
+							<h1>Дисциплины</h1>
+							<div class="buttons123">
+								<div class="search-form"> <!-- Кнопка поиска -->
+									<form method="get" id="urlSearchDiscipline" onsubmit="prepareURLToSearch()" action="discipline/search/">
+										<input class="search-form-txt" id="searchInputDiscipline" placeholder="<%= searchDiscipline %>" size="90" type="text">
+									</form>
+									<form action="/discipline">
+										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
+									</form>
+								</div>
+								<div class="">
+									<button type="button" id="showPopupDiscipline" class="add-btn-st btn btn-primary">Добавить</button>
+								</div>
+								<div class="imp-exp-st">
+									<button class="table-btn-st">Импорт</button>
+									<button class="table-btn-st">Экспорт</button>
+								</div>
+							</div>
+							<table id="myTableDiscipline">
+								<thead>
+									<tr><th width="4%">#</th><th width="80%">Дисциплина</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								</thead>
+								<% data.forEach(item => { %>
+									<tbody>
+										<td>
+											<%= item.id %>
+										</td>
+										<td>
+											<%= item.discipline_name %>
+										</td>
+										<td>
+											<button id="showPopupDisciplineEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+											<div id="overlayDisciplineEdit<%= item.id %>"></div>
+											<div id="popupDisciplineEdit<%= item.id %>">
+												<form method="post" action="/discipline/edit/<%= item.id %>">
+													<h2>Дисциплина</h2>
+													<input type="text" name="discipline_name" id="inputDisciplineEdit1" placeholder="<%= item.discipline_name %>">
+													<button type="submit">Добавить</button>
+												</form>
+												<button id="closePopupDisciplineEdit<%= item.id %>">Закрыть окно</button>
+											</div>	
+										</td>
+										<td>
+											<form method="post" action="/discipline/delete/<%= item.id %>">
+												<button style="color: DarkRed;">Удалить</button>
+											</form>
+										</td>
+									</tbody>
+								<% }); %>
+							</table>
+							<div id="overlayDiscipline"></div>
+							<div id="popupDiscipline">
+								<form method="post" action="/addition/discipline"><!--id="inputFormDiscipline"-->
+									<h2>Дисциплина</h2>
+									<input type="text" name="discipline_name" id="inputDiscipline1" placeholder="Дисциплина">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDiscipline">Закрыть окно</button>
+						</div>		
+							<script src="/js/addDisciplinescript.js"></script>
+							<script>
+								document.getElementById('searchInputDiscipline').addEventListener('input',searchCout)
+								function searchCout(){
+									searchDiscipline = document.getElementById('searchInputDiscipline').value;
+									sendDataToServer(searchDiscipline);
+								}
+								function prepareURLToSearch(){
+									let urlSearchDiscipline = document.getElementById('urlSearchDiscipline');
+									urlSearchDiscipline.action = `${searchDiscipline}`;
+								}
+								function sendDataToServer(dataSearchDiscipline) {
+									fetch('/professor/searchDiscipline', {
+									method: 'POST',
+									body: JSON.stringify({ searchDiscipline: dataSearchDiscipline }),
+									headers: {
+									'Content-Type': 'application/json'
+									}
+								})
+							}
+						</script>
+						<% } %>
+						<% if (page === 'directionsearch') { %>
+							<h1>Направление</h1>
+							<div class="buttons123">
+								<div class="search-form"> <!-- Кнопка поиска -->
+									<form method="get" id="urlSearchDirection" onsubmit="prepareURLToSearch()" action="direction/search/">
+									<input class="search-form-txt" id="searchInputDirection" placeholder="Поиск" size="90" type="text">
+									</form>
+									<form action="/direction">
+										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
+									</form>
+								</div>
+								<div class="">
+									<button type="button" id="showPopupDirection" class="add-btn-st btn btn-primary">Добавить</button>
+								</div>
+								<div class="imp-exp-st">
+									<button class="table-btn-st">Импорт</button>
+									<button class="table-btn-st">Экспорт</button>
+								</div>
+							</div>
+							<table id="myTableDirection">
+								<thead>
+									<tr><th width="4%">#</th><th width="8%">Аббревиатура</th><th width="40%">Название направления</th><th width="32%">Факультет</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								</thead>
+								<% data.forEach(item => { %>
+									<tbody>
+											<td>
+												<%= item.id %>
+											</td>
+											<td>
+												<%= item.direction_abbreviation %>
+											</td>
+											<td>
+												<%= item.name %>
+											</td>
+											<td>
+												<%= item.faculty %>
+											</td>
+											<td>
+												<button id="showPopupDirectionEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+												<div id="overlayDirectionEdit<%= item.id %>"></div>
+												<div id="popupDirectionEdit<%= item.id %>">
+													<form method="post" action="/direction/edit/<%= item.id %>">
+														<h2>Аббревиатура</h2>
+														<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" placeholder="<%= item.direction_abbreviation %>">
+														<h2>Дисциплина</h2>
+														<input type="text" name="name" id="inputDirectionEdit2" placeholder="<%= item.name %>">
+														<h2>Факультет</h2>
+														<input type="text" name="faculty" id="inputDirectionEdit3" placeholder="<%= item.faculty %>">
+														<button type="submit">Добавить</button>
+													</form>
+												<button id="closePopupDirectionEdit<%= item.id %>">Закрыть окно</button>
+												</div>
+											</td>
+											<td>
+												<form method="post" action="/direction/delete/<%= item.id %>">
+													<button style="color: DarkRed;">Удалить</button>
+												</form>
+											</td>
+									</tbody>
+								<% }); %>
+							</table>
+							<div id="overlayDirection"></div>
+								<div id="popupDirection">
+									<form method="post" action="/addition/direction"><!-- id="inputFormDiscipline" -->
+										<h2>Дисциплина</h2>
+										<input type="text" name="direction_abbreviation" id="inputDirection1" placeholder="Дисциплина">
+										<input type="text" name="name" id="inputDirection2" placeholder="Название направления">
+										<input type="text" name="faculty" id="inputDirection3" placeholder="Факультет">
+										<button type="submit">Добавить</button>
+									</form>
+								<button id="closePopupDirection">Закрыть окно</button>
+							</div>		
+							<script src="/js/addDirectionscript.js"></script>
+							<script>
+								document.getElementById('searchInputDirection').addEventListener('input',searchCout)
+								function searchCout(){
+									searchDirection = document.getElementById('searchInputDirection').value;
+									sendDataToServer(searchDirection);
+								}
+								function prepareURLToSearch(){
+									let urlSearchDirection = document.getElementById('urlSearchDirection');
+									urlSearchDirection.action = `${searchDirection}`;
+								}
+								function sendDataToServer(dataSearchDirection) {
+									fetch('/direction/searchDirection', {
+									method: 'POST',
+									body: JSON.stringify({ searchDirection: dataSearchDirection }),
+									headers: {
+									'Content-Type': 'application/json'
+									}
+								})
+							}
+						</script>
+						<% } %>
+						<% if (page === 'classroomsearch') { %>
+							<h1>Аудитории</h1>
+							<div class="buttons123">
+								<div class="search-form"> <!-- Кнопка поиска -->
+									<form method="get" id="urlSearchClassroom" onsubmit="prepareURLToSearch()" action="classroom/search/">
+										<input class="search-form-txt" id="searchInputAudience" placeholder="Поиск" size="90" type="text">
+									</form>
+									<form action="/classroom">
+										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
+									</form>
+								</div>
+								<div class="">
+									<button type="button" id="showPopupAudience" class="add-btn-st btn btn-primary">Добавить</button>
+								</div>
+								<div class="imp-exp-st">
+									<button class="table-btn-st">Импорт</button>
+									<button class="table-btn-st">Экспорт</button>
+								</div>
+							</div>
+							<table id="myTableAudience">
+								<thead>
+									<tr><th width="4%">#</th><th width="50%">Аудитория</th><th width="30%">Корпус</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								</thead>
+								<% data.forEach(item => { %>
+									<tbody>
+											<td>
+												<%= item.id %>
+											</td>
+											<td>
+												<%= item.room_number %>
+											</td>
+											<td>
+												<%= item.building %>
+											</td>
+											<td>
+												<button id="showPopupAudienceEdit<%= item.id %>"  style="color:MidnightBlue">Ред.</button>
+												<div id="overlayAudienceEdit<%= item.id %>"></div>
+													<div id="popupAudienceEdit<%= item.id %>">
+													<form method="post" action="/classroom/edit/<%= item.id %>">
+														<h2>Аудитории</h2>
+														<input type="text" name="room_number" id="inputAudienceEdit1" placeholder="<%= item.room_number %>">
+														<h2>Корпус</h2>
+														<input type="text" name="building" id="inputAudienceEdit2" placeholder="<%= item.building %>">
+														<button type="submit">Добавить</button>
+													</form>
+													<button id="closePopupAudienceEdit<%= item.id %>">Закрыть окно</button>
+												</div>
+											</td>
+											<td>
+												<form method="post" action="/classroom/delete/<%= item.id %>">
+													<button style="color: DarkRed;">Удалить</button>
+												</form>
+											</td>
+									</tbody>
+								<% }); %>
+							</table>
+							<div id="overlayAudience"></div>
+								<div id="popupAudience">
+									<form  method="post" action="/addition/classroom"> <!--id="inputFormAudience"-->
+										<h2>Аудитории</h2>
+										<input type="text" id="inputAudience1" placeholder="Аудитория" name="room_number">
+										<h2>Корпус</h2>
+										<input type="text" id="inputAudience2" placeholder="Корпус" name="building">
+										<button type="submit">Добавить</button>
+									</form>
+								<button id="closePopupAudience">Закрыть окно</button>
+							</div>
+								<script src="/js/addAudiencescript.js"></script>
+								<script>
+									document.getElementById('searchInputAudience').addEventListener('input',searchCout)
+									function searchCout(){
+										searchClassroom = document.getElementById('searchInputAudience').value;
+										sendDataToServer(searchClassroom);
+									}
+									function prepareURLToSearch(){
+										let urlSearchClassroom = document.getElementById('urlSearchClassroom');
+										urlSearchClassroom.action = `${searchClassroom}`;
+									}
+									function sendDataToServer(dataSearchClassroom) {
+										fetch('/classroom/searchClassroom', {
+										method: 'POST',
+										body: JSON.stringify({ searchClassroom: dataSearchClassroom }),
+										headers: {
+										'Content-Type': 'application/json'
+										}
+									})
+								}
+							</script>
+						<% } %>
+						<% if (page === 'departamentsearch') { %>
+							<h1>Кафедры</h1>
+							<div class="buttons123">
+								<div class="search-form"> <!-- Кнопка поиска -->
+									<form method="get" id="urlSearchDepartment" onsubmit="prepareURLToSearch()" action="departament/search/">
+										<input class="search-form-txt" id="searchInputDepartment" placeholder="Поиск" size="90" type="text">
+									</form>
+									<form action="/departament">
+										<button  style="font-weight: 700; border-radius: 5px; background-color: rgba(0,0,0,0); height: 34px;" >Вернуться в начало</button>
+									</form>
+								</div>
+								<div class="">
+									<button type="button" id="showPopupDepartment" class="add-btn-st btn btn-primary">Добавить</button>
+								</div>
+								<div class="imp-exp-st">
+									<button class="table-btn-st">Импорт</button>
+									<button class="table-btn-st">Экспорт</button>
+								</div>
+							</div>
+							<table id="myTableDepartment">
+								<thead>
+									<tr><th width="4%">#</th><th width="60%">Название кафедры</th><th width="20%">Телефон кафедры</th><th width="8%">Ред.</th><th width="8%">Уд.</th></tr>
+								</thead>
+								<% data.forEach(item => { %>
+									<tbody>
+											<td>
+												<%= item.id %>
+											</td>
+											<td>
+												<%= item.name %>
+											</td>
+											<td>
+												<%= item.phone %>
+											</td>
+											<td>
+												<button id="showPopupDepartmentEdit<%= item.id %>" style="color:MidnightBlue">Ред.</button>
+												<div id="overlayDepartmentEdit<%= item.id %>"></div>
+												<div id="popupDepartmentEdit<%= item.id %>">
+													<form method="post" action="/departament/edit/<%= item.id %>">
+														<h2>Название кафедры</h2>
+														<input type="text" name="name" id="inputDepartmentEdit1" placeholder="<%= item.name %>">
+														<h2>Телефон кафедры</h2>
+														<input type="text" name="phone" id="inputDepartmentEdit2" placeholder="<%= item.phone %>">
+														<button type="submit">Добавить</button>
+													</form>
+													<button id="closePopupDepartmentEdit<%= item.id %>">Закрыть окно</button>
+												</div>
+											</td>
+											<td>
+												<form method="post" action="/departament/delete/<%= item.id %>">
+													<button style="color: DarkRed;">Удалить</button>
+												</form>
+											</td>
+									</tbody>
+								<% }); %>
+							</table>
+							<div id="overlayDepartment"></div>
+							<div id="popupDepartment">
+								<form method="post" action="/addition/departament"><!--id="inputFormDepartment"-->
+									<h2>Название кафедры</h2>
+									<input type="text" name="name" id="inputDepartment1" placeholder="Название кафедры">
+									<h2>Телефон кафедры</h2>
+									<input type="text" name="phone" id="inputDepartment2" placeholder="Телефон кафедры">
+									<button type="submit">Добавить</button>
+								</form>
+							<button id="closePopupDepartment">Закрыть окно</button>
+						</div>		
+							<script src="/js/addDepartmentscript.js"></script>
+							<script>
+								document.getElementById('searchInputDepartment').addEventListener('input',searchCout)
+								function searchCout(){
+									searchDepartment = document.getElementById('searchInputDepartment').value;
+									sendDataToServer(searchDepartment);
+								}
+								function prepareURLToSearch(){
+									let urlSearchDepartment = document.getElementById('urlSearchDepartment');
+									urlSearchDepartment.action = `${searchDepartment}`;
+								}
+								function sendDataToServer(dataSearchDepartment) {
+									fetch('/departament/searchDepartment', {
+									method: 'POST',
+									body: JSON.stringify({ searchDepartment: dataSearchDepartment }),
+									headers: {
+									'Content-Type': 'application/json'
+									}
+								})
+							}
+						</script>
+						<% } %>
 
 			</div>
 		</main>
