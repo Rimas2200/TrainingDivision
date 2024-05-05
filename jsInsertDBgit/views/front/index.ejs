@@ -105,17 +105,17 @@
 												<div id="popupTeacherEdit<%= item.id %>">
 													<form method="post" action="/professor/edit/<%= item.id %>">
 														<h2>Фамилия</h2>
-														<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
+														<input type="text" name="last_name" id="inputTeacherEdit1" value="<%= item.last_name %>">
 														<h2>Имя</h2>
-														<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
+														<input type="text" name="first_name" id="inputTeacherEdit2" value="<%= item.first_name %>">
 														<h2>Отчество</h2>
-														<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
+														<input type="text" name="middle_name" id="inputTeacherEdit3" value="<%= item.middle_name %>">
 														<h2>Должность</h2>
-														<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
+														<input type="text" name="position" id="inputTeacherEdit4" value="<%= item.position %>">
 														<h2>Кафедра</h2>
-														<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
+														<input type="text" name="departament" id="inputTeacherEdit5" value="<%= item.departement %>">
 														<h2>Телефон кафедры</h2>
-														<input type="number" id="inputTeacherEdit6" placeholder="телефон">
+														<input type="number" id="inputTeacherEdit6" value="телефон">
 														<button type="submit">Сохранить</button>
 													</form>
 												<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
@@ -212,11 +212,11 @@
 											<div id="popupDirectionEdit<%= item.id %>">
 												<form method="post" action="/direction/edit/<%= item.id %>">
 													<h2>Аббревиатура</h2>
-													<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" placeholder="<%= item.direction_abbreviation %>">
+													<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" value="<%= item.direction_abbreviation %>">
 													<h2>Дисциплина</h2>
-													<input type="text" name="name" id="inputDirectionEdit2" placeholder="<%= item.name %>">
+													<input type="text" name="name" id="inputDirectionEdit2" value="<%= item.name %>">
 													<h2>Факультет</h2>
-													<input type="text" name="faculty" id="inputDirectionEdit3" placeholder="<%= item.faculty %>">
+													<input type="text" name="faculty" id="inputDirectionEdit3" value="<%= item.faculty %>">
 													<button type="submit">Добавить</button>
 												</form>
 											<button id="closePopupDirectionEdit<%= item.id %>">Закрыть окно</button>
@@ -296,7 +296,7 @@
 												<div id="popupTypePair1<%= item.id %>">
 													<form method="post" action="/coupleType/edit/<%= item.id %>">
 														<h2>Тип пары</h2>
-														<input type="text" name="pair_type"  id="inputTypePair2" placeholder="<%= item.pair_type %>">
+														<input type="text" name="pair_type"  id="inputTypePair2" value="<%= item.pair_type %>">
 														<button type="submit">Сохранить</button>
 													</form>
 												<button id="closePopupTypePair1<%= item.id %>">Закрыть окно</button>
@@ -364,9 +364,9 @@
 												<div id="popupAudienceEdit<%= item.id %>">
 												<form method="post" action="/classroom/edit/<%= item.id %>">
 													<h2>Аудитории</h2>
-													<input type="text" name="room_number" id="inputAudienceEdit1" placeholder="<%= item.room_number %>">
+													<input type="text" name="room_number" id="inputAudienceEdit1" value="<%= item.room_number %>">
 													<h2>Корпус</h2>
-													<input type="text" name="building" id="inputAudienceEdit2" placeholder="<%= item.building %>">
+													<input type="text" name="building" id="inputAudienceEdit2" value="<%= item.building %>">
 													<button type="submit">Добавить</button>
 												</form>
 												<button id="closePopupAudienceEdit<%= item.id %>">Закрыть окно</button>
@@ -449,9 +449,9 @@
 												<div id="popupFacultiesEdit<%= item.id %>">
 													<form method="post" action="/faculties/edit/<%= item.id %>">
 														<h2>Факультет</h2>
-														<input type="text" name="faculty_name" id="inputFacultiesEdit1" placeholder="<%= item.faculty_name %>">
+														<input type="text" name="faculty_name" id="inputFacultiesEdit1" value="<%= item.faculty_name %>">
 														<h2>ФИО декана</h2>
-														<input type="text" name="dean_fullname" id="inputFacultiesEdit2" placeholder="<%= item.dean_fullname %>">
+														<input type="text" name="dean_fullname" id="inputFacultiesEdit2" value="<%= item.dean_fullname %>">
 														<button type="submit">Добавить</button>
 													</form>
 													<button id="closePopupFacultiesEdit<%= item.id %>">Закрыть окно</button>
@@ -515,9 +515,9 @@
 											<div id="popupDepartmentEdit<%= item.id %>">
 												<form method="post" action="/departament/edit/<%= item.id %>">
 													<h2>Название кафедры</h2>
-													<input type="text" name="name" id="inputDepartmentEdit1" placeholder="<%= item.name %>">
+													<input type="text" name="name" id="inputDepartmentEdit1" value="<%= item.name %>">
 													<h2>Телефон кафедры</h2>
-													<input type="text" name="phone" id="inputDepartmentEdit2" placeholder="<%= item.phone %>">
+													<input type="text" name="phone" id="inputDepartmentEdit2" value="<%= item.phone %>">
 													<button type="submit">Добавить</button>
 												</form>
 												<button id="closePopupDepartmentEdit<%= item.id %>">Закрыть окно</button>
@@ -600,9 +600,9 @@
 										<div id="popupAdressEdit<%= item.id %>">
 											<form method="post" action="/address/edit/<%= item.id %>">
 												<h2>Адрес</h2>
-												<input type="text" name="address" id="inputAdressEdit1" placeholder="<%= item.address %>">
+												<input type="text" name="address" id="inputAdressEdit1" value="<%= item.address %>">
 												<h2>Факультет</h2>
-												<input type="text" name="faculty" id="inputAdressEdit2" placeholder="<%= item.faculty %>">
+												<input type="text" name="faculty" id="inputAdressEdit2" value="<%= item.faculty %>">
 												<button type="submit">Добавить</button>
 											</form>
 											<button id="closePopupAdressEdit<%= item.id %>">Закрыть окно</button>
@@ -663,7 +663,7 @@
 										<div id="popupDisciplineEdit<%= item.id %>">
 											<form method="post" action="/discipline/edit/<%= item.id %>">
 												<h2>Дисциплина</h2>
-												<input type="text" name="discipline_name" id="inputDisciplineEdit1" placeholder="<%= item.discipline_name %>">
+												<input type="text" name="discipline_name" id="inputDisciplineEdit1" value="<%= item.discipline_name %>">
 												<button type="submit">Добавить</button>
 											</form>
 											<button id="closePopupDisciplineEdit<%= item.id %>">Закрыть окно</button>
@@ -763,17 +763,17 @@
 												<div id="popupTeacherEdit<%= item.id %>">
 													<form method="post" action="/professor/edit/<%= item.id %>">
 														<h2>Фамилия</h2>
-														<input type="text" name="last_name" id="inputTeacherEdit1" placeholder="<%= item.last_name %>">
+														<input type="text" name="last_name" id="inputTeacherEdit1" value="<%= item.last_name %>">
 														<h2>Имя</h2>
-														<input type="text" name="first_name" id="inputTeacherEdit2" placeholder="<%= item.first_name %>">
+														<input type="text" name="first_name" id="inputTeacherEdit2" value="<%= item.first_name %>">
 														<h2>Отчество</h2>
-														<input type="text" name="middle_name" id="inputTeacherEdit3" placeholder="<%= item.middle_name %>">
+														<input type="text" name="middle_name" id="inputTeacherEdit3" value="<%= item.middle_name %>">
 														<h2>Должность</h2>
-														<input type="text" name="position" id="inputTeacherEdit4" placeholder="<%= item.position %>">
+														<input type="text" name="position" id="inputTeacherEdit4" value="<%= item.position %>">
 														<h2>Кафедра</h2>
-														<input type="text" name="departament" id="inputTeacherEdit5" placeholder="<%= item.departement %>">
+														<input type="text" name="departament" id="inputTeacherEdit5" value="<%= item.departement %>">
 														<h2>Телефон кафедры</h2>
-														<input type="number" id="inputTeacherEdit6" placeholder="телефон">
+														<input type="number" id="inputTeacherEdit6" value="телефон">
 														<button type="submit">Сохранить</button>
 													</form>
 												<button id="closePopupTeacherEdit<%= item.id %>">Закрыть окно</button>
@@ -866,7 +866,7 @@
 											<div id="popupDisciplineEdit<%= item.id %>">
 												<form method="post" action="/discipline/edit/<%= item.id %>">
 													<h2>Дисциплина</h2>
-													<input type="text" name="discipline_name" id="inputDisciplineEdit1" placeholder="<%= item.discipline_name %>">
+													<input type="text" name="discipline_name" id="inputDisciplineEdit1" value="<%= item.discipline_name %>">
 													<button type="submit">Добавить</button>
 												</form>
 												<button id="closePopupDisciplineEdit<%= item.id %>">Закрыть окно</button>
@@ -954,11 +954,11 @@
 												<div id="popupDirectionEdit<%= item.id %>">
 													<form method="post" action="/direction/edit/<%= item.id %>">
 														<h2>Аббревиатура</h2>
-														<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" placeholder="<%= item.direction_abbreviation %>">
+														<input type="text" name="direction_abbreviation" id="inputDirectionEdit1" value="<%= item.direction_abbreviation %>">
 														<h2>Дисциплина</h2>
-														<input type="text" name="name" id="inputDirectionEdit2" placeholder="<%= item.name %>">
+														<input type="text" name="name" id="inputDirectionEdit2" value="<%= item.name %>">
 														<h2>Факультет</h2>
-														<input type="text" name="faculty" id="inputDirectionEdit3" placeholder="<%= item.faculty %>">
+														<input type="text" name="faculty" id="inputDirectionEdit3" value="<%= item.faculty %>">
 														<button type="submit">Добавить</button>
 													</form>
 												<button id="closePopupDirectionEdit<%= item.id %>">Закрыть окно</button>
@@ -1045,9 +1045,9 @@
 													<div id="popupAudienceEdit<%= item.id %>">
 													<form method="post" action="/classroom/edit/<%= item.id %>">
 														<h2>Аудитории</h2>
-														<input type="text" name="room_number" id="inputAudienceEdit1" placeholder="<%= item.room_number %>">
+														<input type="text" name="room_number" id="inputAudienceEdit1" value="<%= item.room_number %>">
 														<h2>Корпус</h2>
-														<input type="text" name="building" id="inputAudienceEdit2" placeholder="<%= item.building %>">
+														<input type="text" name="building" id="inputAudienceEdit2" value="<%= item.building %>">
 														<button type="submit">Добавить</button>
 													</form>
 													<button id="closePopupAudienceEdit<%= item.id %>">Закрыть окно</button>
@@ -1134,9 +1134,9 @@
 												<div id="popupDepartmentEdit<%= item.id %>">
 													<form method="post" action="/departament/edit/<%= item.id %>">
 														<h2>Название кафедры</h2>
-														<input type="text" name="name" id="inputDepartmentEdit1" placeholder="<%= item.name %>">
+														<input type="text" name="name" id="inputDepartmentEdit1" value="<%= item.name %>">
 														<h2>Телефон кафедры</h2>
-														<input type="text" name="phone" id="inputDepartmentEdit2" placeholder="<%= item.phone %>">
+														<input type="text" name="phone" id="inputDepartmentEdit2" value="<%= item.phone %>">
 														<button type="submit">Добавить</button>
 													</form>
 													<button id="closePopupDepartmentEdit<%= item.id %>">Закрыть окно</button>

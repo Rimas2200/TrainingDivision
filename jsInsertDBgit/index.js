@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { LocalStorage } = require('node-localstorage');
+const localStorage = new LocalStorage('./localStorage');
 
 const app = express();
 
@@ -30,43 +32,46 @@ connect.connect((err) =>{
     }
 });
 
-
-
-//GET-зпапросы для POST
-app.get('/register', (req,res) =>{
-    console.log(`Запрос данных ${req.url}`);
-    res.render('register');
+// Обработчик события выхода из процесса
+process.on('SIGINT', () => {
+    // Очистка данных в localStorage перед выходом
+    localStorage.clear();
+    process.exit();
 });
+
+
 // Обработчик GET/POST-запроса на auth
 app.get('/auth', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.render('reg');
 })
 app.post('/auth', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const {email , password} = req.body;
     console.log(`Пользователь ${email} ${password} пытался зайти в систему`);
-    authenticateUser(email, password)
-      .then((authenticated) => {
-        if (authenticated) {
-          const secretKey = crypto.randomBytes(32).toString('hex');
-          // Генерация токена
-          const token = jwt.sign({ email }, secretKey);
-          // Отправка токена в ответе
-          res.status(200).json({ token });
-        } else {
-          res.status(401).json({ error: 'Не авторизован' });
-          console.log(`Пользователь ${email} ${password} пытался зайти в систему`);
-        }
-      })
-      .catch((error) => {
-        console.error('Ошибка проверки авторизации:', error);
-        res.status(500).json({ error: 'Ошибка сервера' });
-    });
+    if (!email || !password) {
+        return res.status(416).json({ error: 'Данные не соответствуют запросу' });
+      }
+      const secretKey = crypto.randomBytes(32).toString('hex');
+  // Генерация токена
+  const token = jwt.sign({ email }, secretKey);
+  authenticateUser(email, password, token)
+  .then((authenticated) => {
+    if (authenticated) {
+      saveTokenInLocalStorage(token);
+      // Отправка токена в ответе
+      res.redirect('/');
+    } else {
+      res.status(401).json({ error: 'Не авторизован' });
+    }
+  })
+  .catch((error) => {
+    console.error('Ошибка проверки авторизации:', error);
+    res.status(500).json({ error: 'Ошибка сервера' });
+  });
 });
-function authenticateUser(email, password) {
+function authenticateUser(email, password, token) {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
+      const query = 'SELECT * FROM usersUMO WHERE email = ? AND password = ?';
       const values = [email, password];
       // console.log(username, password)
       connect.query(query, values, (error, results) => {
@@ -74,11 +79,28 @@ function authenticateUser(email, password) {
           reject(error);
         } else {
           const authenticated = results.length > 0;
-          resolve(authenticated);
+          if (authenticated) {
+            const updateQuery = 'UPDATE usersUMO SET token = ? WHERE email = ?';
+            const updateValues = [token, email];
+            connect.query(updateQuery, updateValues, (error, results) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(authenticated);
+              }
+            });
+          } else {
+            resolve(authenticated);
+          }
         }
       });
     });
   }
+  function saveTokenInLocalStorage(token) {
+    // Сохранение токена в localStorage
+    localStorage.setItem('token', token);
+  }
+
 
 
 /*GET-запросы по schedules
@@ -102,9 +124,54 @@ app.get('/schedules/group/:groupName/:dayoftheweek/:week', (req,res)=>{
 
 //GET-запросы для вывода списков
 app.get('/users',(req,res) =>{
-    console.log(`Запрос данных ${req.url}`);
-    res.send('Здесь список пользователей')
-})
+  console.log(`Запрос данных ${req.url}`);
+  
+  // Извлечение токена
+  const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен - возвращаем список пользователей
+        res.send('Здесь список пользователей');
+
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
+});
+
+function findUserByToken(token) {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * FROM usersUMO WHERE token = ?';
+    const values = [token];
+    
+    connect.query(query, values, (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        const user = results[0]; // Первый пользователь с найденным токеном
+        resolve(user);
+      }
+    });
+  });
+}
+
 app.get('/faculties/direction/:faculty', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     res.send(`Списки направлений ${req.params.faculty} факультета`);
@@ -117,122 +184,507 @@ app.get('/faculties/direction/group/:direcrion_abbreviation',(req,res) =>{
 app.get('/direction',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchDirection = req.query.searchDirection;
-    console.log(`Запрос на переход поиска ${searchDirection}`);
-    connect.query('SELECT * FROM direction', (err, results) => {
-        if (err) throw err;
-        res.render('front/index', {page: 'direction',  data: results, searchDirection });
+    const token = localStorage.getItem('token');
+    if (!token) {
+        // Перенаправление на аутентификацию
+        res.redirect('/auth');
+        return;
+      }
+      
+      // Поиск пользователя по токену в базе данных
+      findUserByToken(token)
+        .then((user) => {
+          if (user) {
+            // Токен действителен
+            console.log(`Запрос на переход поиска ${searchDirection}`);
+            connect.query('SELECT * FROM direction', (err, results) => {
+            if (err) throw err;
+            res.render('front/index', {page: 'direction',  data: results, searchDirection });
+         });
+          } else {
+            // Токен недействителен - возвращаем ошибку авторизации
+            console.log(`ERROR (401) ${error}: Не авторизован `);
+            res.redirect('/auth');
+            return;
+          }
+        })
+        .catch((error) => {
+          console.error('Ошибка проверки авторизации:', error);
+          res.status(500).json({ error: 'Ошибка сервера' });
+        });
     });
-});
+
 app.get('/direction/search/:searchDirection',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    const searchDirection  =  req.params.searchDirection.toLowerCase();;
-    console.log (`Запрос на фильтр: ${searchDirection}`);
+    const searchDirection  =  req.params.searchDirection.toLowerCase();
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log (`Запрос на фильтр: ${searchDirection}`);
     connect.query('SELECT * FROM direction', (err, results) => {
         if (err) throw err;
         const filteredResults = results.filter(item => item.direction_abbreviation.toLowerCase().startsWith(searchDirection) || item.name.toLowerCase().startsWith(searchDirection));
         res.render('front/index', {page: 'directionsearch',  data: filteredResults, searchDirection });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/discipline', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchDiscipline  =  req.query.searchDiscipline;
-    connect.query('SELECT * FROM discipline', (err, results) => {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM discipline', (err, results) => {
         if (err) throw err;
         res.render('front/index', {page: 'discipline',  data: results,searchDiscipline });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
 app.get('/discipline/search/:searchDiscipline',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchDiscipline  =  req.params.searchDiscipline.toLowerCase();
-    console.log (`Запрос на фильтр: ${searchDiscipline}`);
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log (`Запрос на фильтр: ${searchDiscipline}`);
     connect.query('SELECT * FROM discipline', (err, results) => {
         if (err) throw err;
         const filteredResults = results.filter(item => item.discipline_name.toLowerCase().startsWith(searchDiscipline));
         res.render('front/index', {page: 'disciplinesearch',  data: filteredResults, searchDiscipline });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/faculties', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    connect.query('SELECT * FROM faculty', (err, results)=> {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM faculty', (err, results)=> {
         if (err) throw err;
         res.render('front/index', {page: 'faculties', data: results});
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/classroom',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchClassroom = req.query.searchClassroom;
-    connect.query('SELECT * FROM classroom', (err, results) => {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM classroom', (err, results) => {
         if (err) throw err;
         res.render('front/index', {page: 'classroom',  data: results, searchClassroom });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/classroom/search/:searchClassroom',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchClassroom  =  req.params.searchClassroom.toLowerCase();;
-    console.log (`Запрос на фильтр: ${searchClassroom}`);
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log (`Запрос на фильтр: ${searchClassroom}`);
     connect.query('SELECT * FROM classroom', (err, results) => {
         if (err) throw err;
         const filteredResults = results.filter(item => item.room_number.toLowerCase().startsWith(searchClassroom) || item.building.toLowerCase().startsWith(searchClassroom));
         res.render('front/index', {page: 'classroomsearch',  data: filteredResults, searchClassroom });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/coupleType',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    connect.query('SELECT * FROM couple_type', (err, results) => {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM couple_type', (err, results) => {
         if (err) throw err;
         res.render('front/index',{page:'coupleType',  data: results });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
 app.get('/professor',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchTeacher  =  req.query.searchTeacher;
-    console.log(`Запрос на переход поиска ${searchTeacher}`);
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log(`Запрос на переход поиска ${searchTeacher}`);
     connect.query('SELECT * FROM professor', (err, results) => {
         if (err) throw err;
         res.render('front/index', {page: 'professor',  data: results,searchTeacher });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/professor/search/:searchTeacher',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchTeacher  =  req.params.searchTeacher.toLowerCase();;
-    console.log (`Запрос на фильтр: ${searchTeacher}`);
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log (`Запрос на фильтр: ${searchTeacher}`);
     connect.query('SELECT * FROM professor', (err, results) => {
         if (err) throw err;
         const filteredResults = results.filter(item => item.first_name.toLowerCase().startsWith(searchTeacher) || item.last_name.toLowerCase().startsWith(searchTeacher));
         res.render('front/index', {page: 'professorsearch',  data: filteredResults, searchTeacher });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/',(req,res)=>{
     console.log(`Запрос данных ${req.url}`);
-    res.render('front/index', {page: ''});
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        res.render('front/index', {page: ''});
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/departament',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
     const searchDepartment = req.params.searchDepartment;
-    connect.query('SELECT * FROM departament', (err, results) => {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM departament', (err, results) => {
         if (err) throw err;
         res.render('front/index', {page: 'departament',  data: results, searchDepartment });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
 app.get('/departament/search/:searchDepartment',(req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    const searchDepartment  =  req.params.searchDepartment.toLowerCase();;
-    console.log (`Запрос на фильтр: ${searchDepartment}`);
+    const searchDepartment  =  req.params.searchDepartment.toLowerCase();
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        console.log (`Запрос на фильтр: ${searchDepartment}`);
     connect.query('SELECT * FROM departament', (err, results) => {
         if (err) throw err;
         const filteredResults = results.filter(item => item.name.toLowerCase().startsWith(searchDepartment));
         res.render('front/index', {page: 'departamentsearch',  data: filteredResults, searchDepartment });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/address', (req,res) =>{
     console.log(`Запрос данных ${req.url}`);
-    connect.query('SELECT * FROM address', (err,results) =>{
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        // Токен действителен
+        connect.query('SELECT * FROM address', (err,results) =>{
         if (err) throw err;
         res.render('front/index', {page: 'address', data: results });
     });
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    });
 });
+    
+
 app.get('/addition/schedule',(req,res) => {
-    connect.query('SELECT id, discipline_name FROM discipline', (err, disciplineData) => {
+    const token = localStorage.getItem('token');
+  
+  // Проверка на наличие токена
+  if (!token) {
+    // Перенаправление на аутентификацию
+    res.redirect('/auth');
+    return;
+  }
+  
+  // Поиск пользователя по токену в базе данных
+  findUserByToken(token)
+    .then((user) => {
+      if (user) {
+        connect.query('SELECT id, discipline_name FROM discipline', (err, disciplineData) => {
         if (err) {
             console.error('Error retrieving data from discipline: ', err);
             res.status(500).send('Internal Server Error');
@@ -276,6 +728,18 @@ app.get('/addition/schedule',(req,res) => {
                 });
             });
         });
+    });
+        
+      } else {
+        // Токен недействителен - возвращаем ошибку авторизации
+        console.log(`ERROR (401) ${error}: Не авторизован `);
+        res.redirect('/auth');
+        return;
+      }
+    })
+    .catch((error) => {
+      console.error('Ошибка проверки авторизации:', error);
+      res.status(500).json({ error: 'Ошибка сервера' });
     });
 });
 
